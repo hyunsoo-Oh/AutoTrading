@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Controls\Cards\ChartCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Common\StatusBadgeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Shell\SideBar\SideNavigationBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Shell\SideBar\SideNavigationItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Shell\TobBar\OneLineTopBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Shell\TobBar\TwoLineTopBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\StatusLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

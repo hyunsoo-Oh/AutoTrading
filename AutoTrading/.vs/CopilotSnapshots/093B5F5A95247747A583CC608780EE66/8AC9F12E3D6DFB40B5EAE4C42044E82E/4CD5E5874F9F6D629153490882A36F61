@@ -1,0 +1,105 @@
+﻿namespace AutoTrading.Controls.Shell.SideBar
+{
+    public sealed class SideNavigationBar : UserControl
+    {
+        private readonly FlowLayoutPanel _itemsHost;
+        private readonly List<SideNavigationItem> _items = new();
+        private string? _selectedKey;
+
+        public SideNavigationBar()
+        {
+            BackColor = Color.White;
+            Padding = new Padding(0, 8, 0, 8);
+
+            _itemsHost = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                AutoScroll = true,
+                Padding = new Padding(0),
+                Margin = new Padding(0)
+            };
+
+            Controls.Add(_itemsHost);
+        }
+
+        public string? SelectedKey => _selectedKey;
+
+        public event EventHandler<NavigationSelectionChangedEventArgs>? SelectionChanged;
+
+        public void SetItems(IEnumerable<NavigationItemDefinition> definitions)
+        {
+            _itemsHost.SuspendLayout();
+            _itemsHost.Controls.Clear();
+            _items.Clear();
+
+            foreach (var definition in definitions)
+            {
+                AddItem(definition);
+            }
+
+            _itemsHost.ResumeLayout();
+
+            if (_items.Count > 0)
+            {
+                Select(_items[0].ItemKey);
+            }
+        }
+
+        public void Select(string key)
+        {
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                return;
+            }
+
+            var match = _items.FirstOrDefault(x => x.ItemKey == key);
+            if (match is null)
+            {
+                return;
+            }
+
+            if (_selectedKey == key)
+            {
+                return;
+            }
+
+            var previous = _selectedKey;
+            _selectedKey = key;
+
+            foreach (var item in _items)
+            {
+                item.IsSelected = item.ItemKey == key;
+            }
+
+            SelectionChanged?.Invoke(this, new NavigationSelectionChangedEventArgs(previous, key));
+        }
+
+        private void AddItem(NavigationItemDefinition definition)
+        {
+            var item = new SideNavigationItem
+            {
+                Width = Math.Max(180, Width - Padding.Horizontal - 8),
+                Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+                ItemKey = definition.Key,
+                ItemText = definition.Text
+            };
+
+            item.ItemInvoked += (_, _) => Select(item.ItemKey);
+            _items.Add(item);
+            _itemsHost.Controls.Add(item);
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            var targetWidth = Math.Max(180, ClientSize.Width - Padding.Horizontal - SystemInformation.VerticalScrollBarWidth);
+            foreach (var item in _items)
+            {
+                item.Width = targetWidth;
+            }
+        }
+    }
+}

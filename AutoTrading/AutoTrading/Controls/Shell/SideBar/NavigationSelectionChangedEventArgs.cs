@@ -1,0 +1,14 @@
+namespace AutoTrading.Controls.Shell.SideBar
+{
+    public sealed class NavigationSelectionChangedEventArgs : EventArgs
+    {
+        public NavigationSelectionChangedEventArgs(string? previousKey, string currentKey)
+        {
+            PreviousKey = previousKey;
+            CurrentKey = currentKey;
+        }
+
+        public string? PreviousKey { get; }
+        public string CurrentKey { get; }
+    }
+}

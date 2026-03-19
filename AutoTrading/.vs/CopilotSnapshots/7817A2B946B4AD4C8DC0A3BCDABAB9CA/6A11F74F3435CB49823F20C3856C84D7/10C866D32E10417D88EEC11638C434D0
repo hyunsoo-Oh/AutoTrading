@@ -1,0 +1,126 @@
+﻿using System.ComponentModel;
+
+namespace AutoTrading.Controls.Shell.SideBar
+{
+    public sealed class SideNavigationItem : UserControl
+    {
+        private readonly Panel _indicator;
+        private readonly Label _label;
+        private bool _isHovered;
+        private bool _isSelected;
+        private string _text = string.Empty;
+
+        public SideNavigationItem()
+        {
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
+            Height = 68;
+            MinimumSize = new Size(120, 44);
+            Margin = new Padding(0);
+            Cursor = Cursors.Hand;
+            BackColor = Color.White;
+
+            _indicator = new Panel
+            {
+                Dock = DockStyle.Left,
+                Width = 4,
+                BackColor = AccentColor,
+                Visible = false
+            };
+
+            _label = new Label
+            {
+                Dock = DockStyle.Fill,
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(12, 5, 8, 5),
+                Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point),
+                ForeColor = NormalForeColor,
+                BackColor = Color.Transparent
+            };
+
+            Controls.Add(_label);
+            Controls.Add(_indicator);
+
+            WireEvents(this);
+            WireEvents(_label);
+
+            ApplyVisualState();
+        }
+
+        [Category("Navigation")]
+        public string ItemKey { get; set; } = string.Empty;
+
+        [Category("Navigation")]
+        public string ItemText
+        {
+            get => _text;
+            set
+            {
+                _text = value;
+                ApplyVisualState();
+            }
+        }
+
+        [Category("Navigation")]
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                ApplyVisualState();
+            }
+        }
+
+        [Category("Navigation")]
+        public Color HoverBackColor { get; set; } = Color.FromArgb(234, 243, 255);
+
+        [Category("Navigation")]
+        public Color SelectedBackColor { get; set; } = Color.FromArgb(220, 236, 255);
+
+        [Category("Navigation")]
+        public Color AccentColor { get; set; } = Color.FromArgb(40, 120, 255);
+
+        [Category("Navigation")]
+        public Color NormalForeColor { get; set; } = Color.FromArgb(46, 55, 72);
+
+        [Category("Navigation")]
+        public Color SelectedForeColor { get; set; } = Color.FromArgb(26, 75, 170);
+
+        public event EventHandler? ItemInvoked;
+
+        private void WireEvents(Control control)
+        {
+            control.MouseEnter += (_, _) =>
+            {
+                _isHovered = true;
+                ApplyVisualState();
+            };
+            control.MouseLeave += (_, _) =>
+            {
+                _isHovered = false;
+                ApplyVisualState();
+            };
+            control.Click += (_, _) => ItemInvoked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ApplyVisualState()
+        {
+            var showActive = _isHovered || _isSelected;
+
+            var background = _isSelected
+                ? SelectedBackColor
+                : (_isHovered ? HoverBackColor : Color.White);
+
+            BackColor = background;
+            _label.BackColor = background;
+
+            _indicator.Visible = showActive;
+            _indicator.BackColor = AccentColor;
+
+            _label.ForeColor = _isSelected ? SelectedForeColor : NormalForeColor;
+            _label.Text = showActive ? $" {_text}" : _text;
+        }
+    }
+}
