@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\presenters\\main\\mainpresenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\presenters\\main\\mainpresenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,28 +35,24 @@
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\marketregime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\marketregime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\marketregime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\controls\\shell\\tobbar\\twolinetopbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -244,11 +244,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "MainForm.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
@@ -256,12 +256,11 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-20T12:54:45.481Z",
-              "IsPinned": true,
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MainForm.cs",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
@@ -270,7 +269,71 @@
               "ViewState": "AgIAAPkAAAAAAAAAAAAcwAwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-20T12:54:43.646Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:85944829:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "Logging.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Logging.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Logging.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T04:18:56.488Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "Backtest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T04:18:48.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CardStyle.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAIwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:25:10.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPresenter.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "ViewState": "AgIAALMAAAAAAAAAAAAmwN0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T04:04:41.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
+              "RelativeDocumentMoniker": "AutoTrading\\appsettings.json",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
+              "RelativeToolTip": "AutoTrading\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-21T00:52:58.906Z",
               "EditorCaption": ""
             },
             {
@@ -283,60 +346,7 @@
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\CopilotBaseline\\Deleted\\1925951487\\MainPresenter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:21:14.002Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "Logging.cs",
-              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs",
-              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Logging.cs",
-              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs",
-              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Logging.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:18:56.488Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "Backtest.cs",
-              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
-              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
-              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
-              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:18:48.129Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CardStyle.cs",
-              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\CardStyle.cs",
-              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\CardStyle.cs",
-              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\CardStyle.cs",
-              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\CardStyle.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAIwDEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:25:10.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainPresenter.cs",
-              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
-              "RelativeDocumentMoniker": "AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
-              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
-              "RelativeToolTip": "AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
-              "ViewState": "AgIAALMAAAAAAAAAAAAmwN0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:04:41.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:21:14.002Z"
             },
             {
               "$type": "Document",
@@ -392,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ApiEndpointSettings.cs",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Configuration\\ApiEndpointSettings.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Configuration\\ApiEndpointSettings.cs",
@@ -400,8 +410,7 @@
               "RelativeToolTip": "AutoTrading\\Configuration\\ApiEndpointSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:10:08.535Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:10:08.535Z"
             },
             {
               "$type": "Document",
@@ -413,8 +422,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Report.cs",
               "ViewState": "AgIAABQAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:18:40.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:18:40.091Z"
             },
             {
               "$type": "Document",
@@ -426,8 +434,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
               "ViewState": "AgIAABQAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:17:57.893Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:17:57.893Z"
             },
             {
               "$type": "Document",
@@ -439,8 +446,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\NavigationItemDefinition.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAIBTwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:16:22.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:16:22.296Z"
             },
             {
               "$type": "Document",
@@ -452,8 +458,7 @@
               "RelativeToolTip": "AutoTrading\\Utils\\JsonParser.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:15:36.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:15:36.32Z"
             },
             {
               "$type": "Document",
@@ -465,12 +470,11 @@
               "RelativeToolTip": "AutoTrading\\Features\\Models\\Market\\StockBaseInfo.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:15:28.073Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:15:28.073Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "IMainView.cs",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Interfaces\\IMainView.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Interfaces\\IMainView.cs",
@@ -478,24 +482,22 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Interfaces\\IMainView.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T04:03:59.181Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T04:03:59.181Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Orders.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Orders.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Orders.cs",
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Orders.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Orders.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T03:41:38.899Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-22T03:41:38.899Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Program.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Program.cs",
@@ -503,52 +505,44 @@
               "RelativeToolTip": "AutoTrading\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T01:09:57.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T01:09:57.1Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Strategy.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Strategy.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Strategy.cs",
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Strategy.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Strategy.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T03:41:51.366Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-22T03:41:51.366Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "MarketRegime.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs",
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T03:40:58.967Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-22T03:40:58.967Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Asset.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Asset.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Asset.cs",
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Asset.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Asset.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T03:41:29.236Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:85944829:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+              "WhenOpened": "2026-03-22T03:41:29.236Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "SideNavigationBar.cs",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
               "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
@@ -572,19 +566,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
-              "RelativeDocumentMoniker": "AutoTrading\\appsettings.json",
-              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
-              "RelativeToolTip": "AutoTrading\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-21T00:52:58.906Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 14,
               "Title": "SideNavigationItem.cs",
               "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationItem.cs",
@@ -605,8 +586,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\NavigationSelectionChangedEventArgs.cs",
               "ViewState": "AgIAABQAAAAAAAAAAIBTwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T01:49:55.718Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T01:49:55.718Z"
             },
             {
               "$type": "Document",
@@ -690,8 +670,7 @@
               "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
               "ViewState": "AgIAABkAAAAAAAAAAABQwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T08:54:46.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T08:54:46.204Z"
             },
             {
               "$type": "Document",
@@ -787,8 +766,7 @@
               "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingMode.cs",
               "ViewState": "AgIAABAAAAAAAAAAAABQwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:37:09.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:37:09.637Z"
             },
             {
               "$type": "Document",
@@ -812,8 +790,7 @@
               "RelativeToolTip": "AutoTrading\\Configuration\\ApiSettings.cs",
               "ViewState": "AgIAACMAAAAAAAAAAABQwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:09:54.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:09:54.814Z"
             },
             {
               "$type": "Document",
@@ -885,8 +862,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\KiaErrorResponse.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAIBTwAoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:09:06.301Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:09:06.301Z"
             },
             {
               "$type": "Document",
@@ -898,8 +874,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\TokenResponse.cs",
               "ViewState": "AgIAACIAAAAAAAAAAIBTwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:08:12.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:08:12.559Z"
             },
             {
               "$type": "Document",
@@ -911,8 +886,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\HashKeyResponse.cs",
               "ViewState": "AgIAABMAAAAAAAAAAIBTwA4AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:08:43.288Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:08:43.288Z"
             },
             {
               "$type": "Document",
@@ -924,8 +898,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\TokenRequest.cs",
               "ViewState": "AgIAABkAAAAAAAAAAABQwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T07:07:34.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T07:07:34.108Z"
             },
             {
               "$type": "Document",
