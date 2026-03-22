@@ -39,7 +39,7 @@
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -189,8 +189,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-20T12:54:45.481Z",
-              "IsPinned": true,
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -203,8 +202,7 @@
               "ViewState": "AgIAAEoBAAAAAAAAAAArwGABAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-20T12:54:43.646Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -232,8 +230,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T01:23:30.458Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-21T01:23:30.458Z"
             },
             {
               "$type": "Document",
@@ -243,7 +240,7 @@
               "RelativeDocumentMoniker": "AutoTrading\\appsettings.json",
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
               "RelativeToolTip": "AutoTrading\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-03-21T00:52:58.906Z",
               "EditorCaption": ""
@@ -258,8 +255,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationItem.cs",
               "ViewState": "AgIAAFkAAAAAAAAAAAAAAHEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:19:06.447Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-20T13:19:06.447Z"
             },
             {
               "$type": "Document",
@@ -271,8 +267,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\NavigationSelectionChangedEventArgs.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T01:49:55.718Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T01:49:55.718Z"
             },
             {
               "$type": "Document",
@@ -297,8 +292,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Common\\StatusBadgeControl.cs",
               "ViewState": "AgIAAJQAAAAAAAAAAABUwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T02:05:43.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T02:05:43.938Z"
             },
             {
               "$type": "Document",
@@ -310,8 +304,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\StatusLabel.cs",
               "ViewState": "AgIAAG0AAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T02:05:31.827Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T02:05:31.827Z"
             },
             {
               "$type": "Document",
@@ -322,8 +315,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T09:13:39.844Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-21T09:13:39.844Z"
             },
             {
               "$type": "Document",
@@ -334,8 +326,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T01:16:19.771Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-22T01:16:19.771Z"
             },
             {
               "$type": "Document",
@@ -347,8 +338,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T01:23:23.278Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T01:23:23.278Z"
             },
             {
               "$type": "Document",
@@ -648,8 +638,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Cards\\StockCard.cs",
               "ViewState": "AgIAAEYBAAAAAAAAAABYwPEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:36:28.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-20T13:36:28.312Z"
             },
             {
               "$type": "Document",
@@ -696,8 +685,7 @@
               "RelativeToolTip": "AutoTrading\\Controls\\Cards\\ChartCard.cs",
               "ViewState": "AgIAAFEBAAAAAAAAAABYwBoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:25:27.468Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-20T13:25:27.468Z"
             }
           ]
         }
