@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.Auth
+{
+    public class TokenRequest
+    {
+        public string GrantType { get; set; } = "client_credentials";
+        public string AppKey { get; set; } = string.Empty;
+        public string AppSecret { get; set; } = string.Empty;
+    }
+    public class TokenResponse
+    {
+        public string AccessToken { get; set; } = string.Empty;
+        public string TokenType { get; set; } = string.Empty;
+        public double ExpiresIn { get; set; }
+        public string AccessTokenExpired { get; set; } = string.Empty;
+    }
+}

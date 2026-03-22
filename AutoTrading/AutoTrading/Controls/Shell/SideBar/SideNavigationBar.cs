@@ -48,6 +48,7 @@ namespace AutoTrading.Controls.Shell.SideBar
         public string? SelectedKey => _selectedKey;
 
         [System.ComponentModel.Category("Navigation")]
+        [System.ComponentModel.Description("선택 인디케이터 및 강조 색상 (모든 항목에 일괄 적용)")]
         public Color AccentColor
         {
             get => _settingsItem.AccentColor;
@@ -149,6 +150,11 @@ namespace AutoTrading.Controls.Shell.SideBar
             _items.Add(item);
             _itemsHost.Controls.Add(item);
             item.BringToFront();
+        }
+
+        private void InitializeComponent()
+        {
+
         }
 
         protected override void OnResize(EventArgs e)

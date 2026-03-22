@@ -24,6 +24,8 @@ namespace AutoTrading.Controls.Shell.TobBar
         {
             InitializeComponent();
 
+            //= Color.FromArgb(31, 34, 40);
+
             _clockTimer.Interval = 1000;
             _clockTimer.Tick += (_, _) =>
             {

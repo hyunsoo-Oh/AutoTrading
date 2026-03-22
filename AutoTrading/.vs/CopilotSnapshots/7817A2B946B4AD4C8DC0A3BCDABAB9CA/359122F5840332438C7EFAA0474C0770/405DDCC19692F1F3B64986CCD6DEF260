@@ -1,0 +1,318 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace AutoTrading.Controls
+{
+    public partial class StockCard : UserControl
+    {
+        // ===== backing fields =====
+        private string _indexName = "KOSPI";
+        private double _currentPrice = 0;
+        private double _changePrice = 0;
+        private double _changeRate = 0;
+        private string _priceFormat = "N2";
+        private bool _isPositive = false;
+
+        private Color _upColor = Color.FromArgb(72, 199, 142);
+        private Color _downColor = Color.FromArgb(229, 83, 80);
+        private Color _baseLineColor = Color.FromArgb(51, 51, 51);
+        private float _sparklineThickness = 1.8f;
+
+        private Color _cardBackColor = Color.FromArgb(26, 28, 30);
+        private Color _indexNameColor = Color.FromArgb(170, 170, 170);
+        private Color _priceColor = Color.White;
+
+        private List<double> _points = new();
+
+        // 
+        public StockCard()
+        {
+            InitializeComponent();
+            SetStyle(
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.UserPaint |
+                ControlStyles.ResizeRedraw |
+                ControlStyles.OptimizedDoubleBuffer, true);
+
+            DoubleBuffered = true;
+            Size = new Size(300, 150);
+            BackColor = Color.Transparent;
+        }
+
+        // ===== Stock Data =====
+
+        [Category("Stock Data")]
+        public string IndexName
+        {
+            get => _indexName;
+            set { _indexName = value; Invalidate(); }
+        }
+
+        [Category("Stock Data")]
+        public double CurrentPrice
+        {
+            get => _currentPrice;
+            set { _currentPrice = value; Invalidate(); }
+        }
+
+        /// <summary>설정하면 IsPositive 가 자동 계산됩니다.</summary>
+        [Category("Stock Data")]
+        public double ChangePrice
+        {
+            get => _changePrice;
+            set
+            {
+                _changePrice = value;
+                _isPositive = value >= 0;
+                Invalidate();
+            }
+        }
+
+        [Category("Stock Data")]
+        public double ChangeRate
+        {
+            get => _changeRate;
+            set { _changeRate = value; Invalidate(); }
+        }
+
+        /// <summary>숫자 포맷 (예: "N2", "C0")</summary>
+        [Category("Stock Data")]
+        public string PriceFormat
+        {
+            get => _priceFormat;
+            set { _priceFormat = value; Invalidate(); }
+        }
+
+        /// <summary>ChangePrice 설정 시 자동 갱신. 직접 지정도 가능합니다.</summary>
+        [Category("Stock Data")]
+        public bool IsPositive
+        {
+            get => _isPositive;
+            set { _isPositive = value; Invalidate(); }
+        }
+
+        // ── Appearance ────────────────────────────────────────────────────
+
+        [Category("Appearance")]
+        public Color CardBackColor
+        {
+            get => _cardBackColor;
+            set { _cardBackColor = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public Color UpColor
+        {
+            get => _upColor;
+            set { _upColor = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public Color DownColor
+        {
+            get => _downColor;
+            set { _downColor = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public Color BaseLineColor
+        {
+            get => _baseLineColor;
+            set { _baseLineColor = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public float SparklineThickness
+        {
+            get => _sparklineThickness;
+            set { _sparklineThickness = Math.Max(0.5f, value); Invalidate(); }
+        }
+
+        // ── Data methods ──────────────────────────────────────────────────
+
+        public void SetPoints(IEnumerable<double> values)
+        {
+            _points = values.ToList();
+            Invalidate();
+        }
+
+        public void AddPoint(double value)
+        {
+            _points.Add(value);
+            if (_points.Count > 300)
+                _points.RemoveAt(0);
+            Invalidate();
+        }
+
+        // ── Helpers ───────────────────────────────────────────────────────
+
+        private Color ThemeColor => _isPositive ? _upColor : _downColor;
+
+        // ── Paint ─────────────────────────────────────────────────────────
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            var g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+            DrawBackground(g);
+            DrawHeader(g);
+            DrawPriceSection(g);
+            DrawSparkline(g);
+        }
+
+        private void DrawBackground(Graphics g)
+        {
+            using var path = CreateRoundRect(new Rectangle(0, 0, Width - 1, Height - 1), 8);
+            using var brush = new SolidBrush(_cardBackColor);
+            g.FillPath(brush, path);
+        }
+
+        private void DrawHeader(Graphics g)
+        {
+            int pad = 15;
+            int y = (int)(Height * 0.10f);
+
+            using var nameFont = new Font("Segoe UI", 8.5f, FontStyle.Bold);
+            using var nameBrush = new SolidBrush(_indexNameColor);
+            g.DrawString(_indexName, nameFont, nameBrush, pad, y);
+
+            using var arrowBrush = new SolidBrush(ThemeColor);
+            DrawArrow(g, arrowBrush, Width - pad - 13, y, _isPositive);
+        }
+
+        private static void DrawArrow(Graphics g, Brush brush, int x, int y, bool up)
+        {
+            // up: ▲ (apex top)  down: ▼ (apex bottom)
+            Point[] pts = up
+                ? new[] { new Point(x + 6, y),      new Point(x, y + 11),  new Point(x + 13, y + 11) }
+                : new[] { new Point(x,     y),       new Point(x + 13, y),  new Point(x + 6,  y + 11) };
+            g.FillPolygon(brush, pts);
+        }
+
+        private void DrawPriceSection(Graphics g)
+        {
+            int pad = 15;
+            float priceY = Height * 0.24f;
+
+            // ── Current price (large, white, left) ──
+            using var priceFont = new Font("Consolas", 18f, FontStyle.Bold);
+            using var priceBrush = new SolidBrush(_priceColor);
+            g.DrawString(_currentPrice.ToString(_priceFormat), priceFont, priceBrush, pad, priceY);
+
+            // ── Change info (small, themed, right) ──
+            string sign = _isPositive ? "+" : string.Empty;
+            string changeAmountText = $"{sign}{_changePrice.ToString(_priceFormat)}";
+            string changeRateText = $"{sign}{_changeRate:N2}%";
+
+            using var changeFont = new Font("Segoe UI", 8.5f, FontStyle.Bold);
+            using var changeBrush = new SolidBrush(ThemeColor);
+
+            SizeF sz1 = g.MeasureString(changeAmountText, changeFont);
+            SizeF sz2 = g.MeasureString(changeRateText, changeFont);
+            float maxW = Math.Max(sz1.Width, sz2.Width);
+
+            float cx = Width - pad - maxW;
+            g.DrawString(changeAmountText, changeFont, changeBrush, cx, priceY + 2);
+            g.DrawString(changeRateText, changeFont, changeBrush, cx, priceY + 2 + sz1.Height + 1);
+        }
+
+        private void DrawSparkline(Graphics g)
+        {
+            int pad = 15;
+            int baseY = (int)(Height * 0.73f);
+
+            // ── Baseline ──
+            using (var dashed = new Pen(_baseLineColor, 1f))
+            {
+                dashed.DashStyle = DashStyle.Dash;
+                dashed.DashPattern = new float[] { 3f, 3f };
+                g.DrawLine(dashed, pad, baseY, Width - pad, baseY);
+            }
+
+            if (_points.Count < 2)
+                return;
+
+            double min = _points.Min();
+            double max = _points.Max();
+            double range = Math.Max(1.0, max - min);
+
+            int chartLeft  = pad;
+            int chartRight = Width - pad;
+
+            // 기준선(baseY)을 중심으로 위아래 대칭 영역
+            int belowSpace = Height - 8 - baseY;
+            int aboveSpace = baseY - (int)(Height * 0.52f);
+            int halfH      = Math.Max(4, Math.Min(aboveSpace, belowSpace));
+
+            int chartTop    = baseY - halfH;
+            int chartBottom = baseY + halfH;
+            int chartW      = chartRight - chartLeft;
+            int chartH      = chartBottom - chartTop;
+
+            if (chartW <= 0 || chartH <= 0)
+                return;
+
+            PointF[] pts = new PointF[_points.Count];
+            for (int i = 0; i < _points.Count; i++)
+            {
+                float x    = chartLeft + chartW * i / (float)(_points.Count - 1);
+                float norm = (float)((_points[i] - min) / range);
+                pts[i] = new PointF(x, chartBottom - norm * chartH);
+            }
+
+            // ── Sparkline path ──
+            using var linePath = new GraphicsPath();
+            if (pts.Length >= 3)
+                linePath.AddCurve(pts, 0.3f);
+            else
+                linePath.AddLines(pts);
+
+            // ── Gradient fill (sparkline → chartBottom) ──
+            using var fillPath = new GraphicsPath();
+            if (pts.Length >= 3)
+                fillPath.AddCurve(pts, 0.3f);
+            else
+                fillPath.AddLines(pts);
+            fillPath.AddLine(pts[^1], new PointF(chartRight, chartBottom));
+            fillPath.AddLine(new PointF(chartRight, chartBottom), new PointF(chartLeft, chartBottom));
+            fillPath.CloseFigure();
+
+            Color theme = ThemeColor;
+            using var gradBrush = new LinearGradientBrush(
+                new Point(0, chartTop),
+                new Point(0, chartBottom),
+                Color.FromArgb(55, theme),
+                Color.FromArgb(0, theme));
+            g.FillPath(gradBrush, fillPath);
+
+            // ── Sparkline ──
+            using var pen = new Pen(theme, _sparklineThickness)
+            {
+                StartCap = LineCap.Round,
+                EndCap = LineCap.Round,
+                LineJoin = LineJoin.Round
+            };
+            g.DrawPath(pen, linePath);
+        }
+
+        private static GraphicsPath CreateRoundRect(Rectangle rect, int radius)
+        {
+            var path = new GraphicsPath();
+            int d = radius * 2;
+            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
+            path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
+            path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
+    }
+}

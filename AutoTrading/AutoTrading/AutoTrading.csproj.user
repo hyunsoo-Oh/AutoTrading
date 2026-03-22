@@ -4,6 +4,12 @@
     <Compile Update="Controls\Cards\ChartCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Controls\Cards\StockCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\Cards\ValueTrackerCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Controls\Common\StatusBadgeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -20,6 +26,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Controls\StatusLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\Dashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Features\Views\Forms\MainForm.cs">

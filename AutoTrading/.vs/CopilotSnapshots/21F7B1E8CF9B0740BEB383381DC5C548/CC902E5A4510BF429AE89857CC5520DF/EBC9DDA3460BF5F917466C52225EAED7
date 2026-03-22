@@ -1,0 +1,247 @@
+﻿using AutoTrading.Controls;
+using AutoTrading.Controls.Shell.SideBar;
+using AutoTrading.Presentation.Models.Market;
+using AutoTrading.Services.Auth;
+using System.Runtime.InteropServices;
+
+namespace AutoTrading
+{
+    public partial class MainForm : Form
+    {
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+
+        private System.Windows.Forms.Timer _clockTimer;
+
+        // ===== 토큰 자동 갱신 타이머 =====
+        // 일정 주기마다 토큰 유효성을 확인하고 만료 임박 시 재발급한다.
+        // KiaAuthService.IsTokenValid() 내부에서 만료 1분 전을 기준으로 판단하므로
+        // 여기서는 단순히 주기적으로 GetAccessTokenAsync를 호출하기만 하면 된다.
+        // ===== =====
+        private System.Windows.Forms.Timer _tokenRefreshTimer;
+
+        // ===== 토큰 갱신 주기(ms) =====
+        // 한국투자증권 API 토큰 유효기간은 24시간, 6시간 이내 재발급 시 기존 토큰 반환
+        // 5분(300,000ms)마다 확인하면 만료 1분 전 조건과 맞물려 적시에 재발급된다.
+        // ===== =====
+        private const int TokenRefreshIntervalMs = 5 * 60 * 1000;
+
+        /// <summary>
+        /// 인증 서비스
+        /// Form이 직접 REST 통신 세부 구현을 알 필요 없도록 서비스로 분리했다.
+        /// </summary>
+        private readonly IAuthService _authService;
+
+        /// <summary>
+        /// 현재 실행 모드 표시용 값
+        /// "Mock" 또는 "Live"
+        /// </summary>
+        private readonly string _tradingMode;
+
+        private List<StockBaseInfo> _stockInfoList = new List<StockBaseInfo>();
+
+        bool _isLoggedIn = false;
+
+        public MainForm()
+        {
+            InitializeComponent();
+
+            AllocConsole();
+
+            textBox_Search.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+
+        public MainForm(IAuthService authService, string tradingMode) : this()
+        {
+            _authService = authService;
+            _tradingMode = tradingMode == "Mock" ? "모의투자" : "실전투자";
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // 현재 실행 환경을 화면에 표시
+            twoLineTopBar.InvestmentMode = $"{_tradingMode}";
+
+            InitClockTimer();
+            InitNavigationBar();
+
+            // ===== 앱 시작 시 즉시 토큰 발급 시도 =====
+            // Load 이벤트에서 직접 await 할 수 없으므로 별도 async 메서드로 위임한다.
+            // ===== =====
+            _ = InitTokenAsync();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InitClockTimer()
+        {
+            _clockTimer = new System.Windows.Forms.Timer();
+            _clockTimer.Interval = 1000;
+            _clockTimer.Tick += (s, e) =>
+            {
+                toolStripStatusLabel_Clock.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss  ");
+
+
+                //if (result == 1)
+                //{
+                //    toolStripStatusLabel_ConnectState.Text = "● Connected";
+                //    _isLoggedIn = true;
+                //}
+                //else
+                //{
+                //    toolStripStatusLabel_ConnectState.Text = "○ Disconnected";
+                //    _isLoggedIn = false;
+                //}
+            };
+            _clockTimer?.Start();
+        }
+
+        // ===== 앱 시작 시 최초 토큰 발급 및 자동 갱신 타이머 초기화 =====
+        private async Task InitTokenAsync()
+        {
+            // 최초 1회 즉시 발급
+            await GetTokenAsync();
+
+            // 이후 주기적으로 갱신 확인
+            _tokenRefreshTimer = new System.Windows.Forms.Timer();
+            _tokenRefreshTimer.Interval = TokenRefreshIntervalMs;
+            _tokenRefreshTimer.Tick += async (s, e) => await GetTokenAsync();
+            _tokenRefreshTimer.Start();
+        }
+        // ===== =====
+
+        private void InitNavigationBar()
+        {
+            sideNavigationBar.SetItems(
+            [
+
+                new NavigationItemDefinition("Portfolio", "Portfolio"),
+                new NavigationItemDefinition("Orders", "Orders"),
+                new NavigationItemDefinition("Dashboard", "Dashboard"),
+            ]);
+
+            Console.WriteLine("[NAV] items initialized: Dashboard, Orders, Portfolio (+ fixed bottom Settings)");
+
+            sideNavigationBar.SelectionChanged -= SideNavigationBar_SelectionChanged;
+            sideNavigationBar.SelectionChanged += SideNavigationBar_SelectionChanged;
+
+            sideNavigationBar.SettingsInvoked += (_, _) =>
+            {
+                //new SettingsForm().Show();
+            };
+        }
+
+        private void SideNavigationBar_SelectionChanged(object? sender, NavigationSelectionChangedEventArgs e)
+        {
+            Console.WriteLine($"[NAV] {e.PreviousKey} -> {e.CurrentKey}");
+        }
+
+        // 로그인 이벤트 핸들러
+        //private void AxkhOpenapi_OnEventConnect(object sender, AxKHOpenAPILib._DKHOpenAPIEvents_OnEventConnectEvent e)
+        //{
+        //    if (e.nErrCode == 0)
+        //    {
+        //        _isLoggedIn = true;
+
+
+
+        //        //toolStripStatusLabel_UserName.Text = $"{name} : {accountServer}";
+        //    }
+        //    else if (e.nErrCode == 100)
+        //    {
+        //        MessageBox.Show("사용자 정보교환 실패!");
+        //    }
+        //    else if (e.nErrCode == 101)
+        //    {
+        //        MessageBox.Show("서버 접속 실패!");
+        //    }
+        //    else if (e.nErrCode == 102)
+        //    {
+        //        MessageBox.Show($"로그인 실패! 에러 코드: {e.nErrCode}");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show($"알 수 없는 에러 발생! 에러 코드: {e.nErrCode}");
+        //    }
+        //}
+
+        private void Request_ItemCodeList(string index)
+        {
+
+        }
+
+        /// MenuStrip의 메뉴 클릭 이벤트 핸들러
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem? item = sender as ToolStripMenuItem;
+
+            if (item != null)
+            {
+                switch (item.Tag)
+                {
+                    case "Login":
+                        // 로그인 폼 열기
+                        GetToken();
+                        break;
+                    case "GetStockInfo":
+
+                        toolStripStatusLabel_GetStockInfo.Text = $"종목 정보 요청 완료: {_stockInfoList.Count}개";
+                        break;
+                    default:
+
+                        break;
+                }
+            }
+        }
+
+        private async void GetToken()
+        {
+            try
+            {
+                TokenResponse? token = await _authService.GetAccessTokenAsync();
+
+                if (token != null && !string.IsNullOrWhiteSpace(token.AccessToken))
+                {
+                    twoLineTopBar.IsServerConnected = true;
+                }
+                else
+                {
+                    twoLineTopBar.IsServerConnected = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"토큰 요청 실패: {ex.ToString()}");
+            }
+        }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Button? button = sender as System.Windows.Forms.Button;
+
+            if (button != null)
+            {
+                switch (button.Tag)
+                {
+                    case "Search":
+                        string searchItemName = textBox_Search.Text.Trim();
+
+                        if (string.IsNullOrEmpty(searchItemName))
+                        {
+                            MessageBox.Show("검색어를 입력하세요.");
+                            return;
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void button_Test_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

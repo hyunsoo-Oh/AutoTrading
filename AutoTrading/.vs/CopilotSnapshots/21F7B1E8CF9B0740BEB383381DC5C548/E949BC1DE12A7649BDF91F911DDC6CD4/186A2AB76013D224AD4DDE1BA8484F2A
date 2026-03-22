@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Configuration
+{
+    /// <summary>
+    /// API 접속정보를 담는 클래스 (모의투자/실전투자)
+    /// </summary>
+    public class ApiEndpointSettings
+    {
+        public string BaseUrl { get; set; } = string.Empty; // API 서버 주소
+        public string AppKey { get; set; } = string.Empty;  // 한국투자증권에섭 API 앱 키
+        public string AppSecret { get; set; } = string.Empty; // 한국투자증권에섭 API 앱 시크릿
+    }
+}

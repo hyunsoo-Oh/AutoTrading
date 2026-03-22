@@ -14,7 +14,7 @@ namespace AutoTrading.Controls.Shell.SideBar
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
-            Height = 68;
+            Height = 53;
             MinimumSize = new Size(120, 44);
             Margin = new Padding(0);
             Cursor = Cursors.Hand;
@@ -34,7 +34,7 @@ namespace AutoTrading.Controls.Shell.SideBar
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Padding = new Padding(12, 5, 8, 5),
-                Font = new Font("ÎßëÏùÄ Í≥†Îîï", 12F, FontStyle.Regular, GraphicsUnit.Point),
+                Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point),
                 ForeColor = NormalForeColor,
                 BackColor = Color.Transparent
             };
@@ -49,9 +49,11 @@ namespace AutoTrading.Controls.Shell.SideBar
         }
 
         [Category("Navigation")]
+        [Description("º±≈√/¿Ã∫•∆Æ Ωƒ∫∞ø° ªÁøÎµ«¥¬ ∞Ì¿Ø ≈∞")]
         public string ItemKey { get; set; } = string.Empty;
 
         [Category("Navigation")]
+        [Description("«◊∏Òø° «•Ω√µ«¥¬ ≈ÿΩ∫∆Æ")]
         public string ItemText
         {
             get => _text;
@@ -63,6 +65,7 @@ namespace AutoTrading.Controls.Shell.SideBar
         }
 
         [Category("Navigation")]
+        [Description("«ˆ¿Á º±≈√µ» ªÛ≈¬ ø©∫Œ")]
         public bool IsSelected
         {
             get => _isSelected;
@@ -74,17 +77,21 @@ namespace AutoTrading.Controls.Shell.SideBar
         }
 
         [Category("Navigation")]
+        [Description("º±≈√ Ω√ øﬁ¬  ¿Œµƒ…¿Ã≈Õ πŸ «•Ω√ ø©∫Œ")]
         public bool ShowSelectionIndicator { get; set; } = true;
 
         [Category("Navigation")]
-        public Color HoverBackColor { get; set; } = Color.FromArgb(234, 243, 255);
+        [Description("∏∂øÏΩ∫ »£πˆ Ω√ πË∞Ê ªˆªÛ")]
+        public Color HoverBackColor { get; set; } = Color.FromArgb(60, 62, 70);
 
         [Category("Navigation")]
-        public Color SelectedBackColor { get; set; } = Color.FromArgb(220, 236, 255);
+        [Description("º±≈√ ªÛ≈¬ πË∞Ê ªˆªÛ")]
+        public Color SelectedBackColor { get; set; } = Color.FromArgb(75, 56, 76);
 
         private Color _normalBackColor = Color.White;
 
         [Category("Navigation")]
+        [Description("±‚∫ª πË∞Ê ªˆªÛ")]
         public Color NormalBackColor
         {
             get => _normalBackColor;
@@ -97,13 +104,16 @@ namespace AutoTrading.Controls.Shell.SideBar
         }
 
         [Category("Navigation")]
+        [Description("º±≈√ ¿Œµƒ…¿Ã≈Õ π◊ ∞≠¡∂ ªˆªÛ")]
         public Color AccentColor { get; set; } = Color.FromArgb(40, 120, 255);
 
         [Category("Navigation")]
-        public Color NormalForeColor { get; set; } = Color.FromArgb(46, 55, 72);
+        [Description("∫Òº±≈√ ªÛ≈¬ ≈ÿΩ∫∆Æ ªˆªÛ")]
+        public Color NormalForeColor { get; set; } = Color.FromArgb(225, 226, 229);
 
         [Category("Navigation")]
-        public Color SelectedForeColor { get; set; } = Color.FromArgb(26, 75, 170);
+        [Description("º±≈√ ªÛ≈¬ ≈ÿΩ∫∆Æ ªˆªÛ")]
+        public Color SelectedForeColor { get; set; } = Color.FromArgb(225, 226, 229);
 
         public event EventHandler? ItemInvoked;
 

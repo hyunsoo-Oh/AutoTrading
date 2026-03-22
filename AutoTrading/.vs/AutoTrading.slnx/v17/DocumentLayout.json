@@ -1,0 +1,707 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\appsettings.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\controls\\shell\\tobbar\\twolinetopbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\tobbar\\twolinetopbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\sidebar\\sidenavigationitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\sidebar\\sidenavigationitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\sidebar\\navigationselectionchangedeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\sidebar\\navigationselectionchangedeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\cards\\valuetrackercard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\cards\\valuetrackercard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\sidebar\\sidenavigationbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\shell\\tobbar\\twolinetopbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\shell\\tobbar\\twolinetopbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\auth\\kiaauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\auth\\kiaauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\common\\kiatradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\common\\kiatradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\common\\ikiatradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\common\\ikiatradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\kiaaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\kiaaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\inquirebalanceurlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\inquirebalanceurlbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\inquirebalanceheaderbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\inquirebalanceheaderbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\common\\kiatradingmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\common\\kiatradingmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\inquirebalancetridprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\inquirebalancetridprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\configuration\\apisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\configuration\\apisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\inquirebalancequerystringbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\inquirebalancequerystringbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\accounts\\inquirebalancesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\accounts\\inquirebalancesummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\accounts\\inquirebalanceitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\accounts\\inquirebalanceitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\accounts\\inquirebalanceresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\accounts\\inquirebalanceresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\accounts\\inquirebalancerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\accounts\\inquirebalancerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\configuration\\apiendpointsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\configuration\\apiendpointsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\auth\\kiaerrorresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\auth\\kiaerrorresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\auth\\tokenresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\auth\\tokenresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\auth\\hashkeyresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\auth\\hashkeyresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\models\\api\\auth\\tokenrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\models\\api\\auth\\tokenrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\cards\\stockcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\cards\\stockcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\cards\\cardstyle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\cards\\cardstyle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\controls\\cards\\valuetrackercard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\cards\\valuetrackercard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\cards\\stockcard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\cards\\stockcard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\cards\\chartcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\cards\\chartcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\services\\koreainvest\\accounts\\inquirebalanceaccountproductcodeprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\services\\koreainvest\\accounts\\inquirebalanceaccountproductcodeprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\statuslabel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\statuslabel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\controls\\common\\statusbadgecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\controls\\common\\statusbadgecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:54:45.481Z",
+              "IsPinned": true,
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "ViewState": "AgIAAEoBAAAAAAAAAAArwGABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:54:43.646Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:85944829:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SideNavigationBar.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:23:53.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TwoLineTopBar.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:23:30.458Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
+              "RelativeDocumentMoniker": "AutoTrading\\appsettings.json",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\appsettings.json",
+              "RelativeToolTip": "AutoTrading\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-21T00:52:58.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SideNavigationItem.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationItem.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationItem.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationItem.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationItem.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAAHEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:19:06.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NavigationSelectionChangedEventArgs.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\NavigationSelectionChangedEventArgs.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\SideBar\\NavigationSelectionChangedEventArgs.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\NavigationSelectionChangedEventArgs.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\NavigationSelectionChangedEventArgs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T01:49:55.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ValueTrackerCard.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAcwBIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T14:12:10.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "StatusBadgeControl.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Common\\StatusBadgeControl.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Common\\StatusBadgeControl.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Common\\StatusBadgeControl.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Common\\StatusBadgeControl.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAABUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T02:05:43.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "StatusLabel.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\StatusLabel.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\StatusLabel.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\StatusLabel.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\StatusLabel.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T02:05:31.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dashboard.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T09:13:39.844Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SideNavigationBar.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Controls\\Shell\\SideBar\\SideNavigationBar.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T01:16:19.771Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TwoLineTopBar.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Shell\\TobBar\\TwoLineTopBar.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:23:23.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Auth\\IAuthService.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Auth\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Auth\\IAuthService.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Auth\\IAuthService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAjwBMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:00:54.892Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "InquireBalanceAccountProductCodeProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T08:54:46.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "KiaAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Auth\\KiaAuthService.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Auth\\KiaAuthService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Auth\\KiaAuthService.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Auth\\KiaAuthService.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAIwA8BAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T00:49:55.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "KiaTradingService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingService.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingService.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAWwCQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:38:25.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IKiaTradingService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Common\\IKiaTradingService.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Common\\IKiaTradingService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Common\\IKiaTradingService.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Common\\IKiaTradingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswBAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:37:42.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "KiaAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\KiaAccountService.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\KiaAccountService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\KiaAccountService.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\KiaAccountService.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwDIAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:16:49.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "InquireBalanceUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:31:10.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\IAccountService.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\IAccountService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\IAccountService.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\IAccountService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:16:35.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "InquireBalanceHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAiwBYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:47:54.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Program.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Program.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Program.cs",
+              "RelativeToolTip": "AutoTrading\\Program.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAmwDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:09:57.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "KiaTradingMode.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingMode.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingMode.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingMode.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Common\\KiaTradingMode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:37:09.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "InquireBalanceTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:47:44.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ApiSettings.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Configuration\\ApiSettings.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Configuration\\ApiSettings.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Configuration\\ApiSettings.cs",
+              "RelativeToolTip": "AutoTrading\\Configuration\\ApiSettings.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:09:54.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "InquireBalanceQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "RelativeToolTip": "AutoTrading\\Services\\KoreaInvest\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAcwCkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:26:01.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "InquireBalanceItem.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceItem.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceItem.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceItem.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:16:06.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "InquireBalanceSummary.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceSummary.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceSummary.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceSummary.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceSummary.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAiwCQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:16:16.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "InquireBalanceResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceResponse.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceResponse.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceResponse.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAcwDoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:15:52.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "InquireBalanceRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceRequest.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceRequest.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Accounts\\InquireBalanceRequest.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:15:26.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ApiEndpointSettings.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Configuration\\ApiEndpointSettings.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Configuration\\ApiEndpointSettings.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Configuration\\ApiEndpointSettings.cs",
+              "RelativeToolTip": "AutoTrading\\Configuration\\ApiEndpointSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:10:08.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "KiaErrorResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\KiaErrorResponse.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Auth\\KiaErrorResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\KiaErrorResponse.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\KiaErrorResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:09:06.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "TokenResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\TokenResponse.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Auth\\TokenResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\TokenResponse.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\TokenResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:08:12.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "HashKeyResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\HashKeyResponse.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Auth\\HashKeyResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\HashKeyResponse.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\HashKeyResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:08:43.288Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "TokenRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\TokenRequest.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Models\\Api\\Auth\\TokenRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Models\\Api\\Auth\\TokenRequest.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Models\\Api\\Auth\\TokenRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T07:07:34.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAADIVAAAAAAAAAAAmwD4VAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-03-20T14:27:31.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "StockCard.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\StockCard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\StockCard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\StockCard.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\StockCard.cs",
+              "ViewState": "AgIAAEYBAAAAAAAAAABYwPEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:36:28.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "CardStyle.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\CardStyle.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvyQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:25:10.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "ValueTrackerCard.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\ValueTrackerCard.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T14:03:36.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "StockCard.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\StockCard.Designer.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\StockCard.Designer.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\StockCard.Designer.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\StockCard.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:36:36.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ChartCard.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\ChartCard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Controls\\Cards\\ChartCard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Controls\\Cards\\ChartCard.cs",
+              "RelativeToolTip": "AutoTrading\\Controls\\Cards\\ChartCard.cs",
+              "ViewState": "AgIAAFEBAAAAAAAAAABYwBoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:25:27.468Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Auth;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Unicode;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회 API 호출에 필요한 Header를 생성
+    /// </summary>
+    public class InquireBalanceHeaderBuilder
+    {
+        private readonly IAuthService _authService;
+        private readonly ApiSettings _apiSettings;
+        private readonly IKiaTradingService _tradingService;
+
+        public InquireBalanceHeaderBuilder(
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKiaTradingService tradingService)
+        {
+            _authService = authService;
+            _apiSettings = apiSettings;
+            _tradingService = tradingService;
+        }
+
+        /// <summary>
+        /// 주식잔고조회 호출용 Header를 생성합니다.
+        ///
+        /// 포함되는 헤더:
+        /// - content-type
+        /// - authorization
+        /// - appkey
+        /// - appsecret
+        /// - tr_id
+        /// </summary>
+        /// <param name="cancellationToken">취소 토큰</param>
+        /// <returns>헤더 이름/값 사전</returns>
+        public async Task<Dictionary<string, string>> BuildAsync(
+            CancellationToken cancellationToken = default)
+        {
+            var currentSettings = _apiSettings.GetCurrent(_tradingService.CurrentEnvironment);
+
+            TokenResponse? tokenResponse = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            if (tokenResponse == null || string.IsNullOrWhiteSpace(tokenResponse.AccessToken))
+            {
+                throw new InvalidOperationException("유효한 Access Token을 가져오지 못했습니다.");
+            }
+
+            string trId = InquireBalanceTrIdProvider.Get(_tradingService.CurrentEnvironment);
+
+            var headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                // 문서의 content-type
+                ["content-type"] = "application/json; charset=utf-8",
+
+                // 왜 Bearer를 붙이나?
+                // - 한국투자증권 Access Token 헤더 형식이 "Bearer {token}" 이기 때문입니다.
+                ["authorization"] = $"application / json; charset = utf - 8",
+
+                // 현재 선택된 Mock/Live 환경의 키를 사용합니다.
+                ["appkey"] = currentSettings.AppKey.Trim(),
+                ["appsecret"] = currentSettings.AppSecret.Trim(),
+
+                // 모의/실전에 따라 다른 TR ID
+                ["tr_id"] = trId
+            };
+
+            return headers;
+        }
+    }
+}

@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.Auth
+{
+    /// <summary>
+    /// 한국투자증권 API 인증 서비스 클래스
+    /// </summary>
+    public class KiaAuthService : IAuthService
+    {
+        /// <summary>
+        /// HTTP 통신 전담 객체
+        /// </summary>
+        private readonly HttpClient _httpClient;
+
+        /// <summary>
+        /// 현재 선택된 환경(모의 or 실전)의 설정값
+        /// BaseUrl, AppKey, AppSecret이 들어있다.
+        /// </summary>
+        private readonly ApiEndpointSettings _settings;
+
+        /// <summary>
+        /// 마지막으로 받은 토큰을 잠시 저장해두기 위한 필드
+        /// 
+        /// 현재 예제에서는 단순 보관만 하고,
+        /// 이후 단계에서 만료시간 비교까지 붙이면 더 완성도가 높아진다.
+        /// </summary>
+        private TokenResponse? _cachedToken;
+
+        public KiaAuthService(HttpClient httpClient, ApiEndpointSettings settings)
+        {
+            _httpClient = httpClient;
+            _settings = settings;
+        }
+
+        /// <summary>
+        /// 접근 토큰 발급
+        /// </summary>
+        public async Task<TokenResponse?> GetAccessTokenAsync(CancellationToken cancellationToken = default)
+        {
+            // 1) 요청 바디 객체 생성
+            // grant_type은 문서상 client_credentials 사용
+            var requestBody = new
+            {
+                grant_type = "client_credentials",
+                appkey = _settings.AppKey,
+                appsecret = _settings.AppSecret
+            };
+
+            // 2) 객체를 JSON 문자열로 변환
+            var json = JsonSerializer.Serialize(requestBody);
+
+            // 3) HTTP Body에 넣기 위한 StringContent 생성
+            // Content-Type은 application/json 이어야 한다.
+            using var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // 4) 최종 요청 주소 구성
+            // 모의  https://openapivts.koreainvestment.com:29443/oauth2/tokenP
+            // 실전  https://openapi.koreainvestment.com:9443/oauth2/tokenP
+            var requestUrl = $"{_settings.BaseUrl}/oauth2/tokenP";
+
+            // 5) POST 요청 전송
+            using var response = await _httpClient.PostAsync(requestUrl, content, cancellationToken);
+
+            // 6) 응답 문자열 읽기
+            var responseText = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            // 7) HTTP 상태 코드 확인
+            // 성공이 아니면 예외 발생
+            // 왜 바로 throw 하나?
+            // - 호출 실패를 숨기면 원인 추적이 어려워진다.
+            // - 자동매매에서는 실패를 명확히 드러내는 것이 안전하다.
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(
+                    $"토큰 발급 실패 | HTTP={(int)response.StatusCode} | URL={requestUrl} | Body={responseText}");
+            }
+
+            // 8) JSON 응답을 TokenResponse 객체로 변환
+            var options = new JsonSerializerOptions
+            {
+                // ===== PropertyNameCaseInsensitive만으로는 snake_case 매핑 불가 =====
+                // TokenResponse 각 프로퍼티에 [JsonPropertyName]을 직접 지정하여 해결한다.
+                // 이 옵션은 보조적으로 남겨둔다.
+                // ===== =====
+                PropertyNameCaseInsensitive = true
+            };
+            
+            var token = JsonSerializer.Deserialize<TokenResponse>(responseText, options);
+
+            // 9) 필수값 검증
+            // access_token이 비어 있으면 정상 응답으로 보기 어렵다.
+            if (token == null || string.IsNullOrWhiteSpace(token.AccessToken))
+            {
+                throw new Exception("토큰 응답 파싱 실패 또는 access_token 누락");
+            }
+
+            // 10) 캐시 저장
+            _cachedToken = token;
+
+            // 11) 호출자에게 반환
+            return token;
+        }
+    }
+}
