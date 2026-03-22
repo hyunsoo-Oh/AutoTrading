@@ -54,6 +54,7 @@ namespace AutoTrading
             var authService = new KiaAuthService(httpClient, apiSettings, kiaTradingService);
 
             // 8) MainForm에 서비스 주입 후 실행
+            // MainForm 생성자 안에서 MainPresenter가 생성된다.
             Application.Run(new MainForm(authService, apiSettings.TradingMode, apiSettings, kiaTradingService));
         }
     }

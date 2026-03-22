@@ -28,7 +28,28 @@
     <Compile Update="Controls\StatusLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Features\Views\Contents\Asset.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\Backtest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Features\Views\Contents\Dashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\Logging.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\MarketRegime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\Orders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\Report.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Features\Views\Contents\Strategy.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Features\Views\Forms\MainForm.cs">

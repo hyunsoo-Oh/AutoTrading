@@ -1,0 +1,283 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Controls.Shell.SideBar;
+using AutoTrading.Features.Views.Contents;
+using AutoTrading.Features.Views.Interfaces;
+using AutoTrading.Presentation.Models.Market;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common;
+using System.Runtime.InteropServices;
+using AutoTrading.Features.Presenters.Main;
+
+namespace AutoTrading
+{
+    /// <summary>
+    /// 메인 화면 (View)
+    ///
+    /// 이 클래스는 화면 표시와 사용자 이벤트 수집만 담당한다.
+    /// 비즈니스 로직(토큰 발급, 환경 전환, 잔고 조회 등)은 MainPresenter가 처리한다.
+    ///
+    /// MVP 패턴 역할 분담:
+    /// - View(MainForm): UI 초기화, 이벤트 → Presenter 위임, Presenter 지시에 따른 UI 갱신
+    /// - Presenter(MainPresenter): 사용자 액션 처리, 서비스 호출, View 인터페이스를 통한 결과 전달
+    /// - Model/Service: 실제 API 호출, 데이터 가공
+    /// </summary>
+    public partial class MainForm : Form, IMainView
+    {
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+
+        // ===== Presenter =====
+        // Form이 직접 서비스를 호출하지 않고, Presenter를 통해 비즈니스 로직을 실행한다.
+        // ===== =====
+        private MainPresenter? _presenter;
+
+        private System.Windows.Forms.Timer _clockTimer;
+        private System.Windows.Forms.Timer _tokenRefreshTimer;
+
+        // ===== 토큰 갱신 주기(ms) =====
+        private const int TokenRefreshIntervalMs = 1 * 60 * 1000;
+
+        // ===== 페이지 관리 =====
+        // SideNavigationBar의 키와 UserControl을 매핑하여
+        // splitContainer2.Panel2에 Dock.Fill로 표시한다.
+        // ===== =====
+        private readonly Dictionary<string, UserControl> _pageCache = new();
+        private readonly Dictionary<string, Func<UserControl>> _pageFactory = new();
+        private UserControl? _currentPage;
+
+        private List<StockBaseInfo> _stockInfoList = new List<StockBaseInfo>();
+
+        public MainForm()
+        {
+            InitializeComponent();
+            AllocConsole();
+        }
+
+        public MainForm(
+            IAuthService authService,
+            string tradingMode,
+            ApiSettings apiSettings,
+            IKiaTradingService kiaTradingService) : this()
+        {
+            // ===== Presenter 생성 =====
+            // View(this)와 서비스들을 Presenter에 주입한다.
+            // Form은 서비스 참조를 직접 보관하지 않는다.
+            // ===== =====
+            _presenter = new MainPresenter(this, authService, apiSettings, kiaTradingService);
+
+            // 표시 전용 값만 View가 보관한다.
+            string modeText = tradingMode == "Mock" ? "모의투자" : "실전투자";
+            twoLineTopBar.InvestmentMode = modeText;
+        }
+
+        // ========================================================
+        // ===== IMainView 구현 =====
+        // Presenter가 호출하는 UI 갱신 메서드들이다.
+        // Presenter는 이 인터페이스만 알고, 실제 컨트롤은 모른다.
+        // 새로운 UI 갱신이 필요하면 IMainView에 메서드를 추가하고 여기서 구현한다.
+        // ========================================================
+
+        public void UpdateConnectionStatus(bool isConnected)
+        {
+            twoLineTopBar.IsServerConnected = isConnected;
+        }
+
+        public void UpdateTradingModeDisplay(string modeText)
+        {
+            twoLineTopBar.InvestmentMode = modeText;
+        }
+
+        public void UpdateStatusBarMessage(string message)
+        {
+            toolStripStatusLabel_GetStockInfo.Text = message;
+        }
+
+        public void ShowErrorMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        public void ShowInfoMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // ========================================================
+        // ===== Form 이벤트 핸들러 =====
+        // 각 이벤트에서 Presenter에 위임만 한다.
+        // UI 로직(타이머, 페이지 전환)만 Form이 직접 처리한다.
+        // ========================================================
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            InitClockTimer();
+            InitPageFactory();
+            InitNavigationBar();
+
+            // ===== Presenter 초기화 위임 =====
+            // 서비스 생성, 토큰 발급 등 비즈니스 로직은 Presenter가 처리한다.
+            // ===== =====
+            _ = InitAsync();
+        }
+
+        private async Task InitAsync()
+        {
+            if (_presenter == null) return;
+
+            await _presenter.InitializeAsync();
+
+            // ===== 토큰 주기 갱신 타이머 =====
+            // 타이머 자체는 UI 인프라이므로 Form이 관리한다.
+            // 타이머 Tick에서 Presenter에 갱신을 위임한다.
+            // ===== =====
+            _tokenRefreshTimer = new System.Windows.Forms.Timer();
+            _tokenRefreshTimer.Interval = TokenRefreshIntervalMs;
+            _tokenRefreshTimer.Tick += async (s, e) =>
+            {
+                if (_presenter != null)
+                    await _presenter.RefreshAllTokensAsync();
+            };
+            _tokenRefreshTimer.Start();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+        }
+
+        // ===== 시계 타이머 =====
+        // 순수 UI 기능이므로 Form이 직접 처리한다.
+        // ===== =====
+        private void InitClockTimer()
+        {
+            _clockTimer = new System.Windows.Forms.Timer();
+            _clockTimer.Interval = 1000;
+            _clockTimer.Tick += (s, e) =>
+            {
+                toolStripStatusLabel_Clock.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss  ");
+            };
+            _clockTimer?.Start();
+        }
+
+        // ===== 네비게이션 초기화 =====
+        // 페이지 전환은 순수 UI 관리이므로 Form이 직접 처리한다.
+        // ===== =====
+        private void InitNavigationBar()
+        {
+            sideNavigationBar.SelectionChanged -= SideNavigationBar_SelectionChanged;
+            sideNavigationBar.SelectionChanged += SideNavigationBar_SelectionChanged;
+
+            sideNavigationBar.SettingsInvoked += (_, _) =>
+            {
+                //new SettingsForm().Show();
+            };
+
+            sideNavigationBar.SetItems(
+            [
+                new NavigationItemDefinition("Logging",   "📜 Logging"),
+                new NavigationItemDefinition("Backtest",  "🔬 Backtest"),
+                new NavigationItemDefinition("Report",    "📈 Report"),
+                new NavigationItemDefinition("Strategy",  "⚙️ Strategy"),
+                new NavigationItemDefinition("Orders",    "📋 Orders"),
+                new NavigationItemDefinition("Asset",     "💰 Asset"),
+                new NavigationItemDefinition("Market",    "🌍 Market Regime"),
+                new NavigationItemDefinition("Dashboard", "📊 Dashboard"),
+            ]);
+        }
+
+        private void InitPageFactory()
+        {
+            _pageFactory["Dashboard"]  = () => new Dashboard();
+            _pageFactory["Market"]     = () => new MarketRegime();
+            _pageFactory["Asset"]      = () => new Asset();
+            _pageFactory["Orders"]     = () => new Orders();
+            _pageFactory["Strategy"]   = () => new Strategy();
+            _pageFactory["Report"]     = () => new Report();
+            _pageFactory["Backtest"]   = () => new Backtest();
+            _pageFactory["Logging"]    = () => new Logging();
+        }
+
+        private void NavigateToPage(string key)
+        {
+            if (!_pageFactory.ContainsKey(key))
+            {
+                Console.WriteLine($"[NAV] 등록되지 않은 페이지 키: {key}");
+                return;
+            }
+
+            if (_currentPage != null && _pageCache.ContainsKey(key) && _pageCache[key] == _currentPage)
+            {
+                return;
+            }
+
+            if (!_pageCache.TryGetValue(key, out UserControl? page))
+            {
+                page = _pageFactory[key]();
+                page.Dock = DockStyle.Fill;
+                _pageCache[key] = page;
+            }
+
+            if (_currentPage != null)
+            {
+                _currentPage.Visible = false;
+            }
+
+            if (!splitContainer2.Panel2.Controls.Contains(page))
+            {
+                splitContainer2.Panel2.Controls.Add(page);
+            }
+
+            page.Visible = true;
+            page.BringToFront();
+            _currentPage = page;
+
+            Console.WriteLine($"[NAV] 페이지 전환: {key}");
+        }
+
+        private void SideNavigationBar_SelectionChanged(object? sender, NavigationSelectionChangedEventArgs e)
+        {
+            Console.WriteLine($"[NAV] {e.PreviousKey} -> {e.CurrentKey}");
+            NavigateToPage(e.CurrentKey);
+        }
+
+        // ===== MenuStrip 이벤트 → Presenter 위임 =====
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem? item = sender as ToolStripMenuItem;
+            if (item == null || _presenter == null) return;
+
+            switch (item.Tag)
+            {
+                case "Mock":
+                    _ = _presenter.SwitchEnvironmentAsync(KiaTradingMode.Mock);
+                    break;
+
+                case "Live":
+                    _ = _presenter.SwitchEnvironmentAsync(KiaTradingMode.Live);
+                    break;
+
+                case "GetStockInfo":
+                    UpdateStatusBarMessage($"종목 정보 요청 완료: {_stockInfoList.Count}개");
+                    break;
+            }
+        }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Button? button = sender as System.Windows.Forms.Button;
+            if (button == null) return;
+
+            switch (button.Tag)
+            {
+                case "Search":
+                    break;
+            }
+        }
+
+        // ===== 테스트 버튼 → Presenter 위임 =====
+        private async void button_Test_Click(object sender, EventArgs e)
+        {
+            if (_presenter == null) return;
+            await _presenter.InquireBalanceAsync();
+        }
+    }
+}

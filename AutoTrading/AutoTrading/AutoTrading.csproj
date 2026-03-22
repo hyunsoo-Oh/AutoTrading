@@ -53,8 +53,6 @@
     <Folder Include="Data\" />
     <Folder Include="Features\Models\Common\" />
     <Folder Include="Features\Presenters\Base\" />
-    <Folder Include="Features\Presenters\Main\" />
-    <Folder Include="Features\Views\Interfaces\" />
     <Folder Include="Features\Views\Panels\" />
     <Folder Include="Core\" />
     <Folder Include="Application\" />

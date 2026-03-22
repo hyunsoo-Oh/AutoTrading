@@ -69,3 +69,10 @@ C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\bin\Debug\net8.0-wind
 C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrad.ED8DE9F6.Up2Date
 C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\bin\Debug\net8.0-windows\appsettings.json
 C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Dashboard.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Asset.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Backtest.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Logging.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.MarketRegime.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Orders.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Report.resources
+C:\Users\jweli\Project\AutoTrading\AutoTrading\AutoTrading\obj\Debug\net8.0-windows\AutoTrading.Features.Views.Contents.Strategy.resources

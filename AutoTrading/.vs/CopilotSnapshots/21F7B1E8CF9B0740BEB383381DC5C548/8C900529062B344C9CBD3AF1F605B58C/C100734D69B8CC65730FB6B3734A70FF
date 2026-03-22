@@ -1,0 +1,226 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Accounts;
+using AutoTrading.Features.Models.Api.Auth;
+using AutoTrading.Features.Views.Interfaces;
+using AutoTrading.Services.KoreaInvest.Accounts;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common;
+
+namespace AutoTrading.Features.Presenters.Main
+{
+    /// <summary>
+    /// MainForm의 비즈니스 로직을 담당하는 Presenter
+    ///
+    /// 왜 Presenter로 분리하는가?
+    /// - MainForm에 토큰 발급, 환경 전환, 잔고 조회 로직이 직접 들어 있으면
+    ///   화면 코드와 비즈니스 로직이 섞여 유지보수가 어렵다.
+    /// - Presenter는 View 인터페이스(IMainView)만 알고, 구체적 컨트롤은 모른다.
+    /// - 나중에 테스트할 때 IMainView를 Mock으로 교체하면 UI 없이도 로직 검증 가능.
+    ///
+    /// 수정 포인트:
+    /// - 새 비즈니스 동작 추가 시 이 클래스에 메서드를 추가한다.
+    /// - UI 동작이 필요하면 IMainView에 메서드를 추가하고 Presenter에서 호출한다.
+    /// </summary>
+    public class MainPresenter
+    {
+        private readonly IMainView _view;
+        private readonly IAuthService _authService;
+        private readonly ApiSettings _apiSettings;
+        private readonly IKiaTradingService _kiaTradingService;
+
+        // ===== 서비스 인스턴스 =====
+        // Presenter가 서비스 생성/관리를 담당한다.
+        // MainForm에서는 이 필드들에 직접 접근하지 않는다.
+        // ===== =====
+        private HttpClient? _httpClient;
+        private InquireBalanceHeaderBuilder? _headerBuilder;
+        private IAccountService? _accountService;
+
+        public MainPresenter(
+            IMainView view,
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKiaTradingService kiaTradingService)
+        {
+            _view = view;
+            _authService = authService;
+            _apiSettings = apiSettings;
+            _kiaTradingService = kiaTradingService;
+        }
+
+        // ===== 앱 시작 시 호출 =====
+        // MainForm_Load에서 Presenter에 위임하는 진입점이다.
+        // 서비스 초기화와 토큰 발급을 수행한다.
+        // ===== =====
+        public async Task InitializeAsync()
+        {
+            RebuildServices();
+            await InitAllTokensAsync();
+        }
+
+        // ===== 서비스 객체 생성/재생성 =====
+        // 환경(Mock/Live)이 바뀌어도 서비스 내부에서 현재 환경 설정을 동적으로 읽으므로
+        // 서비스 객체 자체는 앱 시작 시 한 번만 생성하면 된다.
+        // ===== =====
+        private void RebuildServices()
+        {
+            _httpClient?.Dispose();
+            _httpClient = new HttpClient();
+
+            _headerBuilder = new InquireBalanceHeaderBuilder(_authService, _apiSettings, _kiaTradingService);
+            _accountService = new KiaAccountService(_httpClient, _kiaTradingService, _headerBuilder);
+        }
+
+        // ===== Mock/Live 토큰 모두 미리 발급 =====
+        // 앱 시작 시 두 환경 토큰을 모두 확보해두면
+        // 환경 전환 시 서버 호출 없이 캐시된 토큰을 즉시 사용할 수 있다.
+        // ===== =====
+        private async Task InitAllTokensAsync()
+        {
+            KiaTradingMode original = _kiaTradingService.CurrentEnvironment;
+
+            _kiaTradingService.SetEnvironment(KiaTradingMode.Mock);
+            await RefreshTokenAsync();
+
+            _kiaTradingService.SetEnvironment(KiaTradingMode.Live);
+            await RefreshTokenAsync();
+
+            // 원래 환경으로 복원
+            _kiaTradingService.SetEnvironment(original);
+            await RefreshTokenAsync();
+        }
+
+        // ===== 토큰 발급/갱신 =====
+        // 성공/실패에 따라 View의 연결 상태만 갱신한다.
+        // View에 어떤 컨트롤이 있는지는 Presenter가 알 필요 없다.
+        // ===== =====
+        public async Task RefreshTokenAsync()
+        {
+            try
+            {
+                TokenResponse? token = await _authService.GetAccessTokenAsync();
+
+                bool connected = token != null && !string.IsNullOrWhiteSpace(token.AccessToken);
+                _view.UpdateConnectionStatus(connected);
+
+                Console.WriteLine(connected
+                    ? $"[TOKEN] 발급/갱신 성공 | 만료: {token!.AccessTokenExpired}"
+                    : "[TOKEN] 발급 실패: 토큰이 비어 있음");
+            }
+            catch (Exception ex)
+            {
+                _view.UpdateConnectionStatus(false);
+                Console.WriteLine($"[TOKEN] 발급 실패: {ex.Message}");
+                _view.ShowErrorMessage($"토큰 요청 실패: {ex.Message}", "인증 오류");
+            }
+        }
+
+        // ===== 두 환경 토큰 모두 갱신 (타이머용) =====
+        // 주기적 타이머에서 호출된다.
+        // 유효한 토큰은 KiaAuthService 내부에서 서버 호출 없이 통과된다.
+        // ===== =====
+        public async Task RefreshAllTokensAsync()
+        {
+            KiaTradingMode current = _kiaTradingService.CurrentEnvironment;
+
+            _kiaTradingService.SetEnvironment(KiaTradingMode.Mock);
+            await RefreshTokenAsync();
+
+            _kiaTradingService.SetEnvironment(KiaTradingMode.Live);
+            await RefreshTokenAsync();
+
+            _kiaTradingService.SetEnvironment(current);
+            await RefreshTokenAsync();
+        }
+
+        // ===== 거래 환경 전환 =====
+        // View에서 Mock/Live 메뉴 클릭 시 호출된다.
+        // 환경 변경 → 모드 표시 갱신 → 해당 환경 토큰 확인 순서로 처리한다.
+        // ===== =====
+        public async Task SwitchEnvironmentAsync(KiaTradingMode mode)
+        {
+            if (_kiaTradingService.CurrentEnvironment == mode)
+            {
+                Console.WriteLine($"[ENV] 이미 {mode} 환경입니다.");
+                return;
+            }
+
+            _kiaTradingService.SetEnvironment(mode);
+
+            string modeText = mode == KiaTradingMode.Live ? "실전투자" : "모의투자";
+            _view.UpdateTradingModeDisplay(modeText);
+
+            await RefreshTokenAsync();
+
+            Console.WriteLine($"[ENV] 환경 전환: {mode}");
+        }
+
+        // ===== 주식잔고조회 =====
+        // 테스트 버튼에서 호출되는 잔고 조회 로직이다.
+        // API 호출, 응답 파싱, 결과 전달을 Presenter가 담당한다.
+        // View는 결과만 받아서 표시한다.
+        // 
+        // 나중에 수정하려면:
+        // - 조회 결과를 별도 Model로 변환하여 View에 전달하는 방식으로 확장한다.
+        // - 현재는 학습용으로 Console 출력과 MessageBox를 함께 사용한다.
+        // ===== =====
+        public async Task InquireBalanceAsync()
+        {
+            if (_accountService == null)
+            {
+                _view.ShowErrorMessage("계좌 서비스가 초기화되지 않았습니다.", "오류");
+                return;
+            }
+
+            try
+            {
+                KiaTradingMode mode = _kiaTradingService.CurrentEnvironment;
+                ApiEndpointSettings currentSettings = _kiaTradingService.GetCurrentSettings();
+
+                var request = new InquireBalanceRequest
+                {
+                    CANO = currentSettings.AccountNumber,
+                    ACNT_PRDT_CD = InquireBalanceAccountProductCodeProvider.Get(mode),
+                    AFHR_FLPR_YN = "N",
+                    OFL_YN = "",
+                    INQR_DVSN = "01",
+                    UNPR_DVSN = "01",
+                    FUND_STTL_ICLD_YN = "N",
+                    FNCG_AMT_AUTO_RDPT_YN = "N",
+                    PRCS_DVSN = "00",
+                    CTX_AREA_FK100 = "",
+                    CTX_AREA_NK100 = ""
+                };
+
+                InquireBalanceResponse? response =
+                    await _accountService.InquireBalanceAsync(request);
+
+                if (response == null)
+                {
+                    _view.ShowErrorMessage("응답이 null 입니다.", "잔고 조회");
+                    return;
+                }
+
+                Console.WriteLine($"RtCd: {response.RtCd}");
+                Console.WriteLine($"MsgCd: {response.MsgCd}");
+                Console.WriteLine($"Msg1: {response.Msg1}");
+                Console.WriteLine($"보유 종목 수: {response.Output1?.Count ?? 0}");
+
+                if (response.Output2 != null && response.Output2.Count > 0)
+                {
+                    var summary = response.Output2[0];
+                    Console.WriteLine($"예수금: {summary.DepositTotalAmount}");
+                    Console.WriteLine($"총평가금액: {summary.TotalEvaluationAmount}");
+                    Console.WriteLine($"순자산금액: {summary.NetAssetAmount}");
+                }
+
+                _view.ShowInfoMessage("주식잔고조회 테스트 완료", "잔고 조회");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"오류: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "주식잔고조회 테스트 실패");
+            }
+        }
+    }
+}
