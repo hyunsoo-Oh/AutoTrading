@@ -1,0 +1,43 @@
+using System.Text.Json.Serialization;
+
+namespace AutoTrading.Features.Models.Api.Accounts
+{
+    /// <summary>
+    /// 투자계좌자산현황조회 output1 배열의 자산 종류별 현황 항목 DTO
+    ///
+    /// 배열 순서가 자산 종류를 나타낸다 (20개 항목 기준):
+    ///  1: 주식          2: 펀드/MMW     3: IMA          4: 채권
+    ///  5: ELS/DLS       6: WRAP         7: 신탁          8: RP/발행어음
+    ///  9: 해외주식      10: 해외채권    11: 금현물       12: CD/CP
+    /// 13: 전자단기사채  14: 타사상품    15: 외화전자단기사채  16: 외화 ELS/DLS
+    /// 17: 외화          18: 예수금      19: 청약자예수금  20: 합계
+    ///
+    /// ※ 21번 계좌의 경우 17개 항목으로 구성이 다름
+    /// </summary>
+    public sealed class InquireAccountBalanceItem
+    {
+        /// <summary>매입금액</summary>
+        [JsonPropertyName("pchs_amt")]
+        public string PurchaseAmount { get; set; } = string.Empty;
+
+        /// <summary>평가금액</summary>
+        [JsonPropertyName("evlu_amt")]
+        public string EvaluationAmount { get; set; } = string.Empty;
+
+        /// <summary>평가손익금액</summary>
+        [JsonPropertyName("evlu_pfls_amt")]
+        public string EvaluationProfitLossAmount { get; set; } = string.Empty;
+
+        /// <summary>신용대출금액</summary>
+        [JsonPropertyName("crdt_lnd_amt")]
+        public string CreditLoanAmount { get; set; } = string.Empty;
+
+        /// <summary>실제순자산금액</summary>
+        [JsonPropertyName("real_nass_amt")]
+        public string RealNetAssetAmount { get; set; } = string.Empty;
+
+        /// <summary>전체비중율 (%)</summary>
+        [JsonPropertyName("whol_weit_rt")]
+        public string WholeWeightRate { get; set; } = string.Empty;
+    }
+}

@@ -1,0 +1,304 @@
+using AutoTrading.Features.Models.Api.Orders;
+using AutoTrading.Services.KoreaInvest.Orders;
+using FluentAssertions;
+
+namespace AutoTrading.Tests.Orders
+{
+    /// <summary>
+    /// 현금 주문(매수/매도) 요청 검증기 단위 테스트
+    ///
+    /// 왜 Validator 테스트가 중요한가?
+    /// - 잘못된 입력이 API 서버에 도달하기 전에 로컬에서 즉시 차단할 수 있다.
+    /// - 어떤 필드가 잘못됐는지 에러 메시지로 바로 확인 가능하다.
+    /// - 네트워크 없이 문제를 재현하고 수정할 수 있다.
+    ///
+    /// 테스트 구조:
+    /// - 정상 케이스 (지정가 매수, 시장가 매수)
+    /// - 필수 필드 누락 케이스 (Cano, AcntPrdtCd, PdNo, OrdDvsn, OrdQty, OrdUnpr)
+    /// - 비즈니스 룰 위반 케이스 (수량 음수, 지정가인데 단가 0, 시장가인데 단가 ≠ 0)
+    /// </summary>
+    public class OrderCashRequestValidatorTests
+    {
+        // ===== 테스트에서 반복 사용하는 정상 요청 생성 헬퍼 =====
+        // 매번 new OrderCashRequest { ... } 를 쓰면 코드가 길어지므로
+        // 헬퍼 메서드로 분리하여 가독성을 높인다.
+        private static OrderCashRequest CreateValidLimitBuyRequest() => new()
+        {
+            Cano = "12345678",
+            AcntPrdtCd = "01",
+            PdNo = "005930",
+            SllType = "01",
+            OrdDvsn = "00",       // 지정가
+            OrdQty = "10",
+            OrdUnpr = "70000",    // 지정가이므로 단가 > 0
+            CndtPric = "0",
+            ExcgIdDvsnCd = "KRX"
+        };
+
+        private static OrderCashRequest CreateValidMarketBuyRequest() => new()
+        {
+            Cano = "12345678",
+            AcntPrdtCd = "01",
+            PdNo = "005930",
+            SllType = "01",
+            OrdDvsn = "01",       // 시장가
+            OrdQty = "5",
+            OrdUnpr = "0",        // 시장가이므로 단가 = "0"
+            CndtPric = "0",
+            ExcgIdDvsnCd = "KRX"
+        };
+
+        #region ===== 정상 케이스 =====
+
+        [Fact]
+        public void Validate_지정가_정상요청_예외없음()
+        {
+            // Arrange — 모든 필드가 올바른 지정가 매수 요청
+            var request = CreateValidLimitBuyRequest();
+
+            // Act & Assert — 예외가 발생하지 않아야 한다
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().NotThrow();
+        }
+
+        [Fact]
+        public void Validate_시장가_정상요청_예외없음()
+        {
+            // Arrange — 모든 필드가 올바른 시장가 매수 요청
+            var request = CreateValidMarketBuyRequest();
+
+            // Act & Assert
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().NotThrow();
+        }
+
+        #endregion
+
+        #region ===== null 요청 =====
+
+        [Fact]
+        public void Validate_요청이_null이면_ArgumentNullException()
+        {
+            // Act & Assert — null 입력 시 ArgumentNullException이 발생해야 한다
+            var act = () => OrderCashRequestValidator.Validate(null!);
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        #endregion
+
+        #region ===== 계좌번호(CANO) 누락 =====
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void Validate_계좌번호_비어있으면_ArgumentException(string? cano)
+        {
+            // Arrange — 계좌번호만 비워둔 요청
+            var request = CreateValidLimitBuyRequest();
+            request.Cano = cano!;
+
+            // Act & Assert — "CANO" 키워드가 에러 메시지에 포함되어야 한다
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*CANO*");
+        }
+
+        #endregion
+
+        #region ===== 계좌상품코드(ACNT_PRDT_CD) 누락 =====
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void Validate_계좌상품코드_비어있으면_ArgumentException(string? acntPrdtCd)
+        {
+            var request = CreateValidLimitBuyRequest();
+            request.AcntPrdtCd = acntPrdtCd!;
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ACNT_PRDT_CD*");
+        }
+
+        #endregion
+
+        #region ===== 종목코드(PDNO) 누락 =====
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void Validate_종목코드_비어있으면_ArgumentException(string? pdNo)
+        {
+            var request = CreateValidLimitBuyRequest();
+            request.PdNo = pdNo!;
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*PDNO*");
+        }
+
+        #endregion
+
+        #region ===== 주문구분(ORD_DVSN) 누락 =====
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void Validate_주문구분_비어있으면_ArgumentException(string? ordDvsn)
+        {
+            var request = CreateValidLimitBuyRequest();
+            request.OrdDvsn = ordDvsn!;
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ORD_DVSN*");
+        }
+
+        #endregion
+
+        #region ===== 주문수량(ORD_QTY) 검증 =====
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void Validate_주문수량_비어있으면_ArgumentException(string? ordQty)
+        {
+            var request = CreateValidLimitBuyRequest();
+            request.OrdQty = ordQty!;
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ORD_QTY*");
+        }
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("-1")]
+        [InlineData("abc")]
+        [InlineData("-100")]
+        public void Validate_주문수량_0이하_또는_숫자아님_ArgumentException(string ordQty)
+        {
+            // Arrange — 수량이 0 이하이거나 숫자가 아닌 문자열
+            var request = CreateValidLimitBuyRequest();
+            request.OrdQty = ordQty;
+
+            // Act & Assert — "ORD_QTY" 관련 에러 메시지
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ORD_QTY*");
+        }
+
+        #endregion
+
+        #region ===== 주문단가(ORD_UNPR) 검증 =====
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void Validate_주문단가_비어있으면_ArgumentException(string? ordUnpr)
+        {
+            var request = CreateValidLimitBuyRequest();
+            request.OrdUnpr = ordUnpr!;
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ORD_UNPR*");
+        }
+
+        #endregion
+
+        #region ===== 지정가(00) 주문 시 단가 검증 =====
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("-100")]
+        [InlineData("abc")]
+        public void Validate_지정가_단가가_0이하_또는_비숫자_ArgumentException(string ordUnpr)
+        {
+            // Arrange — 지정가(00) 주문인데 단가가 유효하지 않은 경우
+            var request = CreateValidLimitBuyRequest();
+            request.OrdDvsn = "00";
+            request.OrdUnpr = ordUnpr;
+
+            // Act & Assert — 지정가 주문은 단가 > 0 이어야 한다
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ORD_UNPR*");
+        }
+
+        [Fact]
+        public void Validate_지정가_단가가_양수이면_예외없음()
+        {
+            var request = CreateValidLimitBuyRequest();
+            request.OrdDvsn = "00";
+            request.OrdUnpr = "55000";
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().NotThrow();
+        }
+
+        #endregion
+
+        #region ===== 시장가(01) 주문 시 단가 검증 =====
+
+        [Fact]
+        public void Validate_시장가_단가가_0이면_예외없음()
+        {
+            // Arrange — 시장가 주문의 정상 케이스: 단가 = "0"
+            var request = CreateValidMarketBuyRequest();
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().NotThrow();
+        }
+
+        [Theory]
+        [InlineData("70000")]
+        [InlineData("100")]
+        public void Validate_시장가_단가가_0이_아니면_ArgumentException(string ordUnpr)
+        {
+            // Arrange — 시장가(01) 주문인데 단가를 0이 아닌 값으로 보낸 경우
+            var request = CreateValidMarketBuyRequest();
+            request.OrdUnpr = ordUnpr;
+
+            // Act & Assert — 시장가는 단가를 "0"으로 보내야 한다
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("*ORD_UNPR*");
+        }
+
+        #endregion
+
+        #region ===== 경계값 테스트 =====
+
+        [Fact]
+        public void Validate_주문수량_1_최소_정상값()
+        {
+            // Arrange — 수량 최소 정상값 = 1
+            var request = CreateValidLimitBuyRequest();
+            request.OrdQty = "1";
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().NotThrow();
+        }
+
+        [Fact]
+        public void Validate_주문수량_대량주문도_통과()
+        {
+            // Arrange — 대량 주문도 Validator 수준에서는 통과해야 한다
+            // 실제 한도 초과 여부는 API 서버가 판단한다
+            var request = CreateValidLimitBuyRequest();
+            request.OrdQty = "999999";
+
+            var act = () => OrderCashRequestValidator.Validate(request);
+            act.Should().NotThrow();
+        }
+
+        #endregion
+    }
+}

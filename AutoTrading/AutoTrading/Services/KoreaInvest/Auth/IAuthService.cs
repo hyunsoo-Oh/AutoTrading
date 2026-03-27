@@ -17,7 +17,7 @@ namespace AutoTrading.Services.KoreaInvest.Auth
         /// - 유효한 토큰이 있으면 재사용
         /// - 없으면 새로 발급
         /// </summary>
-        Task<TokenResponse?> GetAccessTokenAsync(CancellationToken cancellationToken = default);
+        Task<TokenResponse> GetAccessTokenAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// POST 요청 Body 기준으로 HashKey를 생성한다.

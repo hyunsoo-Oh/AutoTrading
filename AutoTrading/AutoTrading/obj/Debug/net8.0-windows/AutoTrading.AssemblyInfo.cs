@@ -14,10 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoTrading")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea2e79e7cf62ba56e24884df4cdfd260657e4dfe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ac076dabb8809eaf111b48eed7d536fa22ee93f")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoTrading")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoTrading")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("AutoTrading.Tests")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

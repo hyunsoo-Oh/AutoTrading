@@ -20,9 +20,9 @@ namespace AutoTrading.Services.KoreaInvest.Accounts
         /// </summary>
         /// <param name="tradingMode">현재 거래 모드</param>
         /// <returns>TR ID 문자열</returns>
-        public static string Get(KiaTradingMode tradingMode)
+        public static string Get(KisTradingMode tradingMode)
         {
-            return tradingMode == KiaTradingMode.Live
+            return tradingMode == KisTradingMode.Live
                 ? LiveTrId
                 : MockTrId;
         }

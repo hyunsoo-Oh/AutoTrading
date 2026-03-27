@@ -13,7 +13,7 @@ namespace AutoTrading.Features.Views.Interfaces
     public interface IMainView
     {
         // ===== 서버 연결 상태 표시 =====
-        void UpdateConnectionStatus(bool isConnected);
+        void UpdateConnectionStatus(bool isConnected, string accountInfo);
 
         // ===== 거래 모드 표시 (모의투자/실전투자) =====
         void UpdateTradingModeDisplay(string modeText);
@@ -26,5 +26,15 @@ namespace AutoTrading.Features.Views.Interfaces
 
         // ===== 사용자에게 알림 메시지 표시 =====
         void ShowInfoMessage(string message, string title);
+
+        // ===== 주문 목록에서 항목 선택 다이얼로그 =====
+        // Presenter가 조회한 주문 목록을 사용자에게 보여주고 선택받는다.
+        // 반환값: 선택한 항목의 index (0-based), 취소 시 null
+        int? ShowOrderSelectionDialog(IReadOnlyList<string> items, string title);
+
+        // ===== 사용자에게 확인/취소 다이얼로그 표시 =====
+        // Presenter가 흐름 분기 전 사용자 동의를 구할 때 사용한다.
+        // 반환값: true(확인), false(취소)
+        bool ShowConfirmMessage(string message, string title);
     }
 }

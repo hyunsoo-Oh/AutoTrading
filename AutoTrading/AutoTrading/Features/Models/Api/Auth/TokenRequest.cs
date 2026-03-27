@@ -12,7 +12,7 @@ namespace AutoTrading.Features.Models.Api.Auth
     /// </summary>
     public class TokenRequest
     {
-        /// <summary>인증 방식 (client_credentials 고정)</summary>
+        /// <summary>HTTP 요청 본문의 Content-Type 헤더 값</summary>
         [JsonPropertyName("grant_type")]
         public string GrantType { get; set; } = "client_credentials";
 

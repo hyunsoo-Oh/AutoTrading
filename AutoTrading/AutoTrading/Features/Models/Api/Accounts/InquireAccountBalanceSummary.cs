@@ -1,0 +1,88 @@
+using System.Text.Json.Serialization;
+
+namespace AutoTrading.Features.Models.Api.Accounts
+{
+    /// <summary>
+    /// 투자계좌자산현황조회 output2 단일 Object DTO
+    ///
+    /// 계좌 전체 자산을 합산한 요약 정보를 담는다.
+    /// 핵심 필드:
+    /// - TotAsstAmt(총자산금액): 계좌의 모든 자산 합계
+    /// - NassTotAmt(순자산총금액): 총자산 - 대출 = 실제 내 돈
+    /// - EvluPflsAmtSmtl(평가손익금액합계): 보유 자산의 미실현 손익
+    /// </summary>
+    public sealed class InquireAccountBalanceSummary
+    {
+        /// <summary>매입금액합계 (유가매입금액)</summary>
+        [JsonPropertyName("pchs_amt_smtl")]
+        public string PurchaseAmountTotal { get; set; } = string.Empty;
+
+        /// <summary>순자산총금액</summary>
+        [JsonPropertyName("nass_tot_amt")]
+        public string NassTotAmt { get; set; } = string.Empty;
+
+        /// <summary>대출금액합계</summary>
+        [JsonPropertyName("loan_amt_smtl")]
+        public string LoanAmountTotal { get; set; } = string.Empty;
+
+        /// <summary>평가손익금액합계</summary>
+        [JsonPropertyName("evlu_pfls_amt_smtl")]
+        public string EvaluationProfitLossTotal { get; set; } = string.Empty;
+
+        /// <summary>평가금액합계 (유가평가금액)</summary>
+        [JsonPropertyName("evlu_amt_smtl")]
+        public string EvaluationAmountTotal { get; set; } = string.Empty;
+
+        /// <summary>총자산금액</summary>
+        [JsonPropertyName("tot_asst_amt")]
+        public string TotAsstAmt { get; set; } = string.Empty;
+
+        /// <summary>CMA자동대출금액</summary>
+        [JsonPropertyName("cma_auto_loan_amt")]
+        public string CmaAutoLoanAmt { get; set; } = string.Empty;
+
+        /// <summary>총담보대출금액</summary>
+        [JsonPropertyName("tot_mgln_amt")]
+        public string TotMglnAmt { get; set; } = string.Empty;
+
+        /// <summary>신용융자금액</summary>
+        [JsonPropertyName("crdt_fncg_amt")]
+        public string CrdtFncgAmt { get; set; } = string.Empty;
+
+        /// <summary>외화평가총액</summary>
+        [JsonPropertyName("frcr_evlu_tota")]
+        public string FrcrEvluTota { get; set; } = string.Empty;
+
+        /// <summary>총예수금액</summary>
+        [JsonPropertyName("tot_dncl_amt")]
+        public string TotDnclAmt { get; set; } = string.Empty;
+
+        /// <summary>CMA평가금액</summary>
+        [JsonPropertyName("cma_evlu_amt")]
+        public string CmaEvluAmt { get; set; } = string.Empty;
+
+        /// <summary>예수금액</summary>
+        [JsonPropertyName("dncl_amt")]
+        public string DnclAmt { get; set; } = string.Empty;
+
+        /// <summary>총대용금액</summary>
+        [JsonPropertyName("tot_sbst_amt")]
+        public string TotSbstAmt { get; set; } = string.Empty;
+
+        /// <summary>당일미수금액</summary>
+        [JsonPropertyName("thdt_rcvb_amt")]
+        public string ThdtRcvbAmt { get; set; } = string.Empty;
+
+        /// <summary>해외주식평가금액1</summary>
+        [JsonPropertyName("ovrs_stck_evlu_amt1")]
+        public string OvrsStckEvluAmt1 { get; set; } = string.Empty;
+
+        /// <summary>해외채권평가금액</summary>
+        [JsonPropertyName("ovrs_bond_evlu_amt")]
+        public string OvrsBondEvluAmt { get; set; } = string.Empty;
+
+        /// <summary>청약예수금액</summary>
+        [JsonPropertyName("sbsc_dncl_amt")]
+        public string SbscDnclAmt { get; set; } = string.Empty;
+    }
+}

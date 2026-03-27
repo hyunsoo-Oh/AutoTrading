@@ -1,0 +1,21 @@
+using AutoTrading.Services.KoreaInvest.Common;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 매수가능조회 API의 TR ID를 제공하는 정적 클래스
+    ///
+    /// 정정취소가능주문조회(TTTC0084R)와 달리 이 API는 모의투자도 지원한다.
+    /// 실전: TTTC8908R, 모의: VTTC8908R
+    /// </summary>
+    public static class InquirePsblOrderTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8908R";
+        private const string MockTrId = "VTTC8908R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            return tradingMode == KisTradingMode.Live ? LiveTrId : MockTrId;
+        }
+    }
+}

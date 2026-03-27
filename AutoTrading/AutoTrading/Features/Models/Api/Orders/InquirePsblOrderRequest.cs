@@ -1,0 +1,55 @@
+namespace AutoTrading.Features.Models.Api.Orders
+{
+    /// <summary>
+    /// 매수가능조회 Query Parameter DTO
+    ///
+    /// 왜 이 조회가 필요한가?
+    /// - 매수 주문 전에 현재 계좌의 매수 가능 금액/수량을 확인해야 한다.
+    /// - 가능 금액을 초과하는 주문은 거부되거나 미수 거래로 처리될 수 있다.
+    /// - 자동매매에서는 주문 전 반드시 이 API를 통해 가능 수량을 확인해야 안전하다.
+    ///
+    /// 핵심 응답 필드:
+    /// - 미수 사용 X: nrcvb_buy_amt(미수없는매수금액), nrcvb_buy_qty(미수없는매수수량)
+    /// - 미수 사용 O: max_buy_amt(최대매수금액), max_buy_qty(최대매수수량)
+    /// </summary>
+    public sealed class InquirePsblOrderRequest
+    {
+        /// <summary>종합계좌번호 앞 8자리</summary>
+        public string CANO { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 뒤 2자리 (보통 "01")</summary>
+        public string ACNT_PRDT_CD { get; set; } = "01";
+
+        /// <summary>
+        /// 종목번호 (6자리)
+        /// 공란 입력 시 매수금액만 조회되고 수량은 조회되지 않는다.
+        /// </summary>
+        public string PDNO { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 1주당 주문가격
+        /// 시장가(ORD_DVSN: 01) 조회 시 공란으로 입력
+        /// </summary>
+        public string ORD_UNPR { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 주문구분
+        /// ※ 전량매수 가능수량 확인 시 반드시 "01"(시장가)로 지정해야
+        ///    종목증거금율이 반영된 정확한 수량을 얻을 수 있다.
+        /// 00: 지정가, 01: 시장가, 02: 조건부지정가 등
+        /// </summary>
+        public string ORD_DVSN { get; set; } = "01";
+
+        /// <summary>
+        /// CMA 평가금액 포함 여부
+        /// "Y": 포함, "N": 포함하지 않음
+        /// </summary>
+        public string CMA_EVLU_AMT_ICLD_YN { get; set; } = "N";
+
+        /// <summary>
+        /// 해외 포함 여부
+        /// "Y": 포함, "N": 포함하지 않음
+        /// </summary>
+        public string OVRS_ICLD_YN { get; set; } = "N";
+    }
+}

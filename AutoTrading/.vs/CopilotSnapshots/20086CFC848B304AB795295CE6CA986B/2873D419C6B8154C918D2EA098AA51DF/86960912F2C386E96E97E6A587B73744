@@ -1,0 +1,103 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Accounts;
+using AutoTrading.Features.Models.Api.Auth;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common.Http;
+
+namespace AutoTrading.Services.KoreaInvest.Accounts
+{
+    /// <summary>
+    /// 한국투자증권 계좌 관련 API 서비스
+    /// </summary>
+    public sealed class KisAccountService : KisHttpServiceBase, IAccountService
+    {
+        private readonly IAuthService _authService;
+
+        public KisAccountService(
+            HttpClient httpClient,
+            IKisTradingService kisTradingService,
+            IAuthService authService)
+            : base(httpClient, kisTradingService)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
+        /// <summary>
+        /// 주식잔고조회 API를 호출합니다.
+        /// </summary>
+        public async Task<InquireBalanceResponse?> InquireBalanceAsync(
+            InquireBalanceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            // ===== 안전장치: 요청 검증 =====
+            InquireBalanceRequestValidator.Validate(request);
+
+            // ===== 현재 환경 설정 =====
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+
+            // ===== URL 생성 =====
+            string requestUrl = InquireBalanceUrlBuilder.Build(baseUrl, request);
+
+            // ===== 접근토큰 확보 =====
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            // ===== 잔고조회용 TR ID =====
+            string trId = InquireBalanceTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            // ===== 잔고조회 Header =====
+            Dictionary<string, string> headers = InquireBalanceHeaderBuilder.Build(
+                accessToken: token.AccessToken,
+                appKey: settings.AppKey,
+                appSecret: settings.AppSecret,
+                trId: trId,
+                custType: "P");
+
+            // ===== 공통 GET 호출 =====
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl,
+                headers: headers,
+                apiName: "주식잔고조회",
+                cancellationToken: cancellationToken);
+
+            // ===== 응답 DTO 변환 =====
+            InquireBalanceResponse response =
+                DeserializeResponse<InquireBalanceResponse>(responseText, "주식잔고조회");
+
+            // ===== 업무 성공/실패 판정 =====
+            EnsureBalanceSuccess(response);
+
+            return response;
+        }
+
+        /// <summary>
+        /// 잔고조회 응답의 업무 성공 여부를 검사
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
+        private static void EnsureBalanceSuccess(InquireBalanceResponse response)
+        {
+            if (response == null)
+            {
+                throw new InvalidOperationException("잔고조회 응답이 null입니다.");
+            }
+
+            // ===== 한국투자 잔고조회 응답 기준 =====
+            // RtCd == "0" 이면 성공, 그 외는 실패로 처리
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"잔고조회 요청은 HTTP 수준에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+        }
+
+        /// <summary>
+        /// HTTP 200이어도 업무상 실패가 내려올 수 있으므로,
+        /// 필요 시 여기서 rt_cd 등을 검사한다.
+        /// </summary>
+        protected override void EnsureBusinessSuccess(string apiName, string requestUrl, string responseText)
+        {
+            // 업무 레벨 검사는 EnsureBalanceSuccess에서 DTO 기반으로 수행한다.
+        }
+    }
+}

@@ -28,9 +28,9 @@ namespace AutoTrading.Configuration
         /// <summary>
         /// 현재 TradingMode 값에 따라 실제 사용할 설정을 반환
         /// </summary>
-        public ApiEndpointSettings GetCurrent(KiaTradingMode mode)
+        public ApiEndpointSettings GetCurrent(KisTradingMode mode)
         {
-            return mode == KiaTradingMode.Live
+            return mode == KisTradingMode.Live
                 ? Live
                 : Mock;
         }

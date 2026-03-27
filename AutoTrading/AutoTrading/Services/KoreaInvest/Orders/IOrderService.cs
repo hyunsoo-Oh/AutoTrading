@@ -1,0 +1,67 @@
+﻿using AutoTrading.Features.Models.Api.Orders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 주식 주문(매수/매도/정정/취소) 기능을 제공하는 인터페이스
+    /// </summary>
+    public interface IOrderService
+    {
+        /// <summary>주식 현금 주문 (매수/매도)</summary>
+        Task<OrderCashResponse> OrderCashAsync(
+            OrderCashRequest request,
+            OrderSide orderSide,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식 주문 정정/취소
+        /// 이미 체결된 건은 정정/취소 불가하므로,
+        /// 호출 전에 정정취소가능주문조회로 가능 수량을 확인해야 한다.
+        /// </summary>
+        Task<OrderCashResponse> OrderRvsecnclAsync(
+            OrderRvsecnclRequest request,
+            OrderRvsecnclDvsnCd dvsnCd,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식 정정취소가능주문 조회
+        /// 정정/취소 주문 전에 반드시 호출하여 psbl_qty(가능수량)를 확인해야 한다.
+        ///
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        Task<InquirePsblRvsecnclResponse> InquirePsblRvsecnclAsync(
+            InquirePsblRvsecnclRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 매수가능조회
+        /// 매수 주문 전 가능 금액과 수량을 확인한다.
+        /// 실전/모의투자 모두 지원.
+        ///
+        /// 핵심 응답값:
+        /// - 미수 사용 X: NrcvbBuyAmt(금액), NrcvbBuyQty(수량)
+        /// - 미수 사용 O: MaxBuyAmt(금액),   MaxBuyQty(수량)
+        /// </summary>
+        Task<InquirePsblOrderResponse> InquirePsblOrderAsync(
+            InquirePsblOrderRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 매도가능수량조회
+        /// 매도 주문 전 실제 매도 가능 수량을 확인한다.
+        ///
+        /// 핵심 응답값:
+        /// - OrdPsblQty(주문가능수량): 현재 매도 주문에 사용할 수 있는 수량
+        ///
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        Task<InquirePsblSellResponse> InquirePsblSellAsync(
+            InquirePsblSellRequest request,
+            CancellationToken cancellationToken = default);
+    }
+}

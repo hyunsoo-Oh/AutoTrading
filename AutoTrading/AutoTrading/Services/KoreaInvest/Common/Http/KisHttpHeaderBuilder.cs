@@ -1,0 +1,87 @@
+using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Auth;
+using AutoTrading.Services.KoreaInvest.Auth;
+
+namespace AutoTrading.Services.KoreaInvest.Common.Http
+{
+    /// <summary>
+    /// 한국투자증권 HTTP API에서 반복적으로 사용되는 공통 헤더를 생성하는 빌더
+    /// 
+    /// 포함되는 헤더:
+    /// - authorization : Bearer {AccessToken}
+    /// - appkey        : 현재 환경의 AppKey
+    /// - appsecret     : 현재 환경의 AppSecret
+    /// </summary>
+    public static class KisHttpHeaderBuilder
+    {
+        /// <summary>
+        /// 대부분의 REST API가 공유하는 기본 헤더를 생성
+        /// </summary>
+        /// <param name="accessToken">Bearer 제외 순수 Access Token</param>
+        /// <param name="appKey">현재 환경의 AppKey</param>
+        /// <param name="appSecret">현재 환경의 AppSecret</param>
+        /// <param name="custType">고객 구분 (개인 P, 법인 B). 필요 없으면 null 가능</param>
+        /// <param name="extraHeaders">도메인 전용 추가 헤더 (예: tr_id, tr_cont 등)</param>
+        /// <returns>HttpRequestMessage에 적용할 헤더 딕셔너리</returns>
+        public static Dictionary<string, string> BuildCommon(
+            string accessToken,
+            string appKey,
+            string appSecret,
+            string? custType = "P",
+            IReadOnlyDictionary<string, string>? extraHeaders = null)
+        {
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                throw new ArgumentException("AccessToken이 비어 있습니다.", nameof(accessToken));
+            }
+
+            if (string.IsNullOrWhiteSpace(appKey))
+            {
+                throw new ArgumentException("AppKey가 비어 있습니다.", nameof(appKey));
+            }
+
+            if (string.IsNullOrWhiteSpace(appSecret))
+            {
+                throw new ArgumentException("AppSecret이 비어 있습니다.", nameof(appSecret));
+            }
+
+            var headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                // ===== 공통 인증 헤더 =====
+                ["authorization"] = $"Bearer {accessToken.Trim()}",
+                ["appkey"] = appKey.Trim(),
+                ["appsecret"] = appSecret.Trim()
+            };
+
+            // ===== 선택 공통 헤더 =====
+            AddIfNotEmpty(headers, "custtype", custType);
+
+            // ===== 도메인 전용 추가 헤더 =====
+            if (extraHeaders != null)
+            {
+                foreach (KeyValuePair<string, string> header in extraHeaders)
+                {
+                    AddIfNotEmpty(headers, header.Key, header.Value);
+                }
+            }
+
+            return headers;
+        }
+
+        /// <summary>
+        /// 값이 비어 있지 않을 때만 헤더를 추가한다.
+        /// 선택 헤더를 안전하게 처리하기 위한 헬퍼 메서드다.
+        /// </summary>
+        private static void AddIfNotEmpty(
+            IDictionary<string, string> headers,
+            string headerName,
+            string? value)
+        {
+            if (!string.IsNullOrWhiteSpace(headerName) &&
+                !string.IsNullOrWhiteSpace(value))
+            {
+                headers[headerName] = value.Trim();
+            }
+        }
+    }
+}

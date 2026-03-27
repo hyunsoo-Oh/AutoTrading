@@ -1,0 +1,100 @@
+using System.Text.Json.Serialization;
+
+namespace AutoTrading.Features.Models.Api.Orders
+{
+    /// <summary>
+    /// 매수가능조회 응답 DTO
+    /// </summary>
+    public sealed class InquirePsblOrderResponse
+    {
+        /// <summary>성공 실패 여부 ("0": 성공)</summary>
+        [JsonPropertyName("rt_cd")]
+        public string RtCd { get; set; } = string.Empty;
+
+        /// <summary>응답코드</summary>
+        [JsonPropertyName("msg_cd")]
+        public string MsgCd { get; set; } = string.Empty;
+
+        /// <summary>응답메세지</summary>
+        [JsonPropertyName("msg1")]
+        public string Msg1 { get; set; } = string.Empty;
+
+        /// <summary>응답상세 (단일 객체)</summary>
+        [JsonPropertyName("output")]
+        public InquirePsblOrderOutput? Output { get; set; }
+    }
+
+    /// <summary>
+    /// 매수가능조회 응답 상세
+    ///
+    /// 핵심 필드 사용 가이드:
+    /// - 미수 사용 안 함(일반): NrcvbBuyAmt(금액), NrcvbBuyQty(수량) 사용
+    /// - 미수 사용:             MaxBuyAmt(금액),   MaxBuyQty(수량)   사용
+    ///
+    /// 전량매수 가능수량은 반드시 시장가(ORD_DVSN:01)로 조회해야 증거금율이 반영된다.
+    /// </summary>
+    public sealed class InquirePsblOrderOutput
+    {
+        /// <summary>주문가능현금 — 예수금으로 계산된 주문가능금액</summary>
+        [JsonPropertyName("ord_psbl_cash")]
+        public string OrdPsblCash { get; set; } = string.Empty;
+
+        /// <summary>주문가능대용</summary>
+        [JsonPropertyName("ord_psbl_sbst")]
+        public string OrdPsblSbst { get; set; } = string.Empty;
+
+        /// <summary>재사용가능금액 — 전일/금일 매도대금으로 계산된 주문가능금액</summary>
+        [JsonPropertyName("ruse_psbl_amt")]
+        public string RusePsblAmt { get; set; } = string.Empty;
+
+        /// <summary>펀드환매대금</summary>
+        [JsonPropertyName("fund_rpch_chgs")]
+        public string FundRpchChgs { get; set; } = string.Empty;
+
+        /// <summary>가능수량계산단가</summary>
+        [JsonPropertyName("psbl_qty_calc_unpr")]
+        public string PsblQtyCalcUnpr { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 미수없는매수금액
+        /// 미수를 사용하지 않을 때 실제 매수 가능한 금액
+        /// </summary>
+        [JsonPropertyName("nrcvb_buy_amt")]
+        public string NrcvbBuyAmt { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 미수없는매수수량
+        /// 미수를 사용하지 않을 때 실제 매수 가능한 수량
+        /// 전량매수 확인 시 반드시 시장가(ORD_DVSN:01)로 조회해야 한다.
+        /// </summary>
+        [JsonPropertyName("nrcvb_buy_qty")]
+        public string NrcvbBuyQty { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 최대매수금액
+        /// 미수를 사용할 때 매수 가능한 최대 금액
+        /// </summary>
+        [JsonPropertyName("max_buy_amt")]
+        public string MaxBuyAmt { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 최대매수수량
+        /// 미수를 사용할 때 매수 가능한 최대 수량
+        /// 전량매수 확인 시 반드시 시장가(ORD_DVSN:01)로 조회해야 한다.
+        /// </summary>
+        [JsonPropertyName("max_buy_qty")]
+        public string MaxBuyQty { get; set; } = string.Empty;
+
+        /// <summary>CMA 평가금액</summary>
+        [JsonPropertyName("cma_evlu_amt")]
+        public string CmaEvluAmt { get; set; } = string.Empty;
+
+        /// <summary>해외재사용금액원화</summary>
+        [JsonPropertyName("ovrs_re_use_amt_wcrc")]
+        public string OvrsReUseAmtWcrc { get; set; } = string.Empty;
+
+        /// <summary>주문가능외화금액원화</summary>
+        [JsonPropertyName("ord_psbl_frcr_amt_wcrc")]
+        public string OrdPsblFrcrAmtWcrc { get; set; } = string.Empty;
+    }
+}

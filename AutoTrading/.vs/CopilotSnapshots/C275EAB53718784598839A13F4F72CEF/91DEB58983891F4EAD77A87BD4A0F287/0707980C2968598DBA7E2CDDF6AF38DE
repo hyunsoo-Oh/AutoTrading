@@ -1,0 +1,86 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Auth;
+using AutoTrading.Features.Models.Api.Orders;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 한국투자 현금 주문 서비스
+    /// </summary>
+    public sealed class KisOrderService : KisHttpServiceBase, IOrderService
+    {
+        private readonly IAuthService _authService;
+
+        public KisOrderService(
+            HttpClient httpClient,
+            IKisTradingService kisTradingService,
+            IAuthService authService)
+            : base(httpClient, kisTradingService)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
+        public async Task<OrderCashResponse> OrderCashAsync(
+            OrderCashRequest request,
+            OrderSide orderSide,
+            CancellationToken cancellationToken = default)
+        {
+            // ===== 안전장치: 요청 검증 =====
+            OrderCashRequestValidator.Validate(request);
+
+            // ===== 현재 환경 설정 =====
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+
+            // ===== URL 생성 =====
+            string requestUrl = OrderCashUrlBuilder.Build(baseUrl);
+
+            // ===== 접근토큰 확보 =====
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            if (string.IsNullOrWhiteSpace(token.AccessToken))
+            {
+                throw new InvalidOperationException("주문 전에 유효한 AccessToken을 확보하지 못했습니다.");
+            }
+
+            // ===== 주문용 TR ID =====
+            string trId = InquireOrderTrIdProvider.Get(settings.TradingMode, orderSide);
+
+            // ===== 주문 Header =====
+            Dictionary<string, string> headers = OrderCashHeaderBuilder.Build(
+                accessToken: token.AccessToken,
+                appKey: settings.AppKey,
+                appSecret: settings.AppSecret,
+                trId: trId,
+                custType: "P");
+
+            // ===== 공통 POST 호출 =====
+            string responseText = await SendPostAsync(
+                requestUrl: requestUrl,
+                headers: headers,
+                body: request,
+                apiName: "주식주문(현금)",
+                cancellationToken: cancellationToken);
+
+            // ===== 응답 변환 =====
+            return DeserializeOrThrow<OrderCashResponse>(responseText, "주식주문(현금)");
+        }
+
+        /// <summary>
+        /// HTTP 200이어도 업무상 실패가 내려올 수 있으므로,
+        /// 필요 시 여기서 rt_cd 등을 검사한다.
+        /// </summary>
+        protected override void EnsureBusinessSuccess(string apiName, string requestUrl, string responseText)
+        {
+            // 아직 Response DTO 구조를 확정하지 않았다면 일단 비워둬도 된다.
+            // 다음 단계에서 OrderCashResponse의 rt_cd / msg_cd / msg1 기준으로 강화하면 된다.
+        }
+    }
+}

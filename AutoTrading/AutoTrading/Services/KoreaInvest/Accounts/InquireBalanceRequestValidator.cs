@@ -1,0 +1,28 @@
+using AutoTrading.Features.Models.Api.Accounts;
+
+namespace AutoTrading.Services.KoreaInvest.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회 요청 검증기
+    /// </summary>
+    public static class InquireBalanceRequestValidator
+    {
+        public static void Validate(InquireBalanceRequest request)
+        {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (string.IsNullOrWhiteSpace(request.CANO))
+            {
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+            {
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            }
+        }
+    }
+}

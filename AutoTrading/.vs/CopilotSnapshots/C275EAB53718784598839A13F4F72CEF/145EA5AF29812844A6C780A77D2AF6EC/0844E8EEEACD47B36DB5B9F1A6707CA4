@@ -1,0 +1,228 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Accounts;
+using AutoTrading.Features.Models.Api.Auth;
+using AutoTrading.Features.Views.Interfaces;
+using AutoTrading.Services.KoreaInvest.Accounts;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common;
+
+namespace AutoTrading.Features.Presenters.Main
+{
+    /// <summary>
+    /// MainForm�� ����Ͻ� ������ ����ϴ� Presenter
+    ///
+    /// �� Presenter�� �и��ϴ°�?
+    /// - MainForm�� ��ū �߱�, ȯ�� ��ȯ, �ܰ� ��ȸ ������ ���� ��� ������
+    ///   ȭ�� �ڵ�� ����Ͻ� ������ ���� ���������� ��ƴ�.
+    /// - Presenter�� View �������̽�(IMainView)�� �˰�, ��ü�� ��Ʈ���� �𸥴�.
+    /// - ���߿� �׽�Ʈ�� �� IMainView�� Mock���� ��ü�ϸ� UI ���̵� ���� ���� ����.
+    ///
+    /// ���� ����Ʈ:
+    /// - �� ����Ͻ� ���� �߰� �� �� Ŭ������ �޼��带 �߰��Ѵ�.
+    /// - UI ������ �ʿ��ϸ� IMainView�� �޼��带 �߰��ϰ� Presenter���� ȣ���Ѵ�.
+    /// </summary>
+    public class MainPresenter : IDisposable
+    {
+        /// <summary>View �������̽� ? UI ���� �� �� �������̽��� ���� ȣ��</summary>
+        private readonly IMainView _view;
+        /// <summary>���� ���� ? ��ū �߱�/���� ���</summary>
+        private readonly IAuthService _authService;
+        /// <summary>API ���� (Mock/Live ���� ����)</summary>
+        private readonly ApiSettings _apiSettings;
+        /// <summary>���� �ŷ� ȯ�� ���� ����</summary>
+        private readonly IKisTradingService _kisTradingService;
+
+        /// <summary>HTTP ��� ���� ��ü</summary>
+        private HttpClient? _httpClient;
+        /// <summary>�ܰ���ȸ ��û ��� ������</summary>
+        private InquireBalanceHeaderBuilder? _headerBuilder;
+        /// <summary>���� ��ȸ ����</summary>
+        private IAccountService? _accountService;
+
+        /// <summary>
+        /// Presenter ���� ? View�� ���񽺵��� ���Թ޴´�
+        /// </summary>
+        public MainPresenter(
+            IMainView view,
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKisTradingService kisTradingService)
+        {
+            _view = view;
+            _authService = authService;
+            _apiSettings = apiSettings;
+            _kisTradingService = kisTradingService;
+        }
+
+        /// <summary>
+        /// �� ���� �� ȣ�� ? ���� �ʱ�ȭ �� ��ū �߱�
+        /// </summary>
+        public async Task InitializeAsync()
+        {
+            RebuildServices();
+            await InitAllTokensAsync();
+        }
+
+        /// <summary>
+        /// ���� ��ü ����/�����
+        /// </summary>
+        private void RebuildServices()
+        {
+            _httpClient?.Dispose();
+            _httpClient = new HttpClient();
+
+            _headerBuilder = new InquireBalanceHeaderBuilder(_authService, _apiSettings, _kisTradingService);
+            _accountService = new KisAccountService(_httpClient, _kisTradingService, _headerBuilder);
+        }
+
+        /// <summary>
+        /// Mock/Live ��ū ��� �̸� �߱�
+        /// </summary>
+        private async Task InitAllTokensAsync()
+        {
+            KisTradingMode original = _kisTradingService.CurrentEnvironment;
+
+            _kisTradingService.SetEnvironment(KisTradingMode.Mock);
+            await RefreshTokenAsync();
+
+            _kisTradingService.SetEnvironment(KisTradingMode.Live);
+            await RefreshTokenAsync();
+
+            // ���� ȯ������ ����
+            _kisTradingService.SetEnvironment(original);
+            await RefreshTokenAsync();
+        }
+
+        /// <summary>
+        /// ���� ȯ���� ��ū �߱�/���� �� View ���� ���� ����
+        /// </summary>
+        public async Task RefreshTokenAsync()
+        {
+            try
+            {
+                TokenResponse? token = await _authService.GetAccessTokenAsync();
+
+                bool connected = token != null && !string.IsNullOrWhiteSpace(token.AccessToken);
+                string accountInfo = _kisTradingService.GetCurrentSettings().AccountNumber;
+                _view.UpdateConnectionStatus(connected, accountInfo);
+
+                Console.WriteLine(connected
+                    ? $"[TOKEN] �߱�/���� ���� | ����: {token!.AccessTokenExpired}"
+                    : "[TOKEN] �߱� ����: ��ū�� ��� ����");
+            }
+            catch (Exception ex)
+            {
+                _view.UpdateConnectionStatus(false, "");
+                Console.WriteLine($"[TOKEN] �߱� ����: {ex.Message}");
+                _view.ShowErrorMessage($"��ū ��û ����: {ex.Message}", "���� ����");
+            }
+        }
+
+        /// <summary>
+        /// �� ȯ��(Mock/Live) ��ū ��� ���� ? Ÿ�̸ӿ��� ȣ��
+        /// </summary>
+        public async Task RefreshAllTokensAsync()
+        {
+            KisTradingMode current = _kisTradingService.CurrentEnvironment;
+
+            _kisTradingService.SetEnvironment(KisTradingMode.Mock);
+            await RefreshTokenAsync();
+
+            _kisTradingService.SetEnvironment(KisTradingMode.Live);
+            await RefreshTokenAsync();
+
+            _kisTradingService.SetEnvironment(current);
+            await RefreshTokenAsync();
+        }
+
+        /// <summary>
+        /// �ŷ� ȯ�� ��ȯ (Mock �� Live)
+        /// </summary>
+        /// <param name="mode">��ȯ�� �ŷ� ���</param>
+        public async Task SwitchEnvironmentAsync(KisTradingMode mode)
+        {
+            if (_kisTradingService.CurrentEnvironment == mode)
+            {
+                Console.WriteLine($"[ENV] �̹� {mode} ȯ���Դϴ�.");
+                return;
+            }
+
+            // ����� ��� ��ȯ ? EnvironmentChanged �̺�Ʈ �߻�
+            _kisTradingService.SwitchEnvironment(mode);
+
+            string modeText = mode == KisTradingMode.Live ? "��������" : "��������";
+            _view.UpdateTradingModeDisplay(modeText);
+
+            await RefreshTokenAsync();
+
+            Console.WriteLine($"[ENV] ȯ�� ��ȯ: {mode}");
+        }
+
+        /// <summary>
+        /// �ֽ��ܰ���ȸ API ȣ�� �� ����� View�� ����
+        /// </summary>
+        public async Task InquireBalanceAsync()
+        {
+            if (_accountService == null)
+            {
+                _view.ShowErrorMessage("���� ���񽺰� �ʱ�ȭ���� �ʾҽ��ϴ�.", "����");
+                return;
+            }
+
+            try
+            {
+                KisTradingMode mode = _kisTradingService.CurrentEnvironment;
+                ApiEndpointSettings currentSettings = _kisTradingService.GetCurrentSettings();
+
+                var request = new InquireBalanceRequest
+                {
+                    CANO = currentSettings.AccountNumber,
+                    ACNT_PRDT_CD = InquireBalanceAccountProductCodeProvider.Get(mode),
+                    AFHR_FLPR_YN = "N",
+                    OFL_YN = "",
+                    INQR_DVSN = "01",
+                    UNPR_DVSN = "01",
+                    FUND_STTL_ICLD_YN = "N",
+                    FNCG_AMT_AUTO_RDPT_YN = "N",
+                    PRCS_DVSN = "00",
+                    CTX_AREA_FK100 = "",
+                    CTX_AREA_NK100 = ""
+                };
+
+                InquireBalanceResponse? response =
+                    await _accountService.InquireBalanceAsync(request);
+
+                if (response == null)
+                {
+                    _view.ShowErrorMessage("������ null �Դϴ�.", "�ܰ� ��ȸ");
+                    return;
+                }
+
+                Console.WriteLine($"RtCd: {response.RtCd}");
+                Console.WriteLine($"MsgCd: {response.MsgCd}");
+                Console.WriteLine($"Msg1: {response.Msg1}");
+                Console.WriteLine($"���� ���� ��: {response.Output1?.Count ?? 0}");
+
+                if (response.Output2 != null && response.Output2.Count > 0)
+                {
+                    var summary = response.Output2[0];
+                    Console.WriteLine($"������: {summary.DepositTotalAmount}");
+                    Console.WriteLine($"���򰡱ݾ�: {summary.TotalEvaluationAmount}");
+                    Console.WriteLine($"���ڻ�ݾ�: {summary.NetAssetAmount}");
+                }
+
+                _view.ShowInfoMessage("�ֽ��ܰ���ȸ �׽�Ʈ �Ϸ�", "�ܰ� ��ȸ");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"����: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "�ֽ��ܰ���ȸ �׽�Ʈ ����");
+            }
+        }
+
+        public void Dispose()
+        {
+            _httpClient?.Dispose();
+        }
+    }
+}

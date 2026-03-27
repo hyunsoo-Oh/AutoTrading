@@ -1,12 +1,13 @@
-﻿using AutoTrading.Configuration;
-using AutoTrading.Controls.Shell.SideBar;
-using AutoTrading.Features.Views.Contents;
+﻿using AutoTrading.Controls.Shell.SideBar;
+using AutoTrading.Features.Models.Api.Orders;
+using AutoTrading.Features.Presenters.Main;
+using AutoTrading.Features.Views.Forms;
 using AutoTrading.Features.Views.Interfaces;
 using AutoTrading.Presentation.Models.Market;
-using AutoTrading.Services.KoreaInvest.Auth;
 using AutoTrading.Services.KoreaInvest.Common;
+using AutoTrading.Services.KoreaInvest.Orders;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
-using AutoTrading.Features.Presenters.Main;
 
 namespace AutoTrading
 {
@@ -29,6 +30,9 @@ namespace AutoTrading
         /// <summary>비즈니스 로직 처리 담당 Presenter</summary>
         private MainPresenter? _presenter;
 
+        /// <summary>설정 화면</summary>
+        private SettingsForm? _settingsForm;
+
         /// <summary>상태바 시계 갱신 타이머</summary>
         private System.Windows.Forms.Timer _clockTimer;
 
@@ -38,11 +42,8 @@ namespace AutoTrading
         /// <summary>토큰 갱신 주기 (밀리초)</summary>
         private const int TokenRefreshIntervalMs = 1 * 60 * 1000;
 
-        /// <summary>Navigation 키 → 캐싱된 페이지 UserControl</summary>
-        private readonly Dictionary<string, UserControl> _pageCache = new();
-
-        /// <summary>Navigation 키 → 페이지 생성 팩토리 함수</summary>
-        private readonly Dictionary<string, Func<UserControl>> _pageFactory = new();
+        /// <summary>Navigation 키 → 등록된 콘텐츠 페이지 UserControl</summary>
+        private readonly Dictionary<string, UserControl> _contentViews = new();
 
         /// <summary>현재 표시 중인 페이지</summary>
         private UserControl? _currentPage;
@@ -56,33 +57,43 @@ namespace AutoTrading
             AllocConsole();
         }
 
-        public MainForm(
-            IAuthService authService,
-            string tradingMode,
-            ApiSettings apiSettings,
-            IKiaTradingService kiaTradingService) : this()
-        {
-            // ===== Presenter 생성 =====
-            // View(this)와 서비스들을 Presenter에 주입한다.
-            // Form은 서비스 참조를 직접 보관하지 않는다.
-            // ===== =====
-            _presenter = new MainPresenter(this, authService, apiSettings, kiaTradingService);
+        // ========================================================
+        // ===== 외부 조립 메서드 =====
+        // Program.cs에서 호출하여 View에 필요한 의존성을 주입한다.
+        // ========================================================
 
-            // 표시 전용 값만 View가 보관한다.
-            string modeText = tradingMode == "Mock" ? "모의투자" : "실전투자";
-            twoLineTopBar.InvestmentMode = modeText;
+        /// <summary>Presenter를 외부에서 주입한다.</summary>
+        public void SetPresenter(MainPresenter presenter)
+        {
+            _presenter = presenter;
+        }
+
+        /// <summary>콘텐츠 페이지들을 Dictionary로 일괄 등록한다.</summary>
+        public void RegisterContentViews(Dictionary<string, UserControl> views)
+        {
+            foreach (var kvp in views)
+            {
+                _contentViews[kvp.Key] = kvp.Value;
+            }
+        }
+
+        /// <summary>설정 화면을 등록한다.</summary>
+        public void RegisterSettingsForm(SettingsForm settingsForm)
+        {
+            _settingsForm = settingsForm;
         }
 
         // ========================================================
         // ===== IMainView 구현 =====
         // Presenter가 호출하는 UI 갱신 메서드들이다.
-        // Presenter는 이 인터페이스만 알고, 실제 컨트롤은 모른다.
+        // Presenter는 이 인터페이스만 알고, 실제 컨트롤은 모른다MainPresenter.
         // 새로운 UI 갱신이 필요하면 IMainView에 메서드를 추가하고 여기서 구현한다.
         // ========================================================
 
-        public void UpdateConnectionStatus(bool isConnected)
+        public void UpdateConnectionStatus(bool isConnected, string accountInfo)
         {
             twoLineTopBar.IsServerConnected = isConnected;
+            twoLineTopBar.SetAccountNumber(accountInfo);
         }
 
         public void UpdateTradingModeDisplay(string modeText)
@@ -105,6 +116,91 @@ namespace AutoTrading
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public int? ShowOrderSelectionDialog(IReadOnlyList<string> items, string title)
+        {
+            // ===== MVP 역할: View는 목록을 표시하고 사용자의 선택만 반환한다 =====
+            // 어떤 주문을 선택했는지 판단하는 로직은 Presenter에서 처리한다.
+            using Form dlg = new Form
+            {
+                Text            = title,
+                Width           = 620,
+                Height          = 400,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                StartPosition   = FormStartPosition.CenterParent,
+                MinimizeBox     = false,
+                MaximizeBox     = false
+            };
+
+            Label label = new Label
+            {
+                Text     = "취소할 주문을 선택하세요:",
+                Left     = 12,
+                Top      = 12,
+                Width    = 580,
+                AutoSize = true
+            };
+
+            ListBox listBox = new ListBox
+            {
+                Left          = 12,
+                Top           = label.Bottom + 8,
+                Width         = 580,
+                Height        = 270,
+                SelectionMode = SelectionMode.One
+            };
+
+            foreach (string item in items)
+            {
+                listBox.Items.Add(item);
+            }
+
+            Button btnOk = new Button
+            {
+                Text         = "선택",
+                DialogResult = DialogResult.OK,
+                Left         = 432,
+                Top          = listBox.Bottom + 10,
+                Width        = 75
+            };
+
+            Button btnCancel = new Button
+            {
+                Text         = "취소",
+                DialogResult = DialogResult.Cancel,
+                Left         = 517,
+                Top          = listBox.Bottom + 10,
+                Width        = 75
+            };
+
+            btnOk.Click += (s, e) =>
+            {
+                if (listBox.SelectedIndex < 0)
+                {
+                    MessageBox.Show("취소할 주문을 선택하세요.", "선택 필요",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dlg.DialogResult = DialogResult.None;
+                }
+            };
+
+            dlg.Controls.AddRange([label, listBox, btnOk, btnCancel]);
+            dlg.AcceptButton = btnOk;
+            dlg.CancelButton = btnCancel;
+
+            return dlg.ShowDialog() == DialogResult.OK
+                ? listBox.SelectedIndex
+                : null;
+        }
+
+        public bool ShowConfirmMessage(string message, string title)
+        {
+            // ===== MVP 역할: 확인/취소 선택 결과만 Presenter에 반환한다 =====
+            // 어떤 동작을 할지 결정하는 로직은 Presenter에서 처리한다.
+            return MessageBox.Show(
+                message, title,
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question) == DialogResult.OK;
+        }
+
         // ========================================================
         // ===== Form 이벤트 핸들러 =====
         // 각 이벤트에서 Presenter에 위임만 한다.
@@ -114,7 +210,6 @@ namespace AutoTrading
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitClockTimer();
-            InitPageFactory();
             InitNavigationBar();
 
             // ===== Presenter 초기화 위임 =====
@@ -156,7 +251,11 @@ namespace AutoTrading
             _clockTimer.Interval = 1000;
             _clockTimer.Tick += (s, e) =>
             {
-                toolStripStatusLabel_Clock.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss  ");
+                toolStripStatusLabel_Clock.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                if (DateTime.Now.ToString("HH: mm:ss") == "09:02:02")
+                {
+                    _presenter.SendSamsungTestOrderAsync(OrderSide.Buy).Wait();
+                }
             };
             _clockTimer?.Start();
         }
@@ -171,7 +270,7 @@ namespace AutoTrading
 
             sideNavigationBar.SettingsInvoked += (_, _) =>
             {
-                //new SettingsForm().Show();
+                _settingsForm?.Show();
             };
 
             sideNavigationBar.SetItems(
@@ -187,36 +286,19 @@ namespace AutoTrading
             ]);
         }
 
-        private void InitPageFactory()
-        {
-            _pageFactory["Dashboard"]  = () => new Dashboard();
-            _pageFactory["Market"]     = () => new MarketRegime();
-            _pageFactory["Asset"]      = () => new Asset();
-            _pageFactory["Orders"]     = () => new Orders();
-            _pageFactory["Strategy"]   = () => new Strategy();
-            _pageFactory["Report"]     = () => new Report();
-            _pageFactory["Backtest"]   = () => new Backtest();
-            _pageFactory["Logging"]    = () => new Logging();
-        }
-
         private void NavigateToPage(string key)
         {
-            if (!_pageFactory.ContainsKey(key))
+            if (!_contentViews.ContainsKey(key))
             {
                 Console.WriteLine($"[NAV] 등록되지 않은 페이지 키: {key}");
                 return;
             }
 
-            if (_currentPage != null && _pageCache.ContainsKey(key) && _pageCache[key] == _currentPage)
+            var page = _contentViews[key];
+
+            if (_currentPage == page)
             {
                 return;
-            }
-
-            if (!_pageCache.TryGetValue(key, out UserControl? page))
-            {
-                page = _pageFactory[key]();
-                page.Dock = DockStyle.Fill;
-                _pageCache[key] = page;
             }
 
             if (_currentPage != null)
@@ -226,6 +308,7 @@ namespace AutoTrading
 
             if (!splitContainer2.Panel2.Controls.Contains(page))
             {
+                page.Dock = DockStyle.Fill;
                 splitContainer2.Panel2.Controls.Add(page);
             }
 
@@ -251,11 +334,11 @@ namespace AutoTrading
             switch (item.Tag)
             {
                 case "Mock":
-                    _ = _presenter.SwitchEnvironmentAsync(KiaTradingMode.Mock);
+                    _ = _presenter.SwitchEnvironmentAsync(KisTradingMode.Mock);
                     break;
 
                 case "Live":
-                    _ = _presenter.SwitchEnvironmentAsync(KiaTradingMode.Live);
+                    _ = _presenter.SwitchEnvironmentAsync(KisTradingMode.Live);
                     break;
 
                 case "GetStockInfo":
@@ -264,23 +347,82 @@ namespace AutoTrading
             }
         }
 
-        private void button_Click(object sender, EventArgs e)
+        private async void button_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Button? button = sender as System.Windows.Forms.Button;
             if (button == null) return;
 
-            switch (button.Tag)
+            try
             {
-                case "Search":
-                    break;
+                switch (button.Tag)
+                {
+                    case "Search":
+                        break;
+
+                    case "Buy":
+                        // ===== 매수가능조회 → 사용자 확인 → 현금매수 순서로 진행 =====
+                        // 잔고 부족 또는 미수 위험을 방지하기 위해 매수 전에 가능 수량을 확인한다.
+                        await _presenter.InquirePsblOrderAndBuyAsync();
+                        break;
+
+                    case "Sell":
+                        // ===== 매도가능수량조회 → 사용자 확인 → 현금매도 순서로 진행 =====
+                        // 보유 수량 초과 주문 위험을 방지하기 위해 매도 전에 가능 수량을 확인한다.
+                        // ※ 실전투자 전용 — 모의투자 환경에서는 오류 메시지 표시
+                        await _presenter.InquirePsblSellAndSellAsync();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"주문 처리 중 오류: {ex.Message}", "주문 오류");
             }
         }
 
         // ===== 테스트 버튼 → Presenter 위임 =====
         private async void button_Test_Click(object sender, EventArgs e)
         {
+            Button button = sender as Button;
+
+            if (button == null) return;
             if (_presenter == null) return;
-            await _presenter.InquireBalanceAsync();
+
+            switch (button.Tag)
+            {
+                case "Test1":
+                    await _presenter.InquireBalanceRlzPlAsync();
+                    break;
+                case "Test2":
+                    // ===== 정정취소가능주문 조회 → 취소 연동 테스트 =====
+                    // 1. 취소 가능한 주문 목록을 조회한다.
+                    // 2. 사용자가 취소할 주문을 선택한다.
+                    // 3. Presenter가 선택된 주문의 가능수량을 확인 후 취소 주문을 넣는다.
+                    // ※ 실전투자 전용 API — 모의투자에서 실행 시 오류 메시지 표시
+                    await _presenter.InquirePsblOrderAndBuyAsync();
+                    break;
+
+                case "Test3":
+                    // ===== 매수가능조회 → 현금매수 연동 테스트 =====
+                    // 1. 삼성전자(005930) 매수 가능 금액/수량을 조회한다.
+                    // 2. 결과를 사용자에게 보여주고 확인을 받는다.
+                    // 3. 확인 시 1주 시장가 매수 주문을 낸다.
+                    await _presenter.InquirePsblOrderAndBuyAsync();
+                    break;
+
+                case "Test4":
+                    // ===== 주식잔고조회_실현손익 테스트 =====
+                    // 현재 보유 종목의 평가손익과 당일 매도로 확정된 실현손익을 조회한다.
+                    // ※ 실전투자 전용 API — 모의투자에서 실행 시 오류 메시지 표시
+                    await _presenter.InquireBalanceRlzPlAsync();
+                    break;
+
+                case "Test5":
+                    // ===== 투자계좌자산현황조회 테스트 =====
+                    // 주식, 펀드, 채권 등 자산 종류별 비중과 총자산/순자산 현황을 조회한다.
+                    // ※ 실전투자 전용 API — 모의투자에서 실행 시 오류 메시지 표시
+                    await _presenter.InquireAccountBalanceAsync();
+                    break;
+            }
         }
     }
 }

@@ -1,0 +1,48 @@
+using System.Text.Json.Serialization;
+
+namespace AutoTrading.Features.Models.Api.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회_실현손익 API 루트 응답 DTO
+    /// </summary>
+    public sealed class InquireBalanceRlzPlResponse
+    {
+        /// <summary>성공 실패 여부 ("0": 성공)</summary>
+        [JsonPropertyName("rt_cd")]
+        public string RtCd { get; set; } = string.Empty;
+
+        /// <summary>응답코드</summary>
+        [JsonPropertyName("msg_cd")]
+        public string MsgCd { get; set; } = string.Empty;
+
+        /// <summary>응답메시지</summary>
+        [JsonPropertyName("msg1")]
+        public string Msg1 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회 검색조건 — 다음 페이지 조회 시 요청 CTX_AREA_FK100에 넣는다
+        /// </summary>
+        [JsonPropertyName("ctx_area_fk100")]
+        public string CtxAreaFk100 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회 키 — 다음 페이지 조회 시 요청 CTX_AREA_NK100에 넣는다
+        /// </summary>
+        [JsonPropertyName("ctx_area_nk100")]
+        public string CtxAreaNk100 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 종목별 실현손익 목록 (output1)
+        /// 현재 보유 종목 및 당일 매도 종목을 포함한다.
+        /// </summary>
+        [JsonPropertyName("output1")]
+        public List<InquireBalanceRlzPlItem> Output1 { get; set; } = new();
+
+        /// <summary>
+        /// 계좌 요약 (output2)
+        /// 실현손익, 실현수익율 등 계좌 전체 합산 데이터를 담는다.
+        /// </summary>
+        [JsonPropertyName("output2")]
+        public List<InquireBalanceRlzPlSummary> Output2 { get; set; } = new();
+    }
+}

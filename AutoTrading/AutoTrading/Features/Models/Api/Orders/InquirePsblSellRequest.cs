@@ -1,0 +1,30 @@
+namespace AutoTrading.Features.Models.Api.Orders
+{
+    /// <summary>
+    /// 매도가능수량조회 Query Parameter DTO
+    ///
+    /// 왜 이 조회가 필요한가?
+    /// - 보유하지 않은 종목 또는 이미 매도한 수량을 초과해 주문하면 API 오류가 발생한다.
+    /// - 자동매매에서는 매도 주문 전에 반드시 이 API로 실제 매도 가능 수량을 확인해야 한다.
+    ///
+    /// 핵심 응답 필드:
+    /// - ord_psbl_qty(주문가능수량): 현재 매도할 수 있는 실제 수량
+    ///
+    /// ※ 실전투자 전용 API — 모의투자 미지원
+    /// </summary>
+    public sealed class InquirePsblSellRequest
+    {
+        /// <summary>종합계좌번호 앞 8자리</summary>
+        public string CANO { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 뒤 2자리 (보통 "01")</summary>
+        public string ACNT_PRDT_CD { get; set; } = "01";
+
+        /// <summary>
+        /// 종목번호 (6자리)
+        /// 매도 가능 수량을 확인할 보유 종목 코드
+        /// ex) 삼성전자 = "005930"
+        /// </summary>
+        public string PDNO { get; set; } = string.Empty;
+    }
+}

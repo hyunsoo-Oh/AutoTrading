@@ -1,0 +1,20 @@
+﻿using AutoTrading.Features.Models.Api.Orders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 주식을 매수/매도하기 위한 기능을 제공하는 인터페이스 
+    /// </summary>
+    public interface IOrderService
+    {
+        Task<OrderCashResponse> OrderCashAsync(
+            OrderCashRequest request,
+            OrderSide orderSide,
+            CancellationToken cancellationToken = default);
+    }
+}

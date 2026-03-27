@@ -1,0 +1,31 @@
+﻿using AutoTrading.Features.Models.Api.Orders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 주식 주문(매수/매도/정정/취소) 기능을 제공하는 인터페이스
+    /// </summary>
+    public interface IOrderService
+    {
+        /// <summary>주식 현금 주문 (매수/매도)</summary>
+        Task<OrderCashResponse> OrderCashAsync(
+            OrderCashRequest request,
+            OrderSide orderSide,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식 주문 정정/취소
+        /// 이미 체결된 건은 정정/취소 불가하므로,
+        /// 호출 전에 정정취소가능주문조회로 가능 수량을 확인해야 한다.
+        /// </summary>
+        Task<OrderCashResponse> OrderRvsecnclAsync(
+            OrderRvsecnclRequest request,
+            OrderRvsecnclDvsnCd dvsnCd,
+            CancellationToken cancellationToken = default);
+    }
+}

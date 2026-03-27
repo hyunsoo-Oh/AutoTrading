@@ -55,5 +55,8 @@
     <Compile Update="Features\Views\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Features\Views\Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

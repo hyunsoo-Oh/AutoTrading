@@ -1,0 +1,82 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Presenters.Main;
+using AutoTrading.Features.Views.Contents;
+using AutoTrading.Features.Views.Forms;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common;
+using Microsoft.Extensions.Configuration;
+
+namespace AutoTrading
+{
+    internal static class Program
+    {
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            ApplicationConfiguration.Initialize();
+
+            // ===== Configuration =====
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            var apiSettings = config.GetSection("ApiSettings").Get<ApiSettings>();
+            if (apiSettings == null)
+            {
+                MessageBox.Show("ApiSettings ���� �ε� ����", "����");
+                return;
+            }
+
+            var tradingMode = apiSettings.TradingMode.Equals("Live", StringComparison.OrdinalIgnoreCase)
+                ? KisTradingMode.Live
+                : KisTradingMode.Mock;
+
+            // ===== Services ���� =====
+            var kisTradingService = new KisTradingService(apiSettings);
+            kisTradingService.SetEnvironment(tradingMode);
+
+            var httpClient = new HttpClient();
+            var authService = new KisAuthService(httpClient, apiSettings, kisTradingService);
+
+            // ===== Views ���� =====
+            var mainForm = new MainForm();
+            var settingsForm = new SettingsForm();
+
+            var contentViews = new Dictionary<string, UserControl>
+            {
+                ["Dashboard"] = new Dashboard(authService, apiSettings, kisTradingService),
+                ["Market"]    = new MarketRegime(),
+                ["Asset"]     = new Asset(),
+                ["Orders"]    = new Orders(),
+                ["Strategy"]  = new Strategy(),
+                ["Report"]    = new Report(),
+                ["Backtest"]  = new Backtest(),
+                ["Logging"]   = new Logging(),
+            };
+
+            mainForm.RegisterContentViews(contentViews);
+            mainForm.RegisterSettingsForm(settingsForm);
+
+            string modeText = tradingMode == KisTradingMode.Mock ? "��������" : "��������";
+            mainForm.UpdateTradingModeDisplay(modeText);
+
+            // ===== Presenters ���� =====
+            var mainPresenter = new MainPresenter(mainForm, authService, apiSettings, kisTradingService);
+            mainForm.SetPresenter(mainPresenter);
+
+            // ===== ���α׷� ���� �� =====
+            mainForm.FormClosed += (s, e) =>
+            {
+                mainPresenter.Dispose();
+                httpClient.Dispose();
+            };
+
+            // ===== ȭ�� ���� =====
+            Application.Run(mainForm);
+        }
+    }
+}

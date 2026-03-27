@@ -1,0 +1,38 @@
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 정정취소 구분
+    ///
+    /// 왜 enum을 만드는가?
+    /// - 문자열 "01", "02"를 직접 사용하면 오타 위험이 있다.
+    /// - enum을 통해 컴파일 타임에 잘못된 값을 방지할 수 있다.
+    /// - Service/Presenter 계층에서 의도를 명확하게 표현할 수 있다.
+    /// </summary>
+    public enum OrderRvsecnclDvsnCd
+    {
+        /// <summary>정정 — RVSE_CNCL_DVSN_CD = "01"</summary>
+        Revise,
+
+        /// <summary>취소 — RVSE_CNCL_DVSN_CD = "02"</summary>
+        Cancel
+    }
+
+    /// <summary>
+    /// OrderRvsecnclDvsnCd enum → API 문자열 변환 헬퍼
+    /// </summary>
+    public static class OrderRvsecnclDvsnCdExtensions
+    {
+        /// <summary>
+        /// enum 값을 한국투자증권 API가 요구하는 코드 문자열로 변환
+        /// </summary>
+        public static string ToCodeString(this OrderRvsecnclDvsnCd dvsnCd)
+        {
+            return dvsnCd switch
+            {
+                OrderRvsecnclDvsnCd.Revise => "01",
+                OrderRvsecnclDvsnCd.Cancel => "02",
+                _ => throw new ArgumentOutOfRangeException(nameof(dvsnCd), dvsnCd, "알 수 없는 정정취소구분입니다.")
+            };
+        }
+    }
+}
