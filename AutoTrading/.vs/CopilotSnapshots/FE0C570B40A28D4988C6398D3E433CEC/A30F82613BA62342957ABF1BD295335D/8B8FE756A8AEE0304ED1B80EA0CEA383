@@ -1,0 +1,17 @@
+﻿{
+  "ApiSettings": {
+    "TradingMode": "Mock",
+    "Mock": {
+      "BaseUrl": "https://openapivts.koreainvestment.com:29443",
+      "AppKey": "",
+      "AppSecret": "",
+      "AccountNumber": ""
+    },
+    "Live": {
+      "BaseUrl": "https://openapi.koreainvestment.com:9443",
+      "AppKey": "",
+      "AppSecret": "",
+      "AccountNumber": ""
+    }
+  }
+}

@@ -1,0 +1,6 @@
+﻿namespace KisRestAPI.Models.Orders
+{
+    public class OrderCashTrIdProvider
+    {
+    }
+}

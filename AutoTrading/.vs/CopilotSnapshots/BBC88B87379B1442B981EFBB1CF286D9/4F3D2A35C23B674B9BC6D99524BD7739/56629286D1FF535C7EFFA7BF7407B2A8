@@ -1,0 +1,21 @@
+﻿using KisRestAPI.Common.Http;
+
+namespace KisRestAPI.Orders
+{
+    public static class InquirePsblRvsecnclHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P", string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"]   = trId,
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

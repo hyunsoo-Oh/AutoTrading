@@ -1,0 +1,216 @@
+﻿using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Auth;
+using KisRestAPI.Models.Market;
+using KisRestAPI.Auth;
+
+namespace KisRestAPI.Market
+{
+    /// <summary>
+    /// 한국투자증권 시세/시장 조회 API 서비스
+    ///
+    /// 왜 CaptureContext()를 사용하는가?
+    /// - 각 메서드 진입 시점에 환경(Mock/Live)을 스냅샷으로 고정한다.
+    /// - 비동기 await 도중에 전역 환경이 바뀌어도 해당 요청은 영향을 받지 않는다.
+    /// </summary>
+    public sealed class KisMarketService : KisHttpServiceBase, IMarketService
+    {
+        private readonly IAuthService _authService;
+
+        public KisMarketService(
+            HttpClient httpClient,
+            IKisTradingService kisTradingService,
+            IAuthService authService)
+            : base(httpClient, kisTradingService)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
+        // =====================================================================
+        // ===== 주식현재가 시세 [v1_국내주식-008] =====
+        // =====================================================================
+
+        public async Task<InquirePriceResponse> InquirePriceAsync(
+            InquirePriceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquirePriceRequestValidator.Validate(request);
+
+            // ===== 환경 스냅샷 — 이후 모든 설정은 ctx 기준 =====
+            KisRequestContext ctx = CaptureContext();
+            string baseUrl = NormalizeBaseUrl(ctx.Settings.BaseUrl);
+            string requestUrl = InquirePriceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(ctx.Mode, cancellationToken);
+            string trId = InquirePriceTrIdProvider.Get(ctx.Mode);
+
+            Dictionary<string, string> headers = InquirePriceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: ctx.Settings.AppKey,
+                appSecret: ctx.Settings.AppSecret, trId: trId, custType: "P");
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식현재가시세", cancellationToken: cancellationToken);
+
+            InquirePriceResponse response =
+                DeserializeResponse<InquirePriceResponse>(responseText, "주식현재가시세");
+
+            EnsurePriceSuccess(response);
+            return response;
+        }
+
+        // ===== 업무 레벨 성공 검증 =====
+        private static void EnsurePriceSuccess(InquirePriceResponse response)
+        {
+            if (response == null)
+                throw new InvalidOperationException("주식현재가시세 응답이 null입니다.");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"주식현재가시세 요청은 HTTP 레벨에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+        }
+
+        // =====================================================================
+        // ===== 주식현재가 체결 [v1_국내주식-009] =====
+        // =====================================================================
+
+        public async Task<InquireCcnlResponse> InquireCcnlAsync(
+            InquireCcnlRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireCcnlRequestValidator.Validate(request);
+
+            // ===== 환경 스냅샷 — 이후 모든 설정은 ctx 기준 =====
+            KisRequestContext ctx = CaptureContext();
+            string baseUrl = NormalizeBaseUrl(ctx.Settings.BaseUrl);
+            string requestUrl = InquireCcnlUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(ctx.Mode, cancellationToken);
+            string trId = InquireCcnlTrIdProvider.Get(ctx.Mode);
+
+            Dictionary<string, string> headers = InquireCcnlHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: ctx.Settings.AppKey,
+                appSecret: ctx.Settings.AppSecret, trId: trId, custType: "P");
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식현재가체결", cancellationToken: cancellationToken);
+
+            InquireCcnlResponse response =
+                DeserializeResponse<InquireCcnlResponse>(responseText, "주식현재가체결");
+
+            EnsureCcnlSuccess(response);
+            return response;
+        }
+
+        // ===== 업무 레벨 성공 검증 =====
+        private static void EnsureCcnlSuccess(InquireCcnlResponse response)
+        {
+            if (response == null)
+                throw new InvalidOperationException("주식현재가체결 응답이 null입니다.");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"주식현재가체결 요청은 HTTP 레벨에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+        }
+
+        // =====================================================================
+        // ===== 주식현재가 일자별 [v1_국내주식-010] =====
+        // =====================================================================
+
+        public async Task<InquireDailyPriceResponse> InquireDailyPriceAsync(
+            InquireDailyPriceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireDailyPriceRequestValidator.Validate(request);
+
+            // ===== 환경 스냅샷 — 이후 모든 설정은 ctx 기준 =====
+            KisRequestContext ctx = CaptureContext();
+            string baseUrl    = NormalizeBaseUrl(ctx.Settings.BaseUrl);
+            string requestUrl = InquireDailyPriceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(ctx.Mode, cancellationToken);
+            string trId = InquireDailyPriceTrIdProvider.Get(ctx.Mode);
+
+            Dictionary<string, string> headers = InquireDailyPriceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: ctx.Settings.AppKey,
+                appSecret: ctx.Settings.AppSecret, trId: trId, custType: "P");
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식현재가일자별", cancellationToken: cancellationToken);
+
+            InquireDailyPriceResponse response =
+                DeserializeResponse<InquireDailyPriceResponse>(responseText, "주식현재가일자별");
+
+            EnsureDailyPriceSuccess(response);
+            return response;
+        }
+
+        // ===== 업무 레벨 성공 검증 =====
+        private static void EnsureDailyPriceSuccess(InquireDailyPriceResponse response)
+        {
+            if (response is null)
+                throw new InvalidOperationException("주식현재가일자별 응답이 null입니다.");
+
+            if (response.RtCd != "0")
+                throw new InvalidOperationException(
+                    $"주식현재가일자별 요청은 HTTP 레벨에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+        }
+
+        // =====================================================================
+        // ===== 주식현재가 호가/예상체결 [v1_국내주식-011] =====
+        // =====================================================================
+
+        public async Task<InquireAskingPriceResponse> InquireAskingPriceAsync(
+            InquireAskingPriceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireAskingPriceRequestValidator.Validate(request);
+
+            // ===== 환경 스냅샷 — 이후 모든 설정은 ctx 기준 =====
+            KisRequestContext ctx = CaptureContext();
+            string baseUrl    = NormalizeBaseUrl(ctx.Settings.BaseUrl);
+            string requestUrl = InquireAskingPriceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(ctx.Mode, cancellationToken);
+            string trId = InquireAskingPriceTrIdProvider.Get(ctx.Mode);
+
+            Dictionary<string, string> headers = InquireAskingPriceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: ctx.Settings.AppKey,
+                appSecret: ctx.Settings.AppSecret, trId: trId, custType: "P");
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식현재가호가예상체결", cancellationToken: cancellationToken);
+
+            InquireAskingPriceResponse response =
+                DeserializeResponse<InquireAskingPriceResponse>(responseText, "주식현재가호가예상체결");
+
+            EnsureAskingPriceSuccess(response);
+            return response;
+        }
+
+        private static void EnsureAskingPriceSuccess(InquireAskingPriceResponse response)
+        {
+            if (response is null)
+                throw new InvalidOperationException("주식현재가호가예상체결 응답이 null입니다.");
+
+            if (response.RtCd != "0")
+                throw new InvalidOperationException(
+                    $"주식현재가호가예상체결 요청은 HTTP 레벨에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+        }
+
+        protected override void EnsureBusinessSuccess(string apiName, string requestUrl, string responseText)
+        {
+        }
+    }
+}

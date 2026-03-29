@@ -1,0 +1,107 @@
+using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Orders;
+
+namespace KisRestAPI.Orders
+{
+    // =====================================================================
+    // ===== 매수 가능 조회 API 빌더 통합 파일 =====
+    // Validator / QueryStringBuilder / UrlBuilder / TrIdProvider /
+    // HeaderBuilder를 하나로 모은다.
+    // ※ HeaderBuilder는 다른 API와 달리 trCont 파라미터가 없다.
+    // =====================================================================
+
+    // ===== 요청 검증 — CMA/해외포함/지정가 조건 검증 포함 =====
+    internal static class InquirePsblOrderRequestValidator
+    {
+        public static void Validate(InquirePsblOrderRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ORD_DVSN))
+                throw new ArgumentException("주문구분(ORD_DVSN)이 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.CMA_EVLU_AMT_ICLD_YN) ||
+                (request.CMA_EVLU_AMT_ICLD_YN != "Y" && request.CMA_EVLU_AMT_ICLD_YN != "N"))
+                throw new ArgumentException("CMA평가금액포함여부(CMA_EVLU_AMT_ICLD_YN)는 \"Y\" 또는 \"N\"이어야 합니다.");
+            if (string.IsNullOrWhiteSpace(request.OVRS_ICLD_YN) ||
+                (request.OVRS_ICLD_YN != "Y" && request.OVRS_ICLD_YN != "N"))
+                throw new ArgumentException("해외포함여부(OVRS_ICLD_YN)는 \"Y\" 또는 \"N\"이어야 합니다.");
+            if (request.ORD_DVSN == "00" &&
+                !string.IsNullOrWhiteSpace(request.PDNO) &&
+                string.IsNullOrWhiteSpace(request.ORD_UNPR))
+                throw new ArgumentException("지정가(ORD_DVSN:00)로 특정 종목 조회 시 주문단가(ORD_UNPR)를 입력해야 합니다.");
+        }
+    }
+
+    // ===== QueryString 생성 =====
+    internal static class InquirePsblOrderQueryStringBuilder
+    {
+        public static string Build(InquirePsblOrderRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]                 = request.CANO,
+                ["ACNT_PRDT_CD"]         = request.ACNT_PRDT_CD,
+                ["PDNO"]                 = request.PDNO,
+                ["ORD_UNPR"]             = request.ORD_UNPR,
+                ["ORD_DVSN"]             = request.ORD_DVSN,
+                ["CMA_EVLU_AMT_ICLD_YN"] = request.CMA_EVLU_AMT_ICLD_YN,
+                ["OVRS_ICLD_YN"]         = request.OVRS_ICLD_YN,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+
+    // ===== URL 생성 =====
+    internal static class InquirePsblOrderUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/inquire-psbl-order";
+
+        public static string Build(string baseUrl, InquirePsblOrderRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquirePsblOrderQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+
+    // ===== TR ID 제공 — 모의투자/실전투자 모두 지원 =====
+    internal static class InquirePsblOrderTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8908R";
+        private const string MockTrId = "VTTC8908R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            return tradingMode == KisTradingMode.Live ? LiveTrId : MockTrId;
+        }
+    }
+
+    // ===== HTTP 헤더 생성 — 다른 API와 달리 trCont 파라미터 없음 =====
+    internal static class InquirePsblOrderHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P")
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"] = trId
+                });
+        }
+    }
+}

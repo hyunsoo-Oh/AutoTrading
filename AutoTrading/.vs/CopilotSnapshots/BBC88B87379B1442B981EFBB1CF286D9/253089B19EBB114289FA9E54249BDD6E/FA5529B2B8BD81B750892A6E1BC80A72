@@ -1,0 +1,13 @@
+﻿namespace KisRestAPI.Models.Orders
+{
+    public sealed class InquirePsblOrderRequest
+    {
+        public string CANO { get; set; } = string.Empty;
+        public string ACNT_PRDT_CD { get; set; } = "01";
+        public string PDNO { get; set; } = string.Empty;
+        public string ORD_UNPR { get; set; } = string.Empty;
+        public string ORD_DVSN { get; set; } = "01";
+        public string CMA_EVLU_AMT_ICLD_YN { get; set; } = "N";
+        public string OVRS_ICLD_YN { get; set; } = "N";
+    }
+}

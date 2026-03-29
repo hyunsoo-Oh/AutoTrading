@@ -34,10 +34,10 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(31, 34, 40);
+            BackColor = Color.FromArgb(51, 54, 60);
             ForeColor = Color.FromArgb(225, 226, 228);
             Name = "MarketRegime";
-            Size = new Size(1448, 659);
+            Size = new Size(1614, 883);
             ResumeLayout(false);
         }
 

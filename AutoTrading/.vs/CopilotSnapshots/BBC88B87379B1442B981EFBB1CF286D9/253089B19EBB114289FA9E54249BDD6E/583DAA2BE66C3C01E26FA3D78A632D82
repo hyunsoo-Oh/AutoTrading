@@ -1,0 +1,73 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회_실현손익 output2 배열의 계좌 요약 DTO
+    /// </summary>
+    public sealed class InquireBalanceRlzPlSummary
+    {
+        [JsonPropertyName("dnca_tot_amt")]
+        public string DepositTotalAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("nxdy_excc_amt")]
+        public string NxdyExccAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("cma_evlu_amt")]
+        public string CmaEvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("bfdy_buy_amt")]
+        public string BfdyBuyAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("thdt_buy_amt")]
+        public string ThdtBuyAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("bfdy_sll_amt")]
+        public string BfdySllAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("thdt_sll_amt")]
+        public string ThdtSllAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_loan_amt")]
+        public string TotLoanAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("scts_evlu_amt")]
+        public string SctsEvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_evlu_amt")]
+        public string TotalEvaluationAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("nass_amt")]
+        public string NetAssetAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("pchs_amt_smtl_amt")]
+        public string PurchaseAmountTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_amt_smtl_amt")]
+        public string EvaluationAmountTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_pfls_smtl_amt")]
+        public string EvaluationProfitLossTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("bfdy_tot_asst_evlu_amt")]
+        public string BfdyTotAsstEvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("asst_icdc_amt")]
+        public string AsstIcdcAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("asst_icdc_erng_rt")]
+        public string AsstIcdcErngRt { get; set; } = string.Empty;
+
+        [JsonPropertyName("rlzt_pfls")]
+        public string RlztPfls { get; set; } = string.Empty;
+
+        [JsonPropertyName("rlzt_erng_rt")]
+        public string RlztErngRt { get; set; } = string.Empty;
+
+        [JsonPropertyName("real_evlu_pfls")]
+        public string RealEvluPfls { get; set; } = string.Empty;
+
+        [JsonPropertyName("real_evlu_pfls_erng_rt")]
+        public string RealEvluPflsErngRt { get; set; } = string.Empty;
+    }
+}

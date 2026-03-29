@@ -1,0 +1,14 @@
+﻿namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 투자계좌자산현황조회 Query Parameter DTO
+    /// ※ 실전투자 전용 API ? 모의투자 미지원
+    /// </summary>
+    public sealed class InquireAccountBalanceRequest
+    {
+        public string CANO { get; set; } = string.Empty;
+        public string ACNT_PRDT_CD { get; set; } = "01";
+        public string INQR_DVSN_1 { get; set; } = string.Empty;
+        public string BSPR_BF_DT_APLY_YN { get; set; } = string.Empty;
+    }
+}

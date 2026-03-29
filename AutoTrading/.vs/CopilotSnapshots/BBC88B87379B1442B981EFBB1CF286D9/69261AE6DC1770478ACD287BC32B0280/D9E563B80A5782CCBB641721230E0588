@@ -1,0 +1,56 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Services.KoreaInvest.Common.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Common
+{
+    /// <summary>
+    /// 현재 사용 중인 한국투자증권 서버 환경(모의/실전)을 메모리에서 관리
+    /// </summary>
+    public class KisTradingService : IKisTradingService
+    {
+        private readonly ApiSettings _apiSettings;
+        private KisTradingMode _currentEnvironment = KisTradingMode.Mock;
+
+        /// <summary>
+        /// 현재 서버 환경을 반환
+        /// </summary>
+        public KisTradingMode CurrentEnvironment => _currentEnvironment;
+
+        /// <inheritdoc />
+        public event EventHandler<KisTradingMode>? EnvironmentChanged;
+
+        public KisTradingService(ApiSettings apiSettings)
+        {
+            _apiSettings = apiSettings;
+        }
+
+        /// <summary>
+        /// 내부 전용 — 이벤트 없이 환경만 변경한다. (토큰 갱신 루프 등)
+        /// </summary>
+        public void SetEnvironment(KisTradingMode environment)
+        {
+            _currentEnvironment = environment;
+        }
+
+        /// <summary>
+        /// 사용자 액션 — 환경을 변경하고 EnvironmentChanged 이벤트를 발생시킨다.
+        /// </summary>
+        public void SwitchEnvironment(KisTradingMode environment)
+        {
+            _currentEnvironment = environment;
+            EnvironmentChanged?.Invoke(this, environment);
+        }
+
+        public ApiEndpointSettings GetCurrentSettings()
+        {
+            return _currentEnvironment == KisTradingMode.Live
+                ? _apiSettings.Live
+                : _apiSettings.Mock;
+        }
+    }
+}

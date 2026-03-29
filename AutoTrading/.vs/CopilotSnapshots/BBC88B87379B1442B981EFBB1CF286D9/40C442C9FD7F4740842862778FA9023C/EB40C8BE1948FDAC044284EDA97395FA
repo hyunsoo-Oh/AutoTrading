@@ -1,0 +1,52 @@
+﻿using AutoTrading.Features.Models.Api.Accounts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoTrading.Services.KoreaInvest.Accounts
+{
+    /// <summary>
+    /// 계좌 관련 API 기능을 제공하는 서비스 인터페이스
+    /// </summary>
+    public interface IAccountService
+    {
+        /// <summary>
+        /// 주식잔고조회 API를 호출하여 역직렬화된 응답 DTO를 반환
+        /// </summary>
+        Task<InquireBalanceResponse?> InquireBalanceAsync(
+            InquireBalanceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식잔고조회_실현손익 API를 호출한다.
+        /// 현재 보유 종목의 평가손익과 당일 실현된 손익을 함께 제공한다.
+        ///
+        /// 핵심 응답값 (Output2):
+        /// - RlztPfls(실현손익): 매도로 확정된 손익 금액
+        /// - RlztErngRt(실현수익율): 실현손익의 수익률
+        /// - RealEvluPfls(실평가손익): 실현 + 미실현 통합 손익
+        ///
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        Task<InquireBalanceRlzPlResponse> InquireBalanceRlzPlAsync(
+            InquireBalanceRlzPlRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 투자계좌자산현황조회 API를 호출한다.
+        /// 주식, 펀드, 채권, 해외주식 등 자산 종류별 비중과 합산 현황을 제공한다.
+        ///
+        /// 핵심 응답값:
+        /// - Output1: 자산 종류별 배열 (매입금액, 평가금액, 비중율 등)
+        /// - Output2.TotAsstAmt(총자산금액): 계좌 전체 자산 합계
+        /// - Output2.NassTotAmt(순자산총금액): 총자산 - 대출금액
+        ///
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        Task<InquireAccountBalanceResponse> InquireAccountBalanceAsync(
+            InquireAccountBalanceRequest request,
+            CancellationToken cancellationToken = default);
+    }
+}

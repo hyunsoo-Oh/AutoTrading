@@ -1,0 +1,20 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Accounts
+{
+    public static class InquireBalanceRlzPlTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8494R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            if (tradingMode != KisTradingMode.Live)
+            {
+                throw new NotSupportedException(
+                    "주식잔고조회_실현손익(TTTC8494R)는 실전투자만 지원합니다. " +
+                    "모의투자 환경에서는 호출할 수 없습니다.");
+            }
+            return LiveTrId;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+﻿namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회_실현손익 API의 Query Parameter DTO
+    /// ※ 실전투자 전용 API ? 모의투자 미지원
+    /// </summary>
+    public sealed class InquireBalanceRlzPlRequest
+    {
+        public string CANO { get; set; } = string.Empty;
+        public string ACNT_PRDT_CD { get; set; } = "01";
+        public string AFHR_FLPR_YN { get; set; } = "N";
+        public string OFL_YN { get; set; } = string.Empty;
+        public string INQR_DVSN { get; set; } = "00";
+        public string UNPR_DVSN { get; set; } = "01";
+        public string FUND_STTL_ICLD_YN { get; set; } = "N";
+        public string FNCG_AMT_AUTO_RDPT_YN { get; set; } = "N";
+        public string PRCS_DVSN { get; set; } = "00";
+        public string COST_ICLD_YN { get; set; } = "N";
+        public string CTX_AREA_FK100 { get; set; } = string.Empty;
+        public string CTX_AREA_NK100 { get; set; } = string.Empty;
+    }
+}

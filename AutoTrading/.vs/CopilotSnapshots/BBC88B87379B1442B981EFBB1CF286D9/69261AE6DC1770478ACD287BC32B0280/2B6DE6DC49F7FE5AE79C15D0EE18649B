@@ -1,0 +1,36 @@
+﻿using AutoTrading.Services.KoreaInvest.Common.Http;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 주식주문 정정취소 API용 헤더 생성 클래스
+    ///
+    /// 현금 주문(OrderCashHeaderBuilder)과 동일한 구조이지만,
+    /// API별로 빌더를 분리하면 나중에 헤더가 달라져도 독립적으로 수정 가능하다.
+    /// </summary>
+    public static class OrderRvsecnclHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken,
+            string appKey,
+            string appSecret,
+            string trId,
+            string custType = "P",
+            string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken,
+                appKey: appKey,
+                appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    // ===== 정정취소 전용 TR ID =====
+                    ["tr_id"] = trId,
+
+                    // ===== 연속 거래 여부 — 정정취소에서는 사용하지 않지만 구조 통일 =====
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

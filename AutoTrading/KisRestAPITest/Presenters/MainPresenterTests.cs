@@ -1,0 +1,330 @@
+using AutoTrading.Features.Presenters.Main;
+using AutoTrading.Features.Views.Interfaces;
+using KisRestAPI.Accounts;
+using KisRestAPI.Auth;
+using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Configuration;
+using KisRestAPI.Models.Accounts;
+using KisRestAPI.Models.Orders;
+using KisRestAPI.Orders;
+using FluentAssertions;
+using Moq;
+using Xunit;
+
+namespace KisRestAPITest.Presenters
+{
+    /// <summary>
+    /// MainPresenter 단위 테스트
+    ///
+    /// 왜 Presenter를 테스트하는가?
+    /// - Presenter는 View와 Service 사이의 "중재자"이다.
+    /// - 사용자 입력 → 서비스 호출 → 결과 전달의 흐름이 올바른지 검증한다.
+    /// - 실제 API를 호출하지 않고 Mock으로 대체하므로 네트워크 없이 로컬에서 즉시 테스트 가능하다.
+    ///
+    /// 테스트 시나리오:
+    /// - Test1 (InquireBalanceAsync): Mock 환경에서 잔고조회 성공 → ShowInfoMessage 호출 확인
+    /// - Test2 (InquirePsblRvsecnclAndCancelAsync): Mock 환경에서 실전투자 전용 API 차단 → ShowErrorMessage 호출 확인
+    ///
+    /// Mock 구성:
+    /// - IMainView: 화면 표시 메서드 호출 여부를 검증한다.
+    /// - IAuthService: 토큰 발급 없이 테스트할 수 있게 한다.
+    /// - IKisTradingService: 현재 환경(Mock/Live)을 제어한다.
+    /// - IAccountService: 잔고조회 응답을 가짜 데이터로 반환한다.
+    /// - IOrderService: 주문 관련 응답을 가짜 데이터로 반환한다.
+    /// </summary>
+    public class MainPresenterTests : IDisposable
+    {
+        // ===== 공통 Mock 객체 =====
+        // 모든 테스트에서 동일한 구조로 Presenter를 생성하기 위해 필드로 선언한다.
+        private readonly Mock<IMainView> _mockView;
+        private readonly Mock<IAuthService> _mockAuthService;
+        private readonly Mock<IKisTradingService> _mockTradingService;
+        private readonly Mock<IAccountService> _mockAccountService;
+        private readonly Mock<IOrderService> _mockOrderService;
+        private readonly ApiSettings _apiSettings;
+        private readonly MainPresenter _presenter;
+
+        public MainPresenterTests()
+        {
+            // ===== Mock 생성 =====
+            _mockView = new Mock<IMainView>();
+            _mockAuthService = new Mock<IAuthService>();
+            _mockTradingService = new Mock<IKisTradingService>();
+            _mockAccountService = new Mock<IAccountService>();
+            _mockOrderService = new Mock<IOrderService>();
+
+            // ===== 기본 API 설정 — 테스트에서는 실제 접속하지 않으므로 더미 값 =====
+            _apiSettings = new ApiSettings
+            {
+                TradingMode = "Mock",
+                Mock = new ApiEndpointSettings
+                {
+                    BaseUrl = "https://openapivts.koreainvestment.com:29443",
+                    AppKey = "test-app-key",
+                    AppSecret = "test-app-secret",
+                    AccountNumber = "12345678"
+                },
+                Live = new ApiEndpointSettings
+                {
+                    BaseUrl = "https://openapi.koreainvestment.com:9443",
+                    AppKey = "live-app-key",
+                    AppSecret = "live-app-secret",
+                    AccountNumber = "87654321"
+                }
+            };
+
+            // ===== 기본 환경: Mock 모의투자 =====
+            _mockTradingService
+                .Setup(s => s.CurrentEnvironment)
+                .Returns(KisTradingMode.Mock);
+
+            _mockTradingService
+                .Setup(s => s.GetCurrentSettings())
+                .Returns(_apiSettings.Mock);
+
+            // ===== Presenter 생성 후 Mock 서비스 주입 =====
+            // 프로덕션에서는 RebuildServices()가 실제 서비스를 생성하지만,
+            // 테스트에서는 internal 헬퍼로 Mock을 직접 주입한다.
+            _presenter = new MainPresenter(
+                _mockView.Object,
+                _mockAuthService.Object,
+                _apiSettings,
+                _mockTradingService.Object);
+
+            _presenter.SetAccountServiceForTesting(_mockAccountService.Object);
+            _presenter.SetOrderServiceForTesting(_mockOrderService.Object);
+        }
+
+        public void Dispose()
+        {
+            _presenter.Dispose();
+        }
+
+        #region ===== Test1: InquireBalanceAsync — 잔고조회 성공 =====
+
+        [Fact]
+        public async Task Test1_InquireBalanceAsync_정상응답시_ShowInfoMessage_호출()
+        {
+            // ===== Arrange =====
+            // Mock AccountService가 정상적인 잔고조회 응답을 반환하도록 설정
+            var fakeResponse = new InquireBalanceResponse
+            {
+                RtCd = "0",
+                MsgCd = "MCA00000",
+                Msg1 = "정상처리 되었습니다.",
+                Output1 = new List<InquireBalanceItem>
+                {
+                    new InquireBalanceItem
+                    {
+                        ProductName = "삼성전자",
+                        ProductCode = "005930"
+                    }
+                },
+                Output2 = new List<InquireBalanceSummary>
+                {
+                    new InquireBalanceSummary
+                    {
+                        DepositTotalAmount = "1000000",
+                        TotalEvaluationAmount = "5000000",
+                        NetAssetAmount = "6000000"
+                    }
+                }
+            };
+
+            _mockAccountService
+                .Setup(s => s.InquireBalanceAsync(
+                    It.IsAny<InquireBalanceRequest>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(fakeResponse);
+
+            // ===== Act =====
+            await _presenter.InquireBalanceAsync();
+
+            // ===== Assert =====
+            // 정상 응답이면 ShowInfoMessage가 호출되어야 한다 (ShowErrorMessage는 아님)
+            _mockView.Verify(
+                v => v.ShowInfoMessage(
+                    It.Is<string>(msg => msg.Contains("잔고조회")),
+                    It.IsAny<string>()),
+                Times.Once,
+                "정상 잔고조회 후 ShowInfoMessage가 1회 호출되어야 합니다.");
+
+            _mockView.Verify(
+                v => v.ShowErrorMessage(It.IsAny<string>(), It.IsAny<string>()),
+                Times.Never,
+                "정상 잔고조회에서는 ShowErrorMessage가 호출되면 안 됩니다.");
+        }
+
+        [Fact]
+        public async Task Test1_InquireBalanceAsync_응답이_null이면_ShowErrorMessage_호출()
+        {
+            // ===== Arrange =====
+            // API가 null을 반환하는 비정상 상황
+            _mockAccountService
+                .Setup(s => s.InquireBalanceAsync(
+                    It.IsAny<InquireBalanceRequest>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync((InquireBalanceResponse?)null);
+
+            // ===== Act =====
+            await _presenter.InquireBalanceAsync();
+
+            // ===== Assert =====
+            // null 응답이면 에러 메시지가 표시되어야 한다
+            _mockView.Verify(
+                v => v.ShowErrorMessage(
+                    It.Is<string>(msg => msg.Contains("null")),
+                    It.IsAny<string>()),
+                Times.Once,
+                "응답이 null이면 ShowErrorMessage가 호출되어야 합니다.");
+        }
+
+        #endregion
+
+        #region ===== Test2: InquirePsblRvsecnclAndCancelAsync — Mock 환경에서 실패 =====
+
+        [Fact]
+        public async Task Test2_InquirePsblRvsecnclAndCancelAsync_Mock환경이면_ShowErrorMessage_호출()
+        {
+            // ===== Arrange =====
+            // 현재 환경이 Mock(모의투자)으로 설정되어 있다 (기본 설정)
+            // InquirePsblRvsecnclAndCancelAsync는 실전투자 전용이므로 Mock에서 차단되어야 한다.
+
+            // ===== Act =====
+            await _presenter.InquirePsblRvsecnclAndCancelAsync();
+
+            // ===== Assert =====
+            // Mock 환경에서는 "실전투자만 지원합니다" 에러가 표시되어야 한다
+            _mockView.Verify(
+                v => v.ShowErrorMessage(
+                    It.Is<string>(msg => msg.Contains("실전투자만 지원")),
+                    It.Is<string>(title => title.Contains("미지원"))),
+                Times.Once,
+                "Mock 환경에서 정정취소가능주문조회 호출 시 '실전투자만 지원' 에러 메시지가 표시되어야 합니다.");
+
+            // ===== API가 호출되지 않았는지도 검증 =====
+            // Mock 환경에서는 서비스 계층까지 도달하면 안 된다
+            _mockOrderService.Verify(
+                s => s.InquirePsblRvsecnclAsync(
+                    It.IsAny<InquirePsblRvsecnclRequest>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Never,
+                "Mock 환경에서는 InquirePsblRvsecnclAsync가 호출되면 안 됩니다.");
+        }
+
+        [Fact]
+        public async Task Test2_InquirePsblRvsecnclAndCancelAsync_Live환경이면_API호출_진행()
+        {
+            // ===== Arrange =====
+            // 환경을 Live(실전투자)로 변경하면 API 호출이 진행되어야 한다
+            _mockTradingService
+                .Setup(s => s.CurrentEnvironment)
+                .Returns(KisTradingMode.Live);
+
+            _mockTradingService
+                .Setup(s => s.GetCurrentSettings())
+                .Returns(_apiSettings.Live);
+
+            // 빈 주문 목록 반환 (취소할 주문 없음 시나리오)
+            var fakeResponse = new InquirePsblRvsecnclResponse
+            {
+                RtCd = "0",
+                MsgCd = "MCA00000",
+                Msg1 = "정상처리 되었습니다.",
+                Output = new List<InquirePsblRvsecnclItem>()
+            };
+
+            _mockOrderService
+                .Setup(s => s.InquirePsblRvsecnclAsync(
+                    It.IsAny<InquirePsblRvsecnclRequest>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(fakeResponse);
+
+            // ===== Act =====
+            await _presenter.InquirePsblRvsecnclAndCancelAsync();
+
+            // ===== Assert =====
+            // Live 환경에서는 실제 API가 호출되어야 한다
+            _mockOrderService.Verify(
+                s => s.InquirePsblRvsecnclAsync(
+                    It.IsAny<InquirePsblRvsecnclRequest>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once,
+                "Live 환경에서는 InquirePsblRvsecnclAsync가 1회 호출되어야 합니다.");
+
+            // 빈 목록이면 "가능한 주문이 없습니다" 안내 메시지가 표시되어야 한다
+            _mockView.Verify(
+                v => v.ShowInfoMessage(
+                    It.Is<string>(msg => msg.Contains("없습니다")),
+                    It.IsAny<string>()),
+                Times.Once,
+                "취소 가능 주문이 없으면 안내 메시지가 표시되어야 합니다.");
+        }
+
+        #endregion
+
+        #region ===== Test1 vs Test2 대조 테스트: 같은 환경에서 결과 차이 =====
+
+        [Fact]
+        public async Task Mock환경에서_Test1은_성공하고_Test2는_실패한다()
+        {
+            // ===== Arrange =====
+            // Mock 환경 유지 (기본 설정)
+            // Test1(잔고조회)용 정상 응답 설정
+            var balanceResponse = new InquireBalanceResponse
+            {
+                RtCd = "0",
+                MsgCd = "MCA00000",
+                Msg1 = "정상처리 되었습니다.",
+                Output1 = new List<InquireBalanceItem>(),
+                Output2 = new List<InquireBalanceSummary>
+                {
+                    new InquireBalanceSummary
+                    {
+                        DepositTotalAmount = "500000",
+                        TotalEvaluationAmount = "0",
+                        NetAssetAmount = "500000"
+                    }
+                }
+            };
+
+            _mockAccountService
+                .Setup(s => s.InquireBalanceAsync(
+                    It.IsAny<InquireBalanceRequest>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(balanceResponse);
+
+            // ===== Act 1: Test1 (잔고조회) =====
+            await _presenter.InquireBalanceAsync();
+
+            // ===== Assert 1: Test1은 성공 (ShowInfoMessage 호출) =====
+            _mockView.Verify(
+                v => v.ShowInfoMessage(It.IsAny<string>(), It.IsAny<string>()),
+                Times.Once,
+                "Test1(잔고조회)은 Mock 환경에서도 성공해야 합니다.");
+
+            // ===== 검증 카운터 초기화 =====
+            _mockView.Invocations.Clear();
+
+            // ===== Act 2: Test2 (정정취소가능주문조회) =====
+            await _presenter.InquirePsblRvsecnclAndCancelAsync();
+
+            // ===== Assert 2: Test2는 실패 (ShowErrorMessage 호출) =====
+            _mockView.Verify(
+                v => v.ShowErrorMessage(
+                    It.Is<string>(msg => msg.Contains("실전투자만 지원")),
+                    It.IsAny<string>()),
+                Times.Once,
+                "Test2(정정취소가능주문조회)는 Mock 환경에서 실패해야 합니다.");
+
+            // Test2에서 ShowInfoMessage는 호출되면 안 된다
+            _mockView.Verify(
+                v => v.ShowInfoMessage(It.IsAny<string>(), It.IsAny<string>()),
+                Times.Never,
+                "Test2 실패 시 ShowInfoMessage가 호출되면 안 됩니다.");
+        }
+
+        #endregion
+    }
+}

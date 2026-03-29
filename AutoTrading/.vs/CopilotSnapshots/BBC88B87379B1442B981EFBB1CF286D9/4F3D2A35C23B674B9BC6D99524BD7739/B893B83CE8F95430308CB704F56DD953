@@ -1,0 +1,42 @@
+﻿using KisRestAPI.Models.Orders;
+
+namespace KisRestAPI.Orders
+{
+    public static class OrderRvsecnclRequestValidator
+    {
+        public static void Validate(OrderRvsecnclRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.Cano))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.AcntPrdtCd))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.OrgnOdno))
+                throw new ArgumentException("원주문번호(ORGN_ODNO)가 비어 있습니다.");
+            if (request.RvseCnclDvsnCd != "01" && request.RvseCnclDvsnCd != "02")
+                throw new ArgumentException(
+                    $"정정취소구분코드(RVSE_CNCL_DVSN_CD)는 \"01\"(정정) 또는 \"02\"(취소)만 가능합니다. 현재 값: \"{request.RvseCnclDvsnCd}\"");
+            if (string.IsNullOrWhiteSpace(request.OrdDvsn))
+                throw new ArgumentException("주문구분(ORD_DVSN)이 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.OrdQty))
+                throw new ArgumentException("주문수량(ORD_QTY)이 비어 있습니다.");
+            if (!int.TryParse(request.OrdQty, out int qty) || qty <= 0)
+                throw new ArgumentException("주문수량(ORD_QTY)은 1 이상의 숫자 문자열이어야 합니다.");
+            if (string.IsNullOrWhiteSpace(request.OrdUnpr))
+                throw new ArgumentException("주문단가(ORD_UNPR)가 비어 있습니다.");
+            if (request.QtyAllOrdYn != "Y" && request.QtyAllOrdYn != "N")
+                throw new ArgumentException(
+                    $"잔량전부주문여부(QTY_ALL_ORD_YN)는 \"Y\" 또는 \"N\"만 가능합니다. 현재 값: \"{request.QtyAllOrdYn}\"");
+            if (request.RvseCnclDvsnCd == "01" && request.OrdDvsn == "00")
+            {
+                if (!decimal.TryParse(request.OrdUnpr, out decimal price) || price <= 0)
+                    throw new ArgumentException("정정 + 지정가 주문은 주문단가(ORD_UNPR)가 0보다 커야 합니다.");
+            }
+            if (request.RvseCnclDvsnCd == "02")
+            {
+                if (request.OrdUnpr != "0")
+                    throw new ArgumentException("취소 주문은 주문단가(ORD_UNPR)를 \"0\"으로 보내는 것을 권장합니다.");
+            }
+        }
+    }
+}

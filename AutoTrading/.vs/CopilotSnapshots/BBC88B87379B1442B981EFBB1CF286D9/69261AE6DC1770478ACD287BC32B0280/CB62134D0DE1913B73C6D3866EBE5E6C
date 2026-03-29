@@ -1,0 +1,80 @@
+﻿namespace AutoTrading.Features.Models.Api.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회_실현손익 API의 Query Parameter DTO
+    ///
+    /// 왜 이 API가 필요한가?
+    /// - 일반 잔고조회(InquireBalance)는 현재 보유 종목의 평가손익을 보여준다.
+    /// - 이 API는 이미 매도한 종목의 실현된 손익까지 포함하여 종합적인 수익률을 파악할 수 있다.
+    /// - 자동매매 성과 분석 및 세금 신고에 필요한 실현손익 데이터를 제공한다.
+    ///
+    /// ※ 실전투자 전용 API — 모의투자 미지원
+    /// </summary>
+    public sealed class InquireBalanceRlzPlRequest
+    {
+        /// <summary>종합계좌번호 앞 8자리</summary>
+        public string CANO { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 뒤 2자리 (보통 "01")</summary>
+        public string ACNT_PRDT_CD { get; set; } = "01";
+
+        /// <summary>
+        /// 시간외단일가 여부
+        /// "N": 기본값, "Y": 시간외단일가
+        /// </summary>
+        public string AFHR_FLPR_YN { get; set; } = "N";
+
+        /// <summary>
+        /// 오프라인 여부 — 공란 입력
+        /// </summary>
+        public string OFL_YN { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 조회구분
+        /// "00": 전체
+        /// </summary>
+        public string INQR_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 단가구분
+        /// "01": 기본값
+        /// </summary>
+        public string UNPR_DVSN { get; set; } = "01";
+
+        /// <summary>
+        /// 펀드결제 포함 여부
+        /// "N": 포함하지 않음, "Y": 포함
+        /// </summary>
+        public string FUND_STTL_ICLD_YN { get; set; } = "N";
+
+        /// <summary>
+        /// 융자금액 자동상환 여부
+        /// "N": 기본값
+        /// </summary>
+        public string FNCG_AMT_AUTO_RDPT_YN { get; set; } = "N";
+
+        /// <summary>
+        /// 처리구분
+        /// "00": 전일매매 포함, "01": 전일매매 미포함
+        /// </summary>
+        public string PRCS_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 비용 포함 여부
+        /// "N": 포함하지 않음
+        /// </summary>
+        public string COST_ICLD_YN { get; set; } = "N";
+
+        /// <summary>
+        /// 연속조회 검색조건 100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_FK100 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회 키 100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_NK100 { get; set; } = string.Empty;
+    }
+}

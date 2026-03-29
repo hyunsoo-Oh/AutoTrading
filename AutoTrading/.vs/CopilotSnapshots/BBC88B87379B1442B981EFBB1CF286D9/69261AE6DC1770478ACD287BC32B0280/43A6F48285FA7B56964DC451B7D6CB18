@@ -1,0 +1,33 @@
+﻿using AutoTrading.Services.KoreaInvest.Common.Http;
+
+namespace AutoTrading.Services.KoreaInvest.Orders
+{
+    /// <summary>
+    /// 주식정정취소가능주문조회 API용 헤더 생성 클래스
+    /// </summary>
+    public static class InquirePsblRvsecnclHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken,
+            string appKey,
+            string appSecret,
+            string trId,
+            string custType = "P",
+            string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken,
+                appKey: appKey,
+                appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"]   = trId,
+
+                    // ===== 연속조회 시 "N" 전달 =====
+                    // 최초 조회는 공란, 다음 페이지 조회는 "N"
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

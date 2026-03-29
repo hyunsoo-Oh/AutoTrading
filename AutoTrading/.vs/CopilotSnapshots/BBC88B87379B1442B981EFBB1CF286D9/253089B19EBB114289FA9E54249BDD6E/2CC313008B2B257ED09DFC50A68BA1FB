@@ -1,0 +1,20 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Orders
+{
+    public static class InquirePsblRvsecnclTrIdProvider
+    {
+        private const string LiveTrId = "TTTC0084R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            if (tradingMode != KisTradingMode.Live)
+            {
+                throw new NotSupportedException(
+                    "주식정정취소가능주문조회(TTTC0084R)는 실전투자만 지원합니다. " +
+                    "모의투자 환경에서는 호출할 수 없습니다.");
+            }
+            return LiveTrId;
+        }
+    }
+}

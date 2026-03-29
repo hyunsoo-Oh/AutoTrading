@@ -1,0 +1,14 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Auth
+{
+    /// <summary>
+    /// HashKey 발급 성공 응답 모델
+    /// </summary>
+    public class HashKeyResponse
+    {
+        /// <summary>HashKey 값</summary>
+        [JsonPropertyName("HASH")]
+        public string Hash { get; set; } = string.Empty;
+    }
+}

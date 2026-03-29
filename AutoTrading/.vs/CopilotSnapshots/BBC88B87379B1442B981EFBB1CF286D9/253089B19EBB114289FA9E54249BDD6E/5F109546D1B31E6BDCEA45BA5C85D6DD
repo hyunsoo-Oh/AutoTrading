@@ -1,0 +1,140 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 기간별계좌권리현황조회 output1 배열의 권리 이벤트 항목 DTO
+    ///
+    /// 각 항목은 보유 종목에 발생한 하나의 권리 이벤트(배당, 유상증자, 무상증자, 합병, 액면분할 등)를 나타낸다.
+    /// 권리유형코드(rght_type_cd)와 권리잔고유형코드(rght_cblc_type_cd)로 이벤트 종류와 입출고 구분을 파악한다.
+    /// </summary>
+    public sealed class InquirePeriodRightsItem
+    {
+        /// <summary>계좌번호10</summary>
+        [JsonPropertyName("acno10")]
+        public string Acno10 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 권리유형코드
+        /// 1:유상, 2:무상, 3:배당, 4:매수청구, 5:공개매수, 6:주주총회,
+        /// 7:신주인수권증서, 11:합병, 12:회사분할, 14:액면분할, 15:액면병합,
+        /// 17:감자, 41:ELW만기, 42:ELS분배, 61:원리금상환, 91:공모주, 99:기타 등
+        /// </summary>
+        [JsonPropertyName("rght_type_cd")]
+        public string RghtTypeCd { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 기준일자 (YYYYMMDD)
+        /// </summary>
+        [JsonPropertyName("bass_dt")]
+        public string BassDt { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 권리잔고유형코드
+        /// 1:입고, 2:출고, 3:출고입고, 4:출고입금, 10:현금입금,
+        /// 11:단수주대금입금, 12:교부금입금, 15:이자지급, 20:출금 등
+        /// </summary>
+        [JsonPropertyName("rght_cblc_type_cd")]
+        public string RghtCblcTypeCd { get; set; } = string.Empty;
+
+        /// <summary>대표상품번호</summary>
+        [JsonPropertyName("rptt_pdno")]
+        public string RpttPdno { get; set; } = string.Empty;
+
+        /// <summary>상품번호 (종목코드)</summary>
+        [JsonPropertyName("pdno")]
+        public string Pdno { get; set; } = string.Empty;
+
+        /// <summary>상품유형코드</summary>
+        [JsonPropertyName("prdt_type_cd")]
+        public string PrdtTypeCd { get; set; } = string.Empty;
+
+        /// <summary>단축상품번호</summary>
+        [JsonPropertyName("shtn_pdno")]
+        public string ShtnPdno { get; set; } = string.Empty;
+
+        /// <summary>상품명 (종목명)</summary>
+        [JsonPropertyName("prdt_name")]
+        public string PrdtName { get; set; } = string.Empty;
+
+        /// <summary>잔고수량</summary>
+        [JsonPropertyName("cblc_qty")]
+        public string CblcQty { get; set; } = string.Empty;
+
+        /// <summary>최종배정수량</summary>
+        [JsonPropertyName("last_alct_qty")]
+        public string LastAlctQty { get; set; } = string.Empty;
+
+        /// <summary>초과배정수량</summary>
+        [JsonPropertyName("excs_alct_qty")]
+        public string ExcsAlctQty { get; set; } = string.Empty;
+
+        /// <summary>총배정수량</summary>
+        [JsonPropertyName("tot_alct_qty")]
+        public string TotAlctQty { get; set; } = string.Empty;
+
+        /// <summary>최종단수주수량</summary>
+        [JsonPropertyName("last_ftsk_qty")]
+        public string LastFtskQty { get; set; } = string.Empty;
+
+        /// <summary>최종배정금액</summary>
+        [JsonPropertyName("last_alct_amt")]
+        public string LastAlctAmt { get; set; } = string.Empty;
+
+        /// <summary>최종단수주대금</summary>
+        [JsonPropertyName("last_ftsk_chgs")]
+        public string LastFtskChgs { get; set; } = string.Empty;
+
+        /// <summary>상환원금</summary>
+        [JsonPropertyName("rdpt_prca")]
+        public string RdptPrca { get; set; } = string.Empty;
+
+        /// <summary>지연이자금액</summary>
+        [JsonPropertyName("dlay_int_amt")]
+        public string DlayIntAmt { get; set; } = string.Empty;
+
+        /// <summary>상장일자</summary>
+        [JsonPropertyName("lstg_dt")]
+        public string LstgDt { get; set; } = string.Empty;
+
+        /// <summary>청약종료일자</summary>
+        [JsonPropertyName("sbsc_end_dt")]
+        public string SbscEndDt { get; set; } = string.Empty;
+
+        /// <summary>현금지급일자</summary>
+        [JsonPropertyName("cash_dfrm_dt")]
+        public string CashDfrmDt { get; set; } = string.Empty;
+
+        /// <summary>신청수량</summary>
+        [JsonPropertyName("rqst_qty")]
+        public string RqstQty { get; set; } = string.Empty;
+
+        /// <summary>신청금액</summary>
+        [JsonPropertyName("rqst_amt")]
+        public string RqstAmt { get; set; } = string.Empty;
+
+        /// <summary>신청일자</summary>
+        [JsonPropertyName("rqst_dt")]
+        public string RqstDt { get; set; } = string.Empty;
+
+        /// <summary>환불일자</summary>
+        [JsonPropertyName("rfnd_dt")]
+        public string RfndDt { get; set; } = string.Empty;
+
+        /// <summary>환불금액</summary>
+        [JsonPropertyName("rfnd_amt")]
+        public string RfndAmt { get; set; } = string.Empty;
+
+        /// <summary>상장주수</summary>
+        [JsonPropertyName("lstg_stqt")]
+        public string LstgStqt { get; set; } = string.Empty;
+
+        /// <summary>세금금액</summary>
+        [JsonPropertyName("tax_amt")]
+        public string TaxAmt { get; set; } = string.Empty;
+
+        /// <summary>청약단가</summary>
+        [JsonPropertyName("sbsc_unpr")]
+        public string SbscUnpr { get; set; } = string.Empty;
+    }
+}

@@ -1,0 +1,34 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Orders
+{
+    public sealed class OrderCashRequest
+    {
+        [JsonPropertyName("CANO")]
+        public string Cano { get; set; } = string.Empty;
+
+        [JsonPropertyName("ACNT_PRDT_CD")]
+        public string AcntPrdtCd { get; set; } = "01";
+
+        [JsonPropertyName("PDNO")]
+        public string PdNo { get; set; } = string.Empty;
+
+        [JsonPropertyName("SLL_TYPE")]
+        public string SllType { get; set; } = "01";
+
+        [JsonPropertyName("ORD_DVSN")]
+        public string OrdDvsn { get; set; } = "00";
+
+        [JsonPropertyName("ORD_QTY")]
+        public string OrdQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("ORD_UNPR")]
+        public string OrdUnpr { get; set; } = string.Empty;
+
+        [JsonPropertyName("CNDT_PRIC")]
+        public string CndtPric { get; set; } = "0";
+
+        [JsonPropertyName("EXCG_ID_DVSN_CD")]
+        public string ExcgIdDvsnCd { get; set; } = "KRX";
+    }
+}

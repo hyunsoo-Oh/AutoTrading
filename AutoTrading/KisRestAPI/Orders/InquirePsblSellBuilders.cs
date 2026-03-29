@@ -1,0 +1,105 @@
+using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Orders;
+
+namespace KisRestAPI.Orders
+{
+    // =====================================================================
+    // ===== 매도가능수량조회 API 빌더 통합 파일 =====
+    // Validator / QueryStringBuilder / UrlBuilder / TrIdProvider /
+    // HeaderBuilder를 하나로 모은다.
+    // =====================================================================
+
+    // ===== 요청 검증 =====
+    /// <summary>
+    /// 매도가능수량조회 요청 검증기
+    ///
+    /// 왜 사전 검증이 중요한가?
+    /// - 매도 주문 전 실제 보유 수량 확인은 필수 안전장치다.
+    /// - 계좌 정보나 종목코드 없이 조회하면 API 오류가 발생하므로 미리 차단한다.
+    /// </summary>
+    internal static class InquirePsblSellRequestValidator
+    {
+        public static void Validate(InquirePsblSellRequest request)
+        {
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.PDNO))
+                throw new ArgumentException("종목번호(PDNO)가 비어 있습니다.");
+        }
+    }
+
+    // ===== QueryString 생성 =====
+    internal static class InquirePsblSellQueryStringBuilder
+    {
+        public static string Build(InquirePsblSellRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]         = request.CANO,
+                ["ACNT_PRDT_CD"] = request.ACNT_PRDT_CD,
+                ["PDNO"]         = request.PDNO,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+
+    // ===== URL 생성 =====
+    internal static class InquirePsblSellUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/inquire-psbl-sell";
+
+        public static string Build(string baseUrl, InquirePsblSellRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquirePsblSellQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+
+    // ===== TR ID 제공 — 실전투자 전용 (모의투자 미지원) =====
+    internal static class InquirePsblSellTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8408R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            if (tradingMode != KisTradingMode.Live)
+            {
+                throw new NotSupportedException(
+                    "매도가능수량조회(TTTC8408R)는 실전투자만 지원합니다. " +
+                    "모의투자 환경에서는 호출할 수 없습니다.");
+            }
+            return LiveTrId;
+        }
+    }
+
+    // ===== HTTP 헤더 생성 =====
+    internal static class InquirePsblSellHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P")
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"] = trId
+                });
+        }
+    }
+}

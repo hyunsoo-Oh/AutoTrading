@@ -1,0 +1,31 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회_실현손익 API 루트 응답 DTO
+    /// </summary>
+    public sealed class InquireBalanceRlzPlResponse
+    {
+        [JsonPropertyName("rt_cd")]
+        public string RtCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg_cd")]
+        public string MsgCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg1")]
+        public string Msg1 { get; set; } = string.Empty;
+
+        [JsonPropertyName("ctx_area_fk100")]
+        public string CtxAreaFk100 { get; set; } = string.Empty;
+
+        [JsonPropertyName("ctx_area_nk100")]
+        public string CtxAreaNk100 { get; set; } = string.Empty;
+
+        [JsonPropertyName("output1")]
+        public List<InquireBalanceRlzPlItem> Output1 { get; set; } = new();
+
+        [JsonPropertyName("output2")]
+        public List<InquireBalanceRlzPlSummary> Output2 { get; set; } = new();
+    }
+}

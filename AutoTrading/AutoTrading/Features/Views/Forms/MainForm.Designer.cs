@@ -61,44 +61,46 @@
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel_ConnectState, toolStripStatusLabel_UserName, toolStripStatusLabel_GetStockInfo, toolStripStatusLabel2, toolStripStatusLabel_Clock });
-            statusStrip1.Location = new Point(0, 992);
+            statusStrip1.Location = new Point(0, 1007);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1898, 32);
+            statusStrip1.Padding = new Padding(1, 0, 13, 0);
+            statusStrip1.Size = new Size(1902, 26);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip";
             // 
             // toolStripStatusLabel_ConnectState
             // 
             toolStripStatusLabel_ConnectState.Name = "toolStripStatusLabel_ConnectState";
-            toolStripStatusLabel_ConnectState.Size = new Size(126, 25);
+            toolStripStatusLabel_ConnectState.Size = new Size(104, 20);
             toolStripStatusLabel_ConnectState.Text = "○ Disconnect";
             // 
             // toolStripStatusLabel_UserName
             // 
             toolStripStatusLabel_UserName.Name = "toolStripStatusLabel_UserName";
-            toolStripStatusLabel_UserName.Size = new Size(0, 25);
+            toolStripStatusLabel_UserName.Size = new Size(0, 20);
             // 
             // toolStripStatusLabel_GetStockInfo
             // 
             toolStripStatusLabel_GetStockInfo.Name = "toolStripStatusLabel_GetStockInfo";
-            toolStripStatusLabel_GetStockInfo.Size = new Size(90, 25);
+            toolStripStatusLabel_GetStockInfo.Size = new Size(74, 20);
             toolStripStatusLabel_GetStockInfo.Text = "종목 없음";
             // 
             // toolStripStatusLabel2
             // 
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(1667, 25);
+            toolStripStatusLabel2.Size = new Size(1710, 20);
             toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel_Clock
             // 
             toolStripStatusLabel_Clock.Name = "toolStripStatusLabel_Clock";
-            toolStripStatusLabel_Clock.Size = new Size(0, 25);
+            toolStripStatusLabel_Clock.Size = new Size(0, 20);
             // 
             // splitContainer2
             // 
+            splitContainer2.BackColor = Color.FromArgb(26, 28, 30);
             splitContainer2.Dock = DockStyle.Fill;
-            splitContainer2.Location = new Point(0, 153);
+            splitContainer2.Location = new Point(0, 124);
             splitContainer2.Margin = new Padding(3, 2, 3, 2);
             splitContainer2.Name = "splitContainer2";
             // 
@@ -107,16 +109,16 @@
             splitContainer2.Panel1.Controls.Add(button1);
             splitContainer2.Panel1.Controls.Add(button_Test);
             splitContainer2.Panel1.Controls.Add(sideNavigationBar);
-            splitContainer2.Size = new Size(1898, 839);
+            splitContainer2.Size = new Size(1902, 883);
             splitContainer2.SplitterDistance = 288;
+            splitContainer2.SplitterWidth = 1;
             splitContainer2.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(107, 467);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(96, 374);
             button1.Name = "button1";
-            button1.Size = new Size(104, 36);
+            button1.Size = new Size(94, 29);
             button1.TabIndex = 5;
             button1.Tag = "Test2";
             button1.Text = "Test";
@@ -125,10 +127,9 @@
             // 
             // button_Test
             // 
-            button_Test.Location = new Point(107, 399);
-            button_Test.Margin = new Padding(3, 4, 3, 4);
+            button_Test.Location = new Point(96, 319);
             button_Test.Name = "button_Test";
-            button_Test.Size = new Size(104, 36);
+            button_Test.Size = new Size(94, 29);
             button_Test.TabIndex = 4;
             button_Test.Tag = "Test1";
             button_Test.Text = "Test";
@@ -142,10 +143,9 @@
             sideNavigationBar.Dock = DockStyle.Fill;
             sideNavigationBar.ForeColor = Color.FromArgb(225, 226, 229);
             sideNavigationBar.Location = new Point(0, 0);
-            sideNavigationBar.Margin = new Padding(3, 4, 3, 4);
             sideNavigationBar.Name = "sideNavigationBar";
-            sideNavigationBar.Padding = new Padding(0, 10, 0, 10);
-            sideNavigationBar.Size = new Size(288, 839);
+            sideNavigationBar.Padding = new Padding(0, 8, 0, 8);
+            sideNavigationBar.Size = new Size(288, 883);
             sideNavigationBar.TabIndex = 0;
             // 
             // menuStrip1
@@ -155,7 +155,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, systemToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1898, 33);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(1902, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -163,7 +164,7 @@
             // 
             fileToolStripMenuItem.ForeColor = Color.FromArgb(225, 226, 229);
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(55, 29);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // systemToolStripMenuItem
@@ -171,13 +172,13 @@
             systemToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_Mock, ToolStripMenuItem_Live, toolStripSeparator1, 종목호출ToolStripMenuItem });
             systemToolStripMenuItem.ForeColor = Color.FromArgb(225, 226, 229);
             systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            systemToolStripMenuItem.Size = new Size(87, 29);
+            systemToolStripMenuItem.Size = new Size(70, 24);
             systemToolStripMenuItem.Text = "System";
             // 
             // ToolStripMenuItem_Mock
             // 
             ToolStripMenuItem_Mock.Name = "ToolStripMenuItem_Mock";
-            ToolStripMenuItem_Mock.Size = new Size(228, 34);
+            ToolStripMenuItem_Mock.Size = new Size(187, 26);
             ToolStripMenuItem_Mock.Tag = "Mock";
             ToolStripMenuItem_Mock.Text = "모의투자 서버";
             ToolStripMenuItem_Mock.Click += ToolStripMenuItem_Click;
@@ -185,7 +186,7 @@
             // ToolStripMenuItem_Live
             // 
             ToolStripMenuItem_Live.Name = "ToolStripMenuItem_Live";
-            ToolStripMenuItem_Live.Size = new Size(228, 34);
+            ToolStripMenuItem_Live.Size = new Size(187, 26);
             ToolStripMenuItem_Live.Tag = "Live";
             ToolStripMenuItem_Live.Text = "실전투자 서버";
             ToolStripMenuItem_Live.Click += ToolStripMenuItem_Click;
@@ -193,12 +194,12 @@
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(225, 6);
+            toolStripSeparator1.Size = new Size(184, 6);
             // 
             // 종목호출ToolStripMenuItem
             // 
             종목호출ToolStripMenuItem.Name = "종목호출ToolStripMenuItem";
-            종목호출ToolStripMenuItem.Size = new Size(228, 34);
+            종목호출ToolStripMenuItem.Size = new Size(187, 26);
             종목호출ToolStripMenuItem.Tag = "GetStockInfo";
             종목호출ToolStripMenuItem.Text = "종목 호출";
             종목호출ToolStripMenuItem.Click += ToolStripMenuItem_Click;
@@ -209,17 +210,18 @@
             panel_TopBar.Controls.Add(button_buy);
             panel_TopBar.Controls.Add(twoLineTopBar);
             panel_TopBar.Dock = DockStyle.Top;
-            panel_TopBar.Location = new Point(0, 33);
+            panel_TopBar.Location = new Point(0, 28);
             panel_TopBar.Margin = new Padding(3, 2, 3, 2);
             panel_TopBar.Name = "panel_TopBar";
-            panel_TopBar.Size = new Size(1898, 120);
+            panel_TopBar.Size = new Size(1902, 96);
             panel_TopBar.TabIndex = 1;
             // 
             // button_sell
             // 
-            button_sell.Location = new Point(893, 43);
+            button_sell.Location = new Point(804, 34);
+            button_sell.Margin = new Padding(3, 2, 3, 2);
             button_sell.Name = "button_sell";
-            button_sell.Size = new Size(112, 34);
+            button_sell.Size = new Size(101, 27);
             button_sell.TabIndex = 1;
             button_sell.Tag = "Sell";
             button_sell.Text = "Sell";
@@ -228,9 +230,10 @@
             // 
             // button_buy
             // 
-            button_buy.Location = new Point(571, 46);
+            button_buy.Location = new Point(514, 37);
+            button_buy.Margin = new Padding(3, 2, 3, 2);
             button_buy.Name = "button_buy";
-            button_buy.Size = new Size(112, 34);
+            button_buy.Size = new Size(101, 27);
             button_buy.TabIndex = 0;
             button_buy.Tag = "Buy";
             button_buy.Text = "buy";
@@ -252,16 +255,15 @@
             twoLineTopBar.Location = new Point(0, 0);
             twoLineTopBar.Margin = new Padding(3, 2, 3, 2);
             twoLineTopBar.Name = "twoLineTopBar";
-            twoLineTopBar.Size = new Size(1898, 120);
+            twoLineTopBar.Size = new Size(1902, 96);
             twoLineTopBar.TabIndex = 0;
             twoLineTopBar.UseRealtimeClock = true;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1898, 1024);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(splitContainer2);
             Controls.Add(panel_TopBar);
             Controls.Add(menuStrip1);

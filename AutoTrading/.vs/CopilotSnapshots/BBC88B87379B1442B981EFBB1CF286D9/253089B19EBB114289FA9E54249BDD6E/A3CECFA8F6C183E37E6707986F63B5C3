@@ -1,0 +1,28 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 투자계좌자산현황조회 output1 배열의 자산 종류별 현황 항목 DTO
+    /// </summary>
+    public sealed class InquireAccountBalanceItem
+    {
+        [JsonPropertyName("pchs_amt")]
+        public string PurchaseAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_amt")]
+        public string EvaluationAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_pfls_amt")]
+        public string EvaluationProfitLossAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("crdt_lnd_amt")]
+        public string CreditLoanAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("real_nass_amt")]
+        public string RealNetAssetAmount { get; set; } = string.Empty;
+
+        [JsonPropertyName("whol_weit_rt")]
+        public string WholeWeightRate { get; set; } = string.Empty;
+    }
+}

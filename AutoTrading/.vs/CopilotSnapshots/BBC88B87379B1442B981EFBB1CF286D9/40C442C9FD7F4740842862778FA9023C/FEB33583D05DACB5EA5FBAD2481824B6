@@ -1,0 +1,15 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Orders
+{
+    public static class OrderRvsecnclTrIdProvider
+    {
+        private const string LiveTrId = "TTTC0013U";
+        private const string MockTrId = "VTTC0013U";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            return tradingMode == KisTradingMode.Live ? LiveTrId : MockTrId;
+        }
+    }
+}

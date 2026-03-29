@@ -4,6 +4,9 @@
     <Compile Update="Controls\Cards\ChartCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Controls\Cards\EmptyCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Controls\Cards\StockCard.cs">
       <SubType>UserControl</SubType>
     </Compile>

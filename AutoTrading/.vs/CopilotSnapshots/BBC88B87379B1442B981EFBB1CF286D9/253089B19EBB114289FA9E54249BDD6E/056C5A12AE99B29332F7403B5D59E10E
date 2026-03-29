@@ -1,0 +1,26 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Auth
+{
+    /// <summary>
+    /// 한국투자증권 API 에러 응답 모델
+    /// </summary>
+    public class KisErrorResponse
+    {
+        /// <summary>에러 코드</summary>
+        [JsonPropertyName("error_code")]
+        public string ErrorCode { get; set; } = string.Empty;
+
+        /// <summary>에러 상세 설명</summary>
+        [JsonPropertyName("error_description")]
+        public string ErrorDescription { get; set; } = string.Empty;
+
+        /// <summary>응답 메시지 1 (일부 API에서 사용)</summary>
+        [JsonPropertyName("msg1")]
+        public string Message1 { get; set; } = string.Empty;
+
+        /// <summary>응답 메시지 코드 (일부 API에서 사용)</summary>
+        [JsonPropertyName("msg_cd")]
+        public string MessageCode { get; set; } = string.Empty;
+    }
+}

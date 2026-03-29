@@ -1,0 +1,61 @@
+﻿namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 기간별계좌권리현황조회 Query Parameter DTO
+    ///
+    /// 왜 이 API가 필요한가?
+    /// - 유상증자, 무상증자, 배당, 액면분할, 합병 등 보유 종목에 발생한 권리 이벤트를 조회한다.
+    /// - HTS [7344] 권리유형별 현황조회 화면의 기능에 해당한다.
+    /// - 자동매매 프로그램에서 보유 종목의 권리 이벤트를 감지하여
+    ///   포지션 조정이나 리밸런싱 판단에 활용할 수 있다.
+    ///
+    /// ※ 실전투자 전용 API ? 모의투자 미지원
+    /// </summary>
+    public sealed class InquirePeriodRightsRequest
+    {
+        /// <summary>
+        /// 조회구분
+        /// "03" 입력
+        /// </summary>
+        public string INQR_DVSN { get; set; } = "03";
+
+        /// <summary>고객실명확인번호25 ? 공란 입력</summary>
+        public string CUST_RNCNO25 { get; set; } = string.Empty;
+
+        /// <summary>홈넷ID ? 공란 입력</summary>
+        public string HMID { get; set; } = string.Empty;
+
+        /// <summary>종합계좌번호 앞 8자리</summary>
+        public string CANO { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 뒤 2자리 (보통 "01")</summary>
+        public string ACNT_PRDT_CD { get; set; } = "01";
+
+        /// <summary>조회시작일자 (YYYYMMDD)</summary>
+        public string INQR_STRT_DT { get; set; } = string.Empty;
+
+        /// <summary>조회종료일자 (YYYYMMDD)</summary>
+        public string INQR_END_DT { get; set; } = string.Empty;
+
+        /// <summary>권리유형코드 ? 공란 입력 시 전체</summary>
+        public string RGHT_TYPE_CD { get; set; } = string.Empty;
+
+        /// <summary>상품번호 (종목코드) ? 공란 입력 시 전체</summary>
+        public string PDNO { get; set; } = string.Empty;
+
+        /// <summary>상품유형코드 ? 공란 입력</summary>
+        public string PRDT_TYPE_CD { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회키100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_NK100 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회검색조건100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_FK100 { get; set; } = string.Empty;
+    }
+}

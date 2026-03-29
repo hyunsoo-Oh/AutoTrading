@@ -28,33 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(436, 269);
-            label1.Name = "label1";
-            label1.Size = new Size(44, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Asset";
             // 
             // Asset
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(31, 34, 40);
-            Controls.Add(label1);
+            BackColor = Color.FromArgb(51, 54, 60);
             ForeColor = Color.FromArgb(225, 226, 228);
             Name = "Asset";
-            Size = new Size(1448, 659);
+            Size = new Size(1614, 883);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
     }
 }

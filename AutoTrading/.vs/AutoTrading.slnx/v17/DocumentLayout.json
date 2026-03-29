@@ -1,0 +1,2243 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\marketregime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\marketregime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\backtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\backtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\presenters\\contents\\dashboardpresenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\presenters\\contents\\dashboardpresenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\compinterestmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\compinterestmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\stockcontrol\\dashboardcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|solutionrelative:stockcontrol\\dashboardcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\stockcontrol\\darktabcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|solutionrelative:stockcontrol\\darktabcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\stockcontrol\\risksignalcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|solutionrelative:stockcontrol\\risksignalcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\stockcontrol\\portfoliodonutcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|solutionrelative:stockcontrol\\portfoliodonutcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\stockcontrol\\dashboardcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1DB26E84-4ACB-49CB-BAF5-9ED1DD2A636C}|StockControl\\StockControl.csproj|solutionrelative:stockcontrol\\dashboardcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\presenters\\main\\mainpresenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\presenters\\main\\mainpresenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\accounts\\kisaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\accounts\\kisaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodRightsRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquirePeriodRightsRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\configuration\\apisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\configuration\\apisettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\kisrestapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\kisrestapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\configuration\\apiendpointsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\configuration\\apiendpointsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\common\\kistradingmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\common\\kistradingmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\common\\http\\ikistradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\common\\http\\ikistradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\common\\kistradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\common\\kistradingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\common\\http\\kishttpservicebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\common\\http\\kishttpservicebase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\common\\http\\kishttpheaderbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\common\\http\\kishttpheaderbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\auth\\kisauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\auth\\kisauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\accounts\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\accounts\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireIntgrMarginHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireIntgrMarginTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireIntgrMarginUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireIntgrMarginQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireIntgrMarginRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginOutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireIntgrMarginOutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireIntgrMarginResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireIntgrMarginRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodTradeProfitHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodTradeProfitTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodTradeProfitUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodTradeProfitQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodTradeProfitRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodProfitLossHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodProfitLossTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodProfitLossUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodProfitLossQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquirePeriodProfitLossRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodProfitLossSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquirePeriodProfitLossSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderCashRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblOrderRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblOrderUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblOrderHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblOrderTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblOrderQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblRvsecnclHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblRvsecnclTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblRvsecnclUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblRvsecnclQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquirePsblRvsecnclRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderRvsecnclHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderRvsecnclTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderRvsecnclRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderRvsecnclUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquireOrderTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\InquireOrderTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderCashHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderCashUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclDvsnCd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderRvsecnclDvsnCd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderEnum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Orders\\OrderEnum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\OrderCashTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblSellResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\InquirePsblSellResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblSellRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\InquirePsblSellRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblOrderResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\InquirePsblOrderResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblOrderRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\InquirePsblOrderRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderRvsecnclRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\OrderRvsecnclRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\OrderCashResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Orders\\OrderCashRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireAccountBalanceTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireAccountBalanceUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireAccountBalanceRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceRlzPlHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceRlzPlTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceRlzPlUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceRlzPlQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceRlzPlRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceAccountProductCodeProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceAccountProductCodeProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceHeaderBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceTrIdProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceUrlBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceQueryStringBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Accounts\\InquireBalanceRequestValidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireAccountBalanceSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireAccountBalanceItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireAccountBalanceResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireAccountBalanceRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceSummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Accounts\\InquireBalanceRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\KisErrorResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Auth\\KisErrorResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\HashKeyResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Auth\\HashKeyResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\TokenResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Auth\\TokenResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\TokenRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPI\\Models\\Auth\\TokenRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPITest\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KisRestAPITest\\Test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquiredailypricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquiredailypricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquiredailypricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquiredailypricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\imarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\imarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\kismarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\kismarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquireaskingpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquireaskingpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquireaskingpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquireaskingpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquireinvestormodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquireinvestormodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquireinvestorbuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquireinvestorbuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquiredailyitemchartpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquiredailyitemchartpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquiredailyitemchartpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquiredailyitemchartpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquiretimeitemchartpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquiretimeitemchartpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquiretimeitemchartpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquiretimeitemchartpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquiretimeitemconclusionmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquiretimeitemconclusionmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquiretimeitemconclusionbuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquiretimeitemconclusionbuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquireetfpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquireetfpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquireetfpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquireetfpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquireetfcomponentstockpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquireetfcomponentstockpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquireetfcomponentstockpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquireetfcomponentstockpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\market\\inquireindexpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\market\\inquireindexpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\inquireindexpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\inquireindexpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\models\\overseas\\inquireovrsdailychartpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\models\\overseas\\inquireovrsdailychartpricemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\overseas\\inquireovrsdailychartpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\overseas\\inquireovrsdailychartpricebuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\overseas\\ioverseasmarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\overseas\\ioverseasmarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\overseas\\kisoverseasmarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\overseas\\kisoverseasmarketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\kisrestapi\\market\\compinterestbuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69D0ABDA-E74B-411C-9194-97560C036C81}|KisRestAPI\\KisRestAPI.csproj|solutionrelative:kisrestapi\\market\\compinterestbuilders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\interfaces\\idashboardview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\interfaces\\idashboardview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:85944829:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Strategy.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Strategy.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Strategy.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Strategy.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Strategy.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T04:46:57.768Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Report.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Report.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Report.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Report.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Report.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T04:46:49.387Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Orders.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Orders.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Orders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Orders.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Orders.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T04:46:40.755Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Logging.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Logging.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Logging.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T04:46:22.84Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Backtest.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T04:46:06.623Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Asset.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Asset.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Asset.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Asset.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Asset.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T04:45:52.178Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dashboard.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T11:39:17.837Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MarketRegime.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T13:58:20.488Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DashboardPresenter.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Contents\\DashboardPresenter.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Presenters\\Contents\\DashboardPresenter.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Contents\\DashboardPresenter.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Presenters\\Contents\\DashboardPresenter.cs",
+              "ViewState": "AgIAAHYBAAAAAAAAAAD4v4sBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:44:56.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 141,
+              "Title": "IDashboardView.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Interfaces\\IDashboardView.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Interfaces\\IDashboardView.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Interfaces\\IDashboardView.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Interfaces\\IDashboardView.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:43:38.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 140,
+              "Title": "CompInterestBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\CompInterestBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\CompInterestBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\CompInterestBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\CompInterestBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:36:12.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 116,
+              "Title": "InquireDailyPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireDailyPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireDailyPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireDailyPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireDailyPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:07:27.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
+              "ViewState": "AgIAABEBAAAAAAAAAAAewIYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T11:39:15.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CompInterestModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\CompInterestModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\CompInterestModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\CompInterestModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\CompInterestModels.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAA6wBEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:35:53.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 117,
+              "Title": "InquireDailyPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireDailyPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireDailyPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireDailyPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireDailyPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:07:46.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 118,
+              "Title": "IMarketService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\IMarketService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\IMarketService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\IMarketService.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\IMarketService.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:07:54.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 119,
+              "Title": "KisMarketService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\KisMarketService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\KisMarketService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\KisMarketService.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\KisMarketService.cs",
+              "ViewState": "AgIAADkCAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:08:09.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 120,
+              "Title": "InquireAskingPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireAskingPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireAskingPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireAskingPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireAskingPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:11:12.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 139,
+              "Title": "KisOverseasMarketService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Overseas\\KisOverseasMarketService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Overseas\\KisOverseasMarketService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Overseas\\KisOverseasMarketService.cs",
+              "RelativeToolTip": "KisRestAPI\\Overseas\\KisOverseasMarketService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:34:54.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 138,
+              "Title": "IOverseasMarketService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Overseas\\IOverseasMarketService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Overseas\\IOverseasMarketService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Overseas\\IOverseasMarketService.cs",
+              "RelativeToolTip": "KisRestAPI\\Overseas\\IOverseasMarketService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:34:35.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 137,
+              "Title": "InquireOvrsDailyChartPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Overseas\\InquireOvrsDailyChartPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Overseas\\InquireOvrsDailyChartPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Overseas\\InquireOvrsDailyChartPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Overseas\\InquireOvrsDailyChartPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:34:20.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 136,
+              "Title": "InquireOvrsDailyChartPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Overseas\\InquireOvrsDailyChartPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Overseas\\InquireOvrsDailyChartPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Overseas\\InquireOvrsDailyChartPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Overseas\\InquireOvrsDailyChartPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:33:58.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 135,
+              "Title": "InquireIndexPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireIndexPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireIndexPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireIndexPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireIndexPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:29:41.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 134,
+              "Title": "InquireIndexPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireIndexPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireIndexPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireIndexPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireIndexPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:29:17.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 133,
+              "Title": "InquireEtfComponentStockPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireEtfComponentStockPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireEtfComponentStockPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireEtfComponentStockPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireEtfComponentStockPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:24:39.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 132,
+              "Title": "InquireEtfComponentStockPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireEtfComponentStockPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireEtfComponentStockPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireEtfComponentStockPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireEtfComponentStockPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAL4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:24:17.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 131,
+              "Title": "InquireEtfPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireEtfPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireEtfPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireEtfPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireEtfPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:21:53.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 130,
+              "Title": "InquireEtfPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireEtfPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireEtfPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireEtfPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireEtfPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:21:29.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 129,
+              "Title": "InquireTimeItemConclusionBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireTimeItemConclusionBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireTimeItemConclusionBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireTimeItemConclusionBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireTimeItemConclusionBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:18:55.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 128,
+              "Title": "InquireTimeItemConclusionModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireTimeItemConclusionModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireTimeItemConclusionModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireTimeItemConclusionModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireTimeItemConclusionModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:18:37.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 127,
+              "Title": "InquireTimeItemChartPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireTimeItemChartPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireTimeItemChartPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireTimeItemChartPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireTimeItemChartPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:17:06.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 126,
+              "Title": "InquireTimeItemChartPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireTimeItemChartPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireTimeItemChartPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireTimeItemChartPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireTimeItemChartPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:16:48.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 125,
+              "Title": "InquireDailyItemChartPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireDailyItemChartPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireDailyItemChartPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireDailyItemChartPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireDailyItemChartPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:15:19.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 124,
+              "Title": "InquireDailyItemChartPriceModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireDailyItemChartPriceModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireDailyItemChartPriceModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireDailyItemChartPriceModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireDailyItemChartPriceModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:14:56.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 123,
+              "Title": "InquireInvestorBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireInvestorBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireInvestorBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireInvestorBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireInvestorBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:13:24.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 122,
+              "Title": "InquireInvestorModels.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireInvestorModels.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Market\\InquireInvestorModels.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Market\\InquireInvestorModels.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireInvestorModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:13:08.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 121,
+              "Title": "InquireAskingPriceBuilders.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireAskingPriceBuilders.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Market\\InquireAskingPriceBuilders.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Market\\InquireAskingPriceBuilders.cs",
+              "RelativeToolTip": "KisRestAPI\\Market\\InquireAskingPriceBuilders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T03:11:30.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DashboardCard.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\DashboardCard.cs",
+              "RelativeDocumentMoniker": "StockControl\\DashboardCard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\DashboardCard.cs",
+              "RelativeToolTip": "StockControl\\DashboardCard.cs",
+              "ViewState": "AgIAAHsBAAAAAAAAAAAowJYBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T13:46:23.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAqwH0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T14:03:33.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DarkTabControl.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\DarkTabControl.cs",
+              "RelativeDocumentMoniker": "StockControl\\DarkTabControl.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\DarkTabControl.cs",
+              "RelativeToolTip": "StockControl\\DarkTabControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T02:59:15.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "RiskSignalControl.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\RiskSignalControl.cs",
+              "RelativeDocumentMoniker": "StockControl\\RiskSignalControl.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\RiskSignalControl.cs",
+              "RelativeToolTip": "StockControl\\RiskSignalControl.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwCsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T02:41:16.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PortfolioDonutControl.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\PortfolioDonutControl.cs",
+              "RelativeDocumentMoniker": "StockControl\\PortfolioDonutControl.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\PortfolioDonutControl.cs",
+              "RelativeToolTip": "StockControl\\PortfolioDonutControl.cs",
+              "ViewState": "AgIAANUAAAAAAAAAAAAowOQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T01:21:13.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MainForm.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T14:18:58.888Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DashboardCard.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\DashboardCard.cs",
+              "RelativeDocumentMoniker": "StockControl\\DashboardCard.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\StockControl\\DashboardCard.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "StockControl\\DashboardCard.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T13:46:17.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MainPresenter.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "RelativeDocumentMoniker": "AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "RelativeToolTip": "AutoTrading\\Features\\Presenters\\Main\\MainPresenter.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T11:44:40.305Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "KisAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\KisAccountService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\KisAccountService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\KisAccountService.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\KisAccountService.cs",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAYwAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:50:24.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "InquirePeriodRightsRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodRightsRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquirePeriodRightsRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodRightsRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquirePeriodRightsRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:39:27.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "InquireIntgrMarginHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireIntgrMarginHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireIntgrMarginHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:35:59.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "InquireIntgrMarginTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireIntgrMarginTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireIntgrMarginTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:35:51.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "InquireIntgrMarginUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireIntgrMarginUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireIntgrMarginUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:35:38.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "InquireIntgrMarginQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireIntgrMarginQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireIntgrMarginQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:35:30.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "InquireIntgrMarginRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireIntgrMarginRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireIntgrMarginRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireIntgrMarginRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:35:21.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "InquireIntgrMarginOutput.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginOutput.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireIntgrMarginOutput.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginOutput.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireIntgrMarginOutput.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:35:08.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "InquireIntgrMarginResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireIntgrMarginResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireIntgrMarginResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:33:55.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "InquireIntgrMarginRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireIntgrMarginRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireIntgrMarginRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireIntgrMarginRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:33:46.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "InquirePeriodTradeProfitHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:30:44.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "InquirePeriodTradeProfitTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:30:36.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "InquirePeriodTradeProfitUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:30:24.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "InquirePeriodTradeProfitQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:30:15.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "InquirePeriodTradeProfitRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodTradeProfitRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodTradeProfitRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:30:03.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "InquirePeriodTradeProfitSummary.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitSummary.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitSummary.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitSummary.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitSummary.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:29:52.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "InquirePeriodTradeProfitItem.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitItem.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitItem.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitItem.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitItem.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:29:36.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "InquirePeriodTradeProfitResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:29:21.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "InquirePeriodTradeProfitRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquirePeriodTradeProfitRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:29:08.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "InquirePeriodProfitLossHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodProfitLossHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodProfitLossHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:18:06.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "InquirePeriodProfitLossTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodProfitLossTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodProfitLossTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:17:56.221Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "InquirePeriodProfitLossUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodProfitLossUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodProfitLossUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:17:41.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "InquirePeriodProfitLossQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodProfitLossQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodProfitLossQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:17:31.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "InquirePeriodProfitLossRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquirePeriodProfitLossRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquirePeriodProfitLossRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquirePeriodProfitLossRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:17:18.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "InquirePeriodProfitLossSummary.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodProfitLossSummary.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquirePeriodProfitLossSummary.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquirePeriodProfitLossSummary.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquirePeriodProfitLossSummary.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T01:17:05.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "OrderCashRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderCashRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderCashRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:52:30.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "InquirePsblOrderRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblOrderRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblOrderRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:55:08.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "InquirePsblOrderUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblOrderUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblOrderUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:55:30.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ApiSettings.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Configuration\\ApiSettings.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Configuration\\ApiSettings.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Configuration\\ApiSettings.cs",
+              "RelativeToolTip": "KisRestAPI\\Configuration\\ApiSettings.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:41:45.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ApiEndpointSettings.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Configuration\\ApiEndpointSettings.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Configuration\\ApiEndpointSettings.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Configuration\\ApiEndpointSettings.cs",
+              "RelativeToolTip": "KisRestAPI\\Configuration\\ApiEndpointSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:41:56.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "KisTradingMode.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\KisTradingMode.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Common\\KisTradingMode.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\KisTradingMode.cs",
+              "RelativeToolTip": "KisRestAPI\\Common\\KisTradingMode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:42:02.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IKisTradingService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\Http\\IKisTradingService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Common\\Http\\IKisTradingService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\Http\\IKisTradingService.cs",
+              "RelativeToolTip": "KisRestAPI\\Common\\Http\\IKisTradingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:42:14.661Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "KisTradingService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\KisTradingService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Common\\KisTradingService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\KisTradingService.cs",
+              "RelativeToolTip": "KisRestAPI\\Common\\KisTradingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:42:25.278Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "InquirePsblOrderHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblOrderHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblOrderHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:55:49.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "InquirePsblOrderTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblOrderTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblOrderTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:55:40.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "InquirePsblOrderQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblOrderQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblOrderQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblOrderQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:55:18.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "InquirePsblRvsecnclHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblRvsecnclHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblRvsecnclHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:54:54.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "InquirePsblRvsecnclTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblRvsecnclTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblRvsecnclTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:54:44.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "InquirePsblRvsecnclUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblRvsecnclUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblRvsecnclUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:54:31.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "InquirePsblRvsecnclQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblRvsecnclQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblRvsecnclQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:54:16.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "InquirePsblRvsecnclRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquirePsblRvsecnclRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquirePsblRvsecnclRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquirePsblRvsecnclRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:54:05.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "OrderRvsecnclHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderRvsecnclHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderRvsecnclHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:53:51.365Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "OrderRvsecnclTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderRvsecnclTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderRvsecnclTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:53:41.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "OrderRvsecnclRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderRvsecnclRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderRvsecnclRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:53:32.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "OrderRvsecnclUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderRvsecnclUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderRvsecnclUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:53:14.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "InquireOrderTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquireOrderTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\InquireOrderTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\InquireOrderTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\InquireOrderTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:53:05.389Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "OrderCashHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderCashHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderCashHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:52:52.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "OrderCashUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderCashUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderCashUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderCashUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:52:39.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "OrderRvsecnclDvsnCd.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclDvsnCd.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderRvsecnclDvsnCd.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderRvsecnclDvsnCd.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderRvsecnclDvsnCd.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:52:17.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "OrderEnum.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderEnum.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Orders\\OrderEnum.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Orders\\OrderEnum.cs",
+              "RelativeToolTip": "KisRestAPI\\Orders\\OrderEnum.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:52:10.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "OrderCashTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\OrderCashTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\OrderCashTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:52:02.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "InquirePsblSellResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblSellResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\InquirePsblSellResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblSellResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\InquirePsblSellResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:51:56.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "InquirePsblSellRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblSellRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\InquirePsblSellRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblSellRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\InquirePsblSellRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:51:41.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "InquirePsblOrderResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblOrderResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\InquirePsblOrderResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblOrderResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\InquirePsblOrderResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:51:36.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "InquirePsblOrderRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblOrderRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\InquirePsblOrderRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblOrderRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\InquirePsblOrderRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:51:23.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "InquirePsblRvsecnclResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:51:16.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "InquirePsblRvsecnclRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\InquirePsblRvsecnclRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:51:02.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "OrderRvsecnclRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderRvsecnclRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\OrderRvsecnclRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderRvsecnclRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\OrderRvsecnclRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:50:54.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "OrderCashResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\OrderCashResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\OrderCashResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:50:44.827Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "OrderCashRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Orders\\OrderCashRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Orders\\OrderCashRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Orders\\OrderCashRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:50:36.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\IAccountService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\IAccountService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\IAccountService.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\IAccountService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAIBfwCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:49:58.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "InquireAccountBalanceTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireAccountBalanceTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireAccountBalanceTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:49:36.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "InquireAccountBalanceUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireAccountBalanceUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireAccountBalanceUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:49:27.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "InquireAccountBalanceRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireAccountBalanceRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireAccountBalanceRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireAccountBalanceRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:49:09.721Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 88,
+              "Title": "InquireBalanceRlzPlHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceRlzPlHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceRlzPlHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:49:00.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 89,
+              "Title": "InquireBalanceRlzPlTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceRlzPlTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceRlzPlTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:48:51.43Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 90,
+              "Title": "InquireBalanceRlzPlUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceRlzPlUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceRlzPlUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:48:39.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 91,
+              "Title": "InquireBalanceRlzPlQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceRlzPlQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceRlzPlQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:48:30.708Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 92,
+              "Title": "InquireBalanceRlzPlRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceRlzPlRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRlzPlRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceRlzPlRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:48:19.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
+              "Title": "InquireBalanceAccountProductCodeProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceAccountProductCodeProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:48:10.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 94,
+              "Title": "InquireBalanceHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceHeaderBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:48:02.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 95,
+              "Title": "InquireBalanceTrIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceTrIdProvider.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:47:51.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 96,
+              "Title": "InquireBalanceUrlBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceUrlBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:47:41.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 97,
+              "Title": "InquireBalanceQueryStringBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceQueryStringBuilder.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:47:29.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 98,
+              "Title": "InquireBalanceRequestValidator.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRequestValidator.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Accounts\\InquireBalanceRequestValidator.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Accounts\\InquireBalanceRequestValidator.cs",
+              "RelativeToolTip": "KisRestAPI\\Accounts\\InquireBalanceRequestValidator.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:47:17.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 99,
+              "Title": "InquireAccountBalanceSummary.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceSummary.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceSummary.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceSummary.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceSummary.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:47:06.174Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 100,
+              "Title": "InquireAccountBalanceItem.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceItem.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceItem.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceItem.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceItem.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:46:50.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 101,
+              "Title": "InquireAccountBalanceResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:46:39.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 102,
+              "Title": "InquireAccountBalanceRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireAccountBalanceRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireAccountBalanceRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:46:30.062Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 103,
+              "Title": "InquireBalanceRlzPlSummary.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlSummary.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlSummary.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlSummary.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlSummary.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:46:20.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 104,
+              "Title": "InquireBalanceRlzPlItem.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlItem.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlItem.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlItem.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlItem.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:46:05.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 105,
+              "Title": "InquireBalanceRlzPlResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:45:49.656Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 106,
+              "Title": "InquireBalanceRlzPlRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceRlzPlRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:45:40.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 107,
+              "Title": "InquireBalanceSummary.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceSummary.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceSummary.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceSummary.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceSummary.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:45:30.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 108,
+              "Title": "InquireBalanceItem.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceItem.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceItem.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceItem.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceItem.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:45:16.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 109,
+              "Title": "InquireBalanceResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:45:03.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 110,
+              "Title": "InquireBalanceRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Accounts\\InquireBalanceRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Accounts\\InquireBalanceRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Accounts\\InquireBalanceRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:44:52.643Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "KisAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Auth\\KisAuthService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Auth\\KisAuthService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Auth\\KisAuthService.cs",
+              "RelativeToolTip": "KisRestAPI\\Auth\\KisAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAO4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:44:39.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Auth\\IAuthService.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Auth\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Auth\\IAuthService.cs",
+              "RelativeToolTip": "KisRestAPI\\Auth\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:44:05.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 111,
+              "Title": "KisErrorResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\KisErrorResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Auth\\KisErrorResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\KisErrorResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Auth\\KisErrorResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:43:55.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 112,
+              "Title": "HashKeyResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\HashKeyResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Auth\\HashKeyResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\HashKeyResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Auth\\HashKeyResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:43:47.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 113,
+              "Title": "TokenResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\TokenResponse.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Auth\\TokenResponse.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\TokenResponse.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Auth\\TokenResponse.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:43:40.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 114,
+              "Title": "TokenRequest.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\TokenRequest.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Models\\Auth\\TokenRequest.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Models\\Auth\\TokenRequest.cs",
+              "RelativeToolTip": "KisRestAPI\\Models\\Auth\\TokenRequest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:43:29.561Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "KisHttpHeaderBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\Http\\KisHttpHeaderBuilder.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Common\\Http\\KisHttpHeaderBuilder.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\Http\\KisHttpHeaderBuilder.cs",
+              "RelativeToolTip": "KisRestAPI\\Common\\Http\\KisHttpHeaderBuilder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:43:21.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "KisHttpServiceBase.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\Http\\KisHttpServiceBase.cs",
+              "RelativeDocumentMoniker": "KisRestAPI\\Common\\Http\\KisHttpServiceBase.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\Common\\Http\\KisHttpServiceBase.cs",
+              "RelativeToolTip": "KisRestAPI\\Common\\Http\\KisHttpServiceBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:43:06.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "KisRestAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\KisRestAPI.csproj",
+              "RelativeDocumentMoniker": "KisRestAPI\\KisRestAPI.csproj",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPI\\KisRestAPI.csproj",
+              "RelativeToolTip": "KisRestAPI\\KisRestAPI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-28T00:38:40.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 115,
+              "Title": "Test1.cs",
+              "DocumentMoniker": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPITest\\Test1.cs",
+              "RelativeDocumentMoniker": "KisRestAPITest\\Test1.cs",
+              "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\KisRestAPITest\\Test1.cs",
+              "RelativeToolTip": "KisRestAPITest\\Test1.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:30:18.855Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

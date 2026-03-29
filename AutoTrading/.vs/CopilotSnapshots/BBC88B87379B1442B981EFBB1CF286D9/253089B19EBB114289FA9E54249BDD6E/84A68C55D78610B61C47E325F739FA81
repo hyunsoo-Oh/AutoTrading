@@ -1,0 +1,63 @@
+﻿namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 기간별손익일별합산조회 Query Parameter DTO
+    ///
+    /// 왜 이 API가 필요한가?
+    /// - 주식잔고조회_실현손익(InquireBalanceRlzPl)은 당일 기준 실현손익만 보여준다.
+    /// - 이 API는 사용자가 지정한 기간(시작~종료일) 동안의 일별 매매손익을 합산하여 보여준다.
+    /// - 자동매매 성과 리포트, 기간별 수익률 분석, 세금 신고 자료 작성에 활용할 수 있다.
+    ///
+    /// ※ 실전투자 전용 API ? 모의투자 미지원
+    /// </summary>
+    public sealed class InquirePeriodProfitLossRequest
+    {
+        /// <summary>종합계좌번호 앞 8자리</summary>
+        public string CANO { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 뒤 2자리 (보통 "01")</summary>
+        public string ACNT_PRDT_CD { get; set; } = "01";
+
+        /// <summary>조회시작일자 (YYYYMMDD)</summary>
+        public string INQR_STRT_DT { get; set; } = string.Empty;
+
+        /// <summary>조회종료일자 (YYYYMMDD)</summary>
+        public string INQR_END_DT { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 상품번호 (종목코드)
+        /// 공란 입력 시 전체 종목 대상
+        /// </summary>
+        public string PDNO { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 조회구분
+        /// "00" 입력
+        /// </summary>
+        public string INQR_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 정렬구분
+        /// "00": 최근 순, "01": 과거 순, "02": 최근 순
+        /// </summary>
+        public string SORT_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 잔고구분
+        /// "00": 전체
+        /// </summary>
+        public string CBLC_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 연속조회검색조건100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_FK100 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회키100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_NK100 { get; set; } = string.Empty;
+    }
+}

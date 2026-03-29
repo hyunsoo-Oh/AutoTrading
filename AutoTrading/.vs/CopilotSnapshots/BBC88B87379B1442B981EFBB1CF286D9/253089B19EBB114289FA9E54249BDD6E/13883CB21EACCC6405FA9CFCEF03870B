@@ -1,0 +1,19 @@
+﻿using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    public static class InquireBalanceRlzPlUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/inquire-balance-rlz-pl";
+
+        public static string Build(string baseUrl, InquireBalanceRlzPlRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquireBalanceRlzPlQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+}

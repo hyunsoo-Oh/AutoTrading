@@ -1,0 +1,224 @@
+﻿# AI Change Log
+
+## 2025-01-XX — 국내주식 실시간호가 [실시간-004] 구현
+
+### 수정 파일 목록
+
+| 파일 | 변경 유형 | 설명 |
+|------|-----------|------|
+| `KisRestAPI/Models/Realtime/RealtimeAspData.cs` | 신규 | 실시간호가 DTO (59개 필드) |
+| `KisRestAPI/Realtime/RealtimeAspBuilders.cs` | 신규 | 호가 Validator + Parser (59필드 ^파싱) |
+| `KisRestAPI/Realtime/RealtimeTrIdRegistry.cs` | 수정 | `DomesticAsp = "H0STASP0"` 상수 활성화 |
+| `KisRestAPI/Realtime/IRealtimeService.cs` | 수정 | `SubscribeAspAsync` / `UnsubscribeAspAsync` / `AspReceived` 이벤트 추가 |
+| `KisRestAPI/Realtime/KisRealtimeService.cs` | 수정 | Asp 구독/해제 메서드, `RouteToAsp()`, HandleFrameData switch case 추가 |
+| `AutoTrading/Features/Presenters/Main/MainPresenter.cs` | 수정 | `StartRealtimeAspTestAsync` / `StopRealtimeAspTestAsync` / `OnRealtimeAspReceived` 추가 |
+
+### 공개 API
+
+- `IRealtimeService.SubscribeAspAsync(stockCode)` — 실시간호가 구독 등록 (H0STASP0)
+- `IRealtimeService.UnsubscribeAspAsync(stockCode)` — 실시간호가 구독 해제
+- `IRealtimeService.AspReceived` — 실시간호가 데이터 수신 이벤트
+- `RealtimeAspData` — 실시간호가 DTO (59개 필드)
+
+### 내부 구현 요소 (internal)
+
+- `RealtimeAspValidator` — 종목코드 검증
+- `RealtimeAspParser` — ^구분 59필드 파싱 (FieldCount=59)
+- `RealtimeTrIdRegistry.DomesticAsp` — `"H0STASP0"` 상수
+
+### 사용 예시
+
+```csharp
+// 연결 + 호가 구독
+await _realtimeService.ConnectAsync();
+_realtimeService.AspReceived += (s, data) =>
+    Console.WriteLine($"{data.StockCode} 매도1:{data.AskP1}({data.AskPRsqn1}) 매수1:{data.BidP1}({data.BidPRsqn1})");
+await _realtimeService.SubscribeAspAsync("005930");
+
+// 해제
+await _realtimeService.UnsubscribeAspAsync("005930");
+await _realtimeService.DisconnectAsync();
+```
+
+### 빌드 결과
+
+- ✅ 빌드 성공
+
+---
+
+## 2025-01-XX — WebSocket 실시간 API 인프라 + 국내주식 실시간체결가 [실시간-003]
+
+### 수정 파일 목록
+
+| 파일 | 변경 유형 | 설명 |
+|------|-----------|------|
+| **Common/WebSocket 인프라** | | |
+| `KisRestAPI/Common/WebSocket/KisWebSocketClient.cs` | 신규 | WebSocket 연결/송신/수신루프/종료 관리 |
+| `KisRestAPI/Common/WebSocket/KisWebSocketFrameParser.cs` | 신규 | `0\|TR_ID\|count\|payload` 파이프 프레임 파싱 |
+| `KisRestAPI/Common/WebSocket/KisWebSocketDecryptor.cs` | 신규 | AES-256-CBC 복호화 (암호화 구독용) |
+| **Models** | | |
+| `KisRestAPI/Models/Realtime/RealtimeSubscribeModels.cs` | 신규 | 구독 요청/응답 JSON DTO |
+| `KisRestAPI/Models/Realtime/RealtimeFrameData.cs` | 신규 | 파싱된 프레임 DTO |
+| `KisRestAPI/Models/Realtime/RealtimeCcnlData.cs` | 신규 | 실시간체결가 DTO (46개 필드) |
+| **Realtime 서비스** | | |
+| `KisRestAPI/Realtime/IRealtimeService.cs` | 신규 | 실시간 서비스 인터페이스 |
+| `KisRestAPI/Realtime/KisRealtimeService.cs` | 신규 | 구현체 — 연결/구독/라우팅/재연결 |
+| `KisRestAPI/Realtime/RealtimeCcnlBuilders.cs` | 신규 | 체결가 Validator + Parser (46필드 ^파싱) |
+| `KisRestAPI/Realtime/RealtimeTrIdRegistry.cs` | 신규 | TR_ID 상수 + 암호화 판단 |
+| **기존 파일 수정** | | |
+| `KisRestAPI/Configuration/ApiEndpointSettings.cs` | 수정 | `WebSocketUrl` 프로퍼티 추가 |
+| `KisRestAPI/Models/Auth/AuthModels.cs` | 수정 | `ApprovalKeyRequest` / `ApprovalKeyResponse` 추가 |
+| `KisRestAPI/Auth/IAuthService.cs` | 수정 | `GetApprovalKeyAsync()` 메서드 추가 |
+| `KisRestAPI/Auth/KisAuthService.cs` | 수정 | Approval Key 발급/캐시 구현 |
+| `AutoTrading/appsettings.json` | 수정 | Mock/Live WebSocket URL 추가 |
+| `AutoTrading/appsettings.json.Template` | 수정 | Mock/Live WebSocket URL 추가 |
+| `AutoTrading/Features/Presenters/Main/MainPresenter.cs` | 수정 | IRealtimeService 필드 + 호출 테스트 메서드 |
+
+### 공개 API
+
+- `IRealtimeService` — WebSocket 실시간 서비스 인터페이스 (ConnectAsync, SubscribeCcnlAsync, CcnlReceived 이벤트 등)
+- `KisRealtimeService` — 서비스 구현체
+- `RealtimeCcnlData` — 실시간체결가 DTO (46개 필드)
+- `RealtimeSubscribeMessage` / `RealtimeSubscribeResponse` — 구독 요청/응답 DTO
+- `RealtimeFrameData` — 파이프 프레임 파싱 결과 DTO
+- `ApprovalKeyRequest` / `ApprovalKeyResponse` — Approval Key DTO
+- `IAuthService.GetApprovalKeyAsync()` — Approval Key 발급
+
+### 내부 구현 요소 (internal)
+
+- `KisWebSocketClient` — WebSocket 연결/수신루프
+- `KisWebSocketFrameParser` — 파이프 프레임 파싱
+- `KisWebSocketDecryptor` — AES-256-CBC 복호화
+- `RealtimeCcnlValidator` — 종목코드 검증
+- `RealtimeCcnlParser` — ^구분 46필드 파싱
+- `RealtimeTrIdRegistry` — TR_ID 상수 (H0STCNT0)
+
+### 사용 예시
+
+```csharp
+// 연결 + 구독
+await _realtimeService.ConnectAsync();
+_realtimeService.CcnlReceived += (s, data) =>
+    Console.WriteLine($"{data.StockCode} {data.CurrentPrice}원 체결량:{data.CntgVol}");
+await _realtimeService.SubscribeCcnlAsync("005930");
+
+// 해제
+await _realtimeService.UnsubscribeCcnlAsync("005930");
+await _realtimeService.DisconnectAsync();
+```
+
+### 미확인 항목 (공식 문서 확인 후 구현 필요)
+
+| 기능 | 추정 TR_ID | 상태 |
+|------|-----------|------|
+| 국내주식 실시간호가 | H0STASP0 (미확인) | 구조만 준비, 미구현 |
+| 실시간 체결통보 (실전) | H0STCNI0 (미확인) | 구조만 준비, 미구현 (암호화 가능성) |
+| 실시간 체결통보 (모의) | H0STCNI9 (미확인) | 구조만 준비, 미구현 |
+| 장운영정보 | 불명 | 구조만 준비, TR_ID 확인 필요 |
+
+- 참고 URL (github.com/koreainvestment/open-trading-api)이 404 반환됨
+- wikidocs.net/book/7847 은 JavaScript 필수로 확인 불가
+- 추정값을 RealtimeTrIdRegistry.cs에 주석으로 남겨둠
+
+### 빌드 결과
+
+- ✅ 빌드 성공
+- ✅ 테스트 90/90 통과
+
+---
+
+## 2025-01-XX — 주식현재가 시세 [v1_국내주식-008] API 구현
+
+### 수정 파일 목록
+
+| 파일 | 변경 유형 | 설명 |
+|------|-----------|------|
+| `KisRestAPI/Models/Market/InquirePriceModels.cs` | 신규 | 요청 DTO (`InquirePriceRequest`) + 응답 DTO (`InquirePriceResponse`, `InquirePriceOutput`) |
+| `KisRestAPI/Market/InquirePriceBuilders.cs` | 신규 | Validator / QueryStringBuilder / UrlBuilder / TrIdProvider / HeaderBuilder |
+| `KisRestAPI/Market/IMarketService.cs` | 신규 | 시세 서비스 인터페이스 |
+| `KisRestAPI/Market/KisMarketService.cs` | 신규 | 시세 서비스 구현 (KisHttpServiceBase 상속) |
+| `AutoTrading/Features/Presenters/Main/MainPresenter.cs` | 수정 | IMarketService 필드 추가, RebuildServices 연결, InquirePriceAsync 호출 테스트 메서드 추가 |
+
+### 공개 API
+
+- `InquirePriceRequest` — 요청 DTO (FID_COND_MRKT_DIV_CODE, FID_INPUT_ISCD)
+- `InquirePriceResponse` — 응답 DTO (RtCd, MsgCd, Msg1, Output)
+- `InquirePriceOutput` — output 상세 DTO (80+ 필드)
+- `IMarketService.InquirePriceAsync()` — 서비스 인터페이스 메서드
+- `KisMarketService` — 서비스 구현 클래스
+
+### 내부 구현 요소 (internal)
+
+- `InquirePriceRequestValidator` — 요청 null/필수값 검증
+- `InquirePriceQueryStringBuilder` — 쿼리스트링 조립
+- `InquirePriceUrlBuilder` — 전체 URL 조립
+- `InquirePriceTrIdProvider` — TR ID 제공 (실전/모의 동일: FHKST01010100)
+- `InquirePriceHeaderBuilder` — HTTP 헤더 생성
+
+### 사용 예시
+
+```csharp
+var request = new InquirePriceRequest
+{
+    FID_COND_MRKT_DIV_CODE = "J",       // KRX
+    FID_INPUT_ISCD         = "005930"    // 삼성전자
+};
+
+InquirePriceResponse response = await _marketService.InquirePriceAsync(request);
+Console.WriteLine($"현재가: {response.Output?.StckPrpr}");
+```
+
+### 빌드 결과
+
+- ✅ 빌드 성공
+- ✅ 테스트 90/90 통과
+
+---
+
+## 2025-01-XX — 주식현재가 체결 [v1_국내주식-009] API 구현
+
+### 수정 파일 목록
+
+| 파일 | 변경 유형 | 설명 |
+|------|-----------|------|
+| `KisRestAPI/Models/Market/InquireCcnlModels.cs` | 신규 | 요청 DTO (`InquireCcnlRequest`) + 응답 DTO (`InquireCcnlResponse`, `InquireCcnlOutput`) |
+| `KisRestAPI/Market/InquireCcnlBuilders.cs` | 신규 | Validator / QueryStringBuilder / UrlBuilder / TrIdProvider / HeaderBuilder |
+| `KisRestAPI/Market/IMarketService.cs` | 수정 | `InquireCcnlAsync()` 메서드 추가 |
+| `KisRestAPI/Market/KisMarketService.cs` | 수정 | `InquireCcnlAsync()` 구현 + `EnsureCcnlSuccess()` 추가 |
+| `AutoTrading/Features/Presenters/Main/MainPresenter.cs` | 수정 | `InquireCcnlAsync()` 호출 테스트 메서드 추가 |
+
+### 공개 API
+
+- `InquireCcnlRequest` — 요청 DTO (FID_COND_MRKT_DIV_CODE, FID_INPUT_ISCD)
+- `InquireCcnlResponse` — 응답 DTO (RtCd, MsgCd, Msg1, Output: `List<InquireCcnlOutput>`)
+- `InquireCcnlOutput` — 체결 항목 DTO (체결시간, 현재가, 전일대비, 부호, 체결량, 체결강도, 전일대비율)
+- `IMarketService.InquireCcnlAsync()` — 서비스 인터페이스 메서드
+
+### 내부 구현 요소 (internal)
+
+- `InquireCcnlRequestValidator` — 요청 null/필수값 검증
+- `InquireCcnlQueryStringBuilder` — 쿼리스트링 조립
+- `InquireCcnlUrlBuilder` — 전체 URL 조립 (path: `/uapi/domestic-stock/v1/quotations/inquire-ccnl`)
+- `InquireCcnlTrIdProvider` — TR ID 제공 (실전/모의 동일: FHKST01010300)
+- `InquireCcnlHeaderBuilder` — HTTP 헤더 생성
+
+### 사용 예시
+
+```csharp
+var request = new InquireCcnlRequest
+{
+    FID_COND_MRKT_DIV_CODE = "J",       // KRX
+    FID_INPUT_ISCD         = "005930"    // 삼성전자
+};
+
+InquireCcnlResponse response = await _marketService.InquireCcnlAsync(request);
+foreach (var item in response.Output)
+{
+    Console.WriteLine($"{item.StckCntgHour} | {item.StckPrpr}원 | 체결량:{item.CntgVol} | 강도:{item.TdayRltv}");
+}
+```
+
+### 빌드 결과
+
+- ✅ 빌드 성공
+- ✅ 테스트 90/90 통과

@@ -1,0 +1,15 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Accounts
+{
+    public class InquireBalanceTrIdProvider
+    {
+        private const string MockTrId = "VTTC8434R";
+        private const string LiveTrId = "TTTC8434R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            return tradingMode == KisTradingMode.Live ? LiveTrId : MockTrId;
+        }
+    }
+}

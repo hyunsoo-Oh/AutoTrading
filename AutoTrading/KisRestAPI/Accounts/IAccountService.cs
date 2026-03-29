@@ -1,0 +1,38 @@
+using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 계좌 관련 API 기능을 제공하는 서비스 인터페이스
+    /// </summary>
+    public interface IAccountService
+    {
+        Task<InquireBalanceResponse?> InquireBalanceAsync(
+            InquireBalanceRequest request,
+            CancellationToken cancellationToken = default);
+
+        Task<InquireBalanceRlzPlResponse> InquireBalanceRlzPlAsync(
+            InquireBalanceRlzPlRequest request,
+            CancellationToken cancellationToken = default);
+
+        Task<InquireAccountBalanceResponse> InquireAccountBalanceAsync(
+            InquireAccountBalanceRequest request,
+            CancellationToken cancellationToken = default);
+
+        Task<InquirePeriodProfitLossResponse> InquirePeriodProfitLossAsync(
+            InquirePeriodProfitLossRequest request,
+            CancellationToken cancellationToken = default);
+
+        Task<InquirePeriodTradeProfitResponse> InquirePeriodTradeProfitAsync(
+            InquirePeriodTradeProfitRequest request,
+            CancellationToken cancellationToken = default);
+
+        Task<InquireIntgrMarginResponse> InquireIntgrMarginAsync(
+            InquireIntgrMarginRequest request,
+            CancellationToken cancellationToken = default);
+
+        Task<InquirePeriodRightsResponse> InquirePeriodRightsAsync(
+            InquirePeriodRightsRequest request,
+            CancellationToken cancellationToken = default);
+    }
+}

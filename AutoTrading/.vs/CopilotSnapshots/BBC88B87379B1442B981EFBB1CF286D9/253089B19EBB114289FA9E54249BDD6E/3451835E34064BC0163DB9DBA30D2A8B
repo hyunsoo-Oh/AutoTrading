@@ -1,0 +1,58 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Orders
+{
+    public sealed class InquirePsblOrderResponse
+    {
+        [JsonPropertyName("rt_cd")]
+        public string RtCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg_cd")]
+        public string MsgCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg1")]
+        public string Msg1 { get; set; } = string.Empty;
+
+        [JsonPropertyName("output")]
+        public InquirePsblOrderOutput? Output { get; set; }
+    }
+
+    public sealed class InquirePsblOrderOutput
+    {
+        [JsonPropertyName("ord_psbl_cash")]
+        public string OrdPsblCash { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_psbl_sbst")]
+        public string OrdPsblSbst { get; set; } = string.Empty;
+
+        [JsonPropertyName("ruse_psbl_amt")]
+        public string RusePsblAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("fund_rpch_chgs")]
+        public string FundRpchChgs { get; set; } = string.Empty;
+
+        [JsonPropertyName("psbl_qty_calc_unpr")]
+        public string PsblQtyCalcUnpr { get; set; } = string.Empty;
+
+        [JsonPropertyName("nrcvb_buy_amt")]
+        public string NrcvbBuyAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("nrcvb_buy_qty")]
+        public string NrcvbBuyQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("max_buy_amt")]
+        public string MaxBuyAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("max_buy_qty")]
+        public string MaxBuyQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("cma_evlu_amt")]
+        public string CmaEvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("ovrs_re_use_amt_wcrc")]
+        public string OvrsReUseAmtWcrc { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_psbl_frcr_amt_wcrc")]
+        public string OrdPsblFrcrAmtWcrc { get; set; } = string.Empty;
+    }
+}

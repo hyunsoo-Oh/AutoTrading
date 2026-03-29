@@ -1,0 +1,27 @@
+﻿using KisRestAPI.Models.Orders;
+
+namespace KisRestAPI.Orders
+{
+    public static class InquirePsblOrderQueryStringBuilder
+    {
+        public static string Build(InquirePsblOrderRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]                 = request.CANO,
+                ["ACNT_PRDT_CD"]         = request.ACNT_PRDT_CD,
+                ["PDNO"]                 = request.PDNO,
+                ["ORD_UNPR"]             = request.ORD_UNPR,
+                ["ORD_DVSN"]             = request.ORD_DVSN,
+                ["CMA_EVLU_AMT_ICLD_YN"] = request.CMA_EVLU_AMT_ICLD_YN,
+                ["OVRS_ICLD_YN"]         = request.OVRS_ICLD_YN,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+}

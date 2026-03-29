@@ -1,0 +1,175 @@
+﻿using AutoTrading.Features.Presenters.Dashboard;
+using AutoTrading.Features.Views.Interfaces;
+using KisRestAPI.Auth;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Configuration;
+using System.Windows.Forms;
+
+namespace AutoTrading.Features.Views.Contents
+{
+    /// <summary>
+    /// 대시보드 페이지 — 전체 현황 요약 화면
+    /// </summary>
+    public partial class Dashboard : UserControl, IDashboardView
+    {
+        private DashboardPresenter? _presenter;
+        private System.Windows.Forms.Timer? _refreshTimer;
+
+        /// <summary>카드 갱신 주기 (1초)</summary>
+        private const int RefreshIntervalMs = 1000;
+
+        public Dashboard()
+        {
+            InitializeComponent();
+        }
+
+        public Dashboard(
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKisTradingService kisTradingService) : this()
+        {
+            _presenter = new DashboardPresenter(this, authService, apiSettings, kisTradingService);
+            Load += Dashboard_Load;
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            // 보유종목 그리드 스타일 적용
+            ApplyPortfolioGridStyle();
+
+            // 최초 1회 즉시 조회
+            _ = RefreshAsync();
+
+            // 1분 주기 타이머 — components에 등록해 Dispose 시 자동 정리
+            components ??= new System.ComponentModel.Container();
+            _refreshTimer = new System.Windows.Forms.Timer(components)
+            {
+                Interval = RefreshIntervalMs
+            };
+            _refreshTimer.Tick += async (s, ev) => await RefreshAsync();
+            _refreshTimer.Start();
+        }
+
+        private async Task RefreshAsync()
+        {
+            if (_presenter == null) return;
+            await _presenter.RefreshBalanceAsync();
+        }
+
+        // ========================================================
+        // ===== IDashboardView 구현 =====
+        // Presenter가 호출하는 UI 갱신 메서드들이다.
+        // ========================================================
+
+        public void UpdateBalanceSummary(
+            decimal totalEvaluation,
+            decimal deposits,
+            decimal profitLoss,
+            decimal purchaseAmount)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(() => UpdateBalanceSummary(totalEvaluation, deposits, profitLoss, purchaseAmount));
+                return;
+            }
+
+            // 총 자산 가치: 총평가금액 표시, 등락은 평가손익으로 자동 계산
+            label_totalEvaluation.Text = $"{totalEvaluation}";
+
+            // 수익률: 평가손익 금액 표시 + 수익률(%) 직접 계산
+            decimal profit = totalEvaluation - deposits;
+            label_profitLoss.Text = profit >= 0 ? $"+{profit}" : $"-{profit}";
+            label_profitLoss.ForeColor = profit >= 0 ? Color.Red : Color.Blue;
+                
+            // 예수금: 금액만 표시
+            label_deposits.Text = $"{deposits - purchaseAmount}";
+        }
+
+        private void ApplyPortfolioGridStyle()
+        {
+            var grid = dataGridView_holding;
+
+            // ===== CellFormatting 이벤트 =====
+            grid.CellFormatting += dataGridView_CellFormatting;
+
+            // ===== 헤더 높이 =====
+            // Designer가 ColumnHeadersHeightSizeMode = AutoSize로 설정되어 있으면
+            // ColumnHeadersHeight 값이 조용히 무시된다.
+            // DisableResizing으로 변경해야 높이 지정이 실제로 적용된다.
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            grid.ColumnHeadersHeight = 30;
+
+            // ===== 헤더 스타일 =====
+            // 전체 테마가 다크이므로 헤더도 다크 계열로 통일한다.
+            // 셀 배경(24,28,36)보다 약간 밝게 설정해 헤더와 셀을 시각적으로 구분한다.
+            grid.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor         = Color.FromArgb(40, 44, 52),
+                ForeColor         = Color.FromArgb(225, 226, 228),
+                SelectionBackColor = Color.FromArgb(55, 60, 70),
+                SelectionForeColor = Color.White,
+                Alignment         = DataGridViewContentAlignment.MiddleCenter,
+                Font              = new Font("맑은 고딕", 10F, FontStyle.Regular)
+            };
+
+            // ===== 일반 셀 스타일 =====
+            grid.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor         = Color.FromArgb(24, 28, 36),
+                ForeColor         = Color.WhiteSmoke,
+                SelectionBackColor = Color.FromArgb(45, 55, 72),
+                SelectionForeColor = Color.White,
+                Alignment         = DataGridViewContentAlignment.MiddleCenter,
+                Font              = new Font("맑은 고딕", 10F, FontStyle.Regular)
+            };
+
+            // ===== 홀수 행 교차 스타일 =====
+            // Designer가 WrapMode = True로 설정한 객체를 in-place 수정하면
+            // WrapMode만 홀수행에 남아 짝수행과 불일치가 생긴다.
+            // new 객체로 완전히 교체해 Designer 잔여 속성을 차단한다.
+            grid.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor         = Color.FromArgb(30, 34, 42),
+                ForeColor         = Color.WhiteSmoke,
+                SelectionBackColor = Color.FromArgb(45, 55, 72),
+                SelectionForeColor = Color.White
+            };
+
+            // ===== 테두리 / 그리드 =====
+            grid.CellBorderStyle       = DataGridViewCellBorderStyle.SingleHorizontal;
+            grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            grid.GridColor             = Color.FromArgb(55, 60, 68);
+
+            // ===== 선택 / 입력 설정 =====
+            grid.SelectionMode         = DataGridViewSelectionMode.FullRowSelect;
+            grid.MultiSelect           = false;
+            grid.RowTemplate.Height    = 32;
+            grid.AllowUserToAddRows    = false;
+            grid.AllowUserToResizeRows = false;
+            grid.ReadOnly              = true;
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // "수익률 (%)" 컬럼 이름 기준 예시
+            if (dataGridView_holding.Columns[e.ColumnIndex].Name == "ProfitRate" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal profitRate))
+                {
+                    if (profitRate > 0)
+                    {
+                        e.CellStyle.ForeColor = Color.Red; // 수익
+                    }
+                    else if (profitRate < 0)
+                    {
+                        e.CellStyle.ForeColor = Color.DeepSkyBlue; // 손실
+                    }
+                    else
+                    {
+                        e.CellStyle.ForeColor = Color.WhiteSmoke; // 보합
+                    }
+                }
+            }
+        }
+    }
+}

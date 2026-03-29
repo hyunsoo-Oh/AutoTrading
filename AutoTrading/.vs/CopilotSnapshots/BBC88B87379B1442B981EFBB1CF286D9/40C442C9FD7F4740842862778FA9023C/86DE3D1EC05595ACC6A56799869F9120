@@ -1,0 +1,85 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Orders
+{
+    public sealed class InquirePsblRvsecnclResponse
+    {
+        [JsonPropertyName("rt_cd")]
+        public string RtCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg_cd")]
+        public string MsgCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg1")]
+        public string Msg1 { get; set; } = string.Empty;
+
+        [JsonPropertyName("output")]
+        public List<InquirePsblRvsecnclItem>? Output { get; set; }
+    }
+
+    public sealed class InquirePsblRvsecnclItem
+    {
+        [JsonPropertyName("ord_gno_brno")]
+        public string OrdGnoBrno { get; set; } = string.Empty;
+
+        [JsonPropertyName("odno")]
+        public string Odno { get; set; } = string.Empty;
+
+        [JsonPropertyName("orgn_odno")]
+        public string OrgnOdno { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_dvsn_name")]
+        public string OrdDvsnName { get; set; } = string.Empty;
+
+        [JsonPropertyName("pdno")]
+        public string Pdno { get; set; } = string.Empty;
+
+        [JsonPropertyName("prdt_name")]
+        public string PrdtName { get; set; } = string.Empty;
+
+        [JsonPropertyName("rvse_cncl_dvsn_name")]
+        public string RvseCnclDvsnName { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_qty")]
+        public string OrdQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_unpr")]
+        public string OrdUnpr { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_tmd")]
+        public string OrdTmd { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_ccld_qty")]
+        public string TotCcldQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_ccld_amt")]
+        public string TotCcldAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("psbl_qty")]
+        public string PsblQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("sll_buy_dvsn_cd")]
+        public string SllBuyDvsnCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_dvsn_cd")]
+        public string OrdDvsnCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("mgco_aptm_odno")]
+        public string MgcoAptmOdno { get; set; } = string.Empty;
+
+        [JsonPropertyName("excg_dvsn_cd")]
+        public string ExcgDvsnCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("excg_id_dvsn_cd")]
+        public string ExcgIdDvsnCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("excg_id_dvsn_name")]
+        public string ExcgIdDvsnName { get; set; } = string.Empty;
+
+        [JsonPropertyName("stpm_cndt_pric")]
+        public string StpmCndtPric { get; set; } = string.Empty;
+
+        [JsonPropertyName("stpm_efct_occr_yn")]
+        public string StpmEfctOccrYn { get; set; } = string.Empty;
+    }
+}

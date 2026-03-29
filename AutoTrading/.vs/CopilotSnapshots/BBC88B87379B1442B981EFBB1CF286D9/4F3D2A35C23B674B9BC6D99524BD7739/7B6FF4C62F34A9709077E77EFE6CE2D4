@@ -1,0 +1,64 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 투자계좌자산현황조회 output2 단일 Object DTO
+    /// </summary>
+    public sealed class InquireAccountBalanceSummary
+    {
+        [JsonPropertyName("pchs_amt_smtl")]
+        public string PurchaseAmountTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("nass_tot_amt")]
+        public string NassTotAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("loan_amt_smtl")]
+        public string LoanAmountTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_pfls_amt_smtl")]
+        public string EvaluationProfitLossTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_amt_smtl")]
+        public string EvaluationAmountTotal { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_asst_amt")]
+        public string TotAsstAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("cma_auto_loan_amt")]
+        public string CmaAutoLoanAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_mgln_amt")]
+        public string TotMglnAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("crdt_fncg_amt")]
+        public string CrdtFncgAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("frcr_evlu_tota")]
+        public string FrcrEvluTota { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_dncl_amt")]
+        public string TotDnclAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("cma_evlu_amt")]
+        public string CmaEvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("dncl_amt")]
+        public string DnclAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("tot_sbst_amt")]
+        public string TotSbstAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("thdt_rcvb_amt")]
+        public string ThdtRcvbAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("ovrs_stck_evlu_amt1")]
+        public string OvrsStckEvluAmt1 { get; set; } = string.Empty;
+
+        [JsonPropertyName("ovrs_bond_evlu_amt")]
+        public string OvrsBondEvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("sbsc_dncl_amt")]
+        public string SbscDnclAmt { get; set; } = string.Empty;
+    }
+}

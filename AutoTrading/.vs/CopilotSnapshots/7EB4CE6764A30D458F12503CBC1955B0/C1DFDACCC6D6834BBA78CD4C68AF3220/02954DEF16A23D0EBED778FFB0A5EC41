@@ -1,0 +1,350 @@
+﻿using KisRestAPI.Configuration;
+using KisRestAPI.Models.Accounts;
+using KisRestAPI.Models.Auth;
+using KisRestAPI.Auth;
+using KisRestAPI.Common.Http;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 한국투자증권 계좌 관련 API 서비스
+    /// </summary>
+    public sealed class KisAccountService : KisHttpServiceBase, IAccountService
+    {
+        private readonly IAuthService _authService;
+
+        public KisAccountService(
+            HttpClient httpClient,
+            IKisTradingService kisTradingService,
+            IAuthService authService)
+            : base(httpClient, kisTradingService)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
+        public async Task<InquireBalanceResponse?> InquireBalanceAsync(
+            InquireBalanceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireBalanceRequestValidator.Validate(request);
+
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+            string requestUrl = InquireBalanceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+            string trId = InquireBalanceTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            Dictionary<string, string> headers = InquireBalanceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P");
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식잔고조회", cancellationToken: cancellationToken);
+
+            InquireBalanceResponse response =
+                DeserializeResponse<InquireBalanceResponse>(responseText, "주식잔고조회");
+
+            EnsureBalanceSuccess(response);
+            return response;
+        }
+
+        private static void EnsureBalanceSuccess(InquireBalanceResponse response)
+        {
+            if (response == null)
+                throw new InvalidOperationException("잔고조회 응답이 null입니다.");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"잔고조회 요청은 HTTP 수준에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+        }
+
+        protected override void EnsureBusinessSuccess(string apiName, string requestUrl, string responseText)
+        {
+        }
+
+        public async Task<InquireBalanceRlzPlResponse> InquireBalanceRlzPlAsync(
+            InquireBalanceRlzPlRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireBalanceRlzPlRequestValidator.Validate(request);
+
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+            string requestUrl = InquireBalanceRlzPlUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+            string trId = InquireBalanceRlzPlTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            Dictionary<string, string> headers = InquireBalanceRlzPlHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식잔고조회_실현손익", cancellationToken: cancellationToken);
+
+            InquireBalanceRlzPlResponse response =
+                DeserializeResponse<InquireBalanceRlzPlResponse>(responseText, "주식잔고조회_실현손익");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"주식잔고조회_실현손익이 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+
+        public async Task<InquireAccountBalanceResponse> InquireAccountBalanceAsync(
+            InquireAccountBalanceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireAccountBalanceRequestValidator.Validate(request);
+
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+            string requestUrl = InquireAccountBalanceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+            string trId = InquireAccountBalanceTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            Dictionary<string, string> headers = InquireAccountBalanceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "투자계좌자산현황조회", cancellationToken: cancellationToken);
+
+            InquireAccountBalanceResponse response =
+                DeserializeResponse<InquireAccountBalanceResponse>(responseText, "투자계좌자산현황조회");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"투자계좌자산현황조회가 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+
+        // =====================================================================
+        // ===== 기간별손익일별합산조회 =====
+        // 지정한 기간 동안의 일별 매매손익을 합산하여 조회한다.
+        // ※ 실전투자 전용 — 모의투자 미지원
+        // =====================================================================
+
+        public async Task<InquirePeriodProfitLossResponse> InquirePeriodProfitLossAsync(
+            InquirePeriodProfitLossRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            // ===== 안전장치: 요청 검증 =====
+            InquirePeriodProfitLossRequestValidator.Validate(request);
+
+            // ===== 현재 환경 설정 =====
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+
+            // ===== URL 생성 (QueryString 포함) =====
+            string requestUrl = InquirePeriodProfitLossUrlBuilder.Build(baseUrl, request);
+
+            // ===== 접근토큰 확보 =====
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            // ===== 실전 전용 TR ID =====
+            // 모의투자 환경에서 호출하면 TrIdProvider에서 NotSupportedException이 발생한다.
+            string trId = InquirePeriodProfitLossTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            // ===== Header 생성 =====
+            Dictionary<string, string> headers = InquirePeriodProfitLossHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            // ===== 공통 GET 호출 =====
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "기간별손익일별합산조회", cancellationToken: cancellationToken);
+
+            // ===== 응답 DTO 변환 =====
+            InquirePeriodProfitLossResponse response =
+                DeserializeResponse<InquirePeriodProfitLossResponse>(responseText, "기간별손익일별합산조회");
+
+            // ===== 업무 성공/실패 판정 =====
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"기간별손익일별합산조회가 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+
+        // =====================================================================
+        // ===== 기간별매매손익현황조회 =====
+        // 지정한 기간 동안의 종목별 매매손익을 조회한다.
+        // HTS [0856] 기간별 매매손익 화면에서 "종목별" 클릭 시의 기능에 해당한다.
+        // ※ 실전투자 전용 — 모의투자 미지원
+        // =====================================================================
+
+        public async Task<InquirePeriodTradeProfitResponse> InquirePeriodTradeProfitAsync(
+            InquirePeriodTradeProfitRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            // ===== 안전장치: 요청 검증 =====
+            InquirePeriodTradeProfitRequestValidator.Validate(request);
+
+            // ===== 현재 환경 설정 =====
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+
+            // ===== URL 생성 (QueryString 포함) =====
+            string requestUrl = InquirePeriodTradeProfitUrlBuilder.Build(baseUrl, request);
+
+            // ===== 접근토큰 확보 =====
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            // ===== 실전 전용 TR ID =====
+            // 모의투자 환경에서 호출하면 TrIdProvider에서 NotSupportedException이 발생한다.
+            string trId = InquirePeriodTradeProfitTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            // ===== Header 생성 =====
+            Dictionary<string, string> headers = InquirePeriodTradeProfitHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            // ===== 공통 GET 호출 =====
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "기간별매매손익현황조회", cancellationToken: cancellationToken);
+
+            // ===== 응답 DTO 변환 =====
+            InquirePeriodTradeProfitResponse response =
+                DeserializeResponse<InquirePeriodTradeProfitResponse>(responseText, "기간별매매손익현황조회");
+
+            // ===== 업무 성공/실패 판정 =====
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"기간별매매손익현황조회가 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+
+        // =====================================================================
+        // ===== 주식통합증거금 현황 =====
+        // 일반계좌와 통합증거금 신청계좌의 국내/해외 주문가능금액을 조회한다.
+        // HTS [0867] 통합증거금조회 화면의 기능에 해당한다.
+        // ※ 실전투자 전용 — 모의투자 미지원
+        // ※ 연속조회 불가 API
+        // =====================================================================
+
+        public async Task<InquireIntgrMarginResponse> InquireIntgrMarginAsync(
+            InquireIntgrMarginRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            // ===== 안전장치: 요청 검증 =====
+            InquireIntgrMarginRequestValidator.Validate(request);
+
+            // ===== 현재 환경 설정 =====
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+
+            // ===== URL 생성 (QueryString 포함) =====
+            string requestUrl = InquireIntgrMarginUrlBuilder.Build(baseUrl, request);
+
+            // ===== 접근토큰 확보 =====
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            // ===== 실전 전용 TR ID =====
+            // 모의투자 환경에서 호출하면 TrIdProvider에서 NotSupportedException이 발생한다.
+            string trId = InquireIntgrMarginTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            // ===== Header 생성 =====
+            Dictionary<string, string> headers = InquireIntgrMarginHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            // ===== 공통 GET 호출 =====
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식통합증거금현황", cancellationToken: cancellationToken);
+
+            // ===== 응답 DTO 변환 =====
+            InquireIntgrMarginResponse response =
+                DeserializeResponse<InquireIntgrMarginResponse>(responseText, "주식통합증거금현황");
+
+            // ===== 업무 성공/실패 판정 =====
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"주식통합증거금현황이 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+
+        // =====================================================================
+        // ===== 기간별계좌권리현황조회 =====
+        // 보유 종목에 발생한 권리 이벤트(배당, 유상/무상증자, 합병, 액면분할 등)를 조회한다.
+        // HTS [7344] 권리유형별 현황조회 화면의 기능에 해당한다.
+        // ※ 실전투자 전용 — 모의투자 미지원
+        // =====================================================================
+
+        public async Task<InquirePeriodRightsResponse> InquirePeriodRightsAsync(
+            InquirePeriodRightsRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            // ===== 안전장치: 요청 검증 =====
+            InquirePeriodRightsRequestValidator.Validate(request);
+
+            // ===== 현재 환경 설정 =====
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+
+            // ===== URL 생성 (QueryString 포함) =====
+            string requestUrl = InquirePeriodRightsUrlBuilder.Build(baseUrl, request);
+
+            // ===== 접근토큰 확보 =====
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+
+            // ===== 실전 전용 TR ID =====
+            // 모의투자 환경에서 호출하면 TrIdProvider에서 NotSupportedException이 발생한다.
+            string trId = InquirePeriodRightsTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            // ===== Header 생성 =====
+            Dictionary<string, string> headers = InquirePeriodRightsHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            // ===== 공통 GET 호출 =====
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "기간별계좌권리현황조회", cancellationToken: cancellationToken);
+
+            // ===== 응답 DTO 변환 =====
+            InquirePeriodRightsResponse response =
+                DeserializeResponse<InquirePeriodRightsResponse>(responseText, "기간별계좌권리현황조회");
+
+            // ===== 업무 성공/실패 판정 =====
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"기간별계좌권리현황조회가 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+    }
+}

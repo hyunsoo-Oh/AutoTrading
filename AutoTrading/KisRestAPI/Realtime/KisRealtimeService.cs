@@ -1,0 +1,768 @@
+using System.Collections.Concurrent;
+using System.Text.Json;
+using KisRestAPI.Auth;
+using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Common.WebSocket;
+using KisRestAPI.Configuration;
+using KisRestAPI.Models.Realtime;
+
+namespace KisRestAPI.Realtime
+{
+    /// <summary>
+    /// 한국투자증권 WebSocket 실시간 데이터 서비스 구현체
+    ///
+    /// 책임:
+    /// - Approval Key 발급 → WebSocket 연결
+    /// - 구독/해제 JSON 메시지 생성 및 전송
+    /// - 수신된 메시지 분류 (JSON 응답 vs 파이프 프레임)
+    /// - TR_ID 기준 라우팅 → 도메인 파서 호출 → 타입드 이벤트 발생
+    /// - 구독 목록 관리 및 재연결 시 재구독
+    ///
+    /// 왜 KisHttpServiceBase를 상속하지 않는가?
+    /// - HTTP 서비스와 WebSocket 서비스는 통신 방식이 근본적으로 다르다.
+    /// - HTTP는 요청-응답이지만 WebSocket은 양방향 스트림이다.
+    /// - 공통 기반을 억지로 공유하면 오히려 혼란스럽다.
+    /// </summary>
+    public sealed class KisRealtimeService : IRealtimeService
+    {
+        private readonly IAuthService _authService;
+        private readonly IKisTradingService _kisTradingService;
+        private readonly ApiSettings _apiSettings;
+
+        private KisWebSocketClient? _client;
+        private string _approvalKey = string.Empty;
+
+        // ===== 구독 목록 — 재연결 시 재구독에 사용 =====
+        // Key: "TR_ID:TR_KEY" (ex. "H0STCNT0:005930")
+        private readonly ConcurrentDictionary<string, bool> _subscriptions = new();
+
+        // ===== 암호화 구독의 IV/Key 저장 =====
+        // Key: TR_ID, Value: (iv, key)
+        private readonly ConcurrentDictionary<string, (string Iv, string Key)> _cryptoKeys = new();
+
+        // ===== JSON 직렬화 옵션 =====
+        private static readonly JsonSerializerOptions JsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        // ===== 재연결 설정 =====
+        private const int MaxReconnectAttempts = 5;
+        private const int ReconnectBaseDelayMs = 2000;
+        private bool _intentionalDisconnect;
+
+        public KisRealtimeService(
+            IAuthService authService,
+            IKisTradingService kisTradingService,
+            ApiSettings apiSettings)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            _kisTradingService = kisTradingService ?? throw new ArgumentNullException(nameof(kisTradingService));
+            _apiSettings = apiSettings ?? throw new ArgumentNullException(nameof(apiSettings));
+        }
+
+        // ===== 이벤트 =====
+
+        /// <summary>실시간체결가 수신 이벤트</summary>
+        public event EventHandler<RealtimeCcnlData>? CcnlReceived;
+
+        /// <summary>실시간호가 수신 이벤트</summary>
+        public event EventHandler<RealtimeAspData>? AspReceived;
+
+        /// <summary>실시간체결통보 수신 이벤트 (암호화 복호화 후 발생)</summary>
+        public event EventHandler<RealtimeCcnlNotifyData>? CcnlNotifyReceived;
+
+        /// <summary>실시간예상체결 수신 이벤트 (실전 전용)</summary>
+        public event EventHandler<RealtimeAntcData>? AntcReceived;
+
+        /// <summary>실시간회원사 수신 이벤트 (실전 전용)</summary>
+        public event EventHandler<RealtimeMbcrData>? MbcrReceived;
+
+        /// <summary>장운영정보 수신 이벤트 (실전 전용)</summary>
+        public event EventHandler<RealtimeMkopData>? MkopReceived;
+
+        /// <summary>국내지수 실시간체결 수신 이벤트 (실전 전용)</summary>
+        public event EventHandler<RealtimeIndexCcnlData>? IndexCcnlReceived;
+
+        /// <summary>국내지수 실시간예상체결 수신 이벤트 (실전 전용)</summary>
+        public event EventHandler<RealtimeIndexAntcData>? IndexAntcReceived;
+
+        /// <summary>국내지수 실시간프로그램매매 수신 이벤트 (실전 전용)</summary>
+        public event EventHandler<RealtimeIndexPgmData>? IndexPgmReceived;
+
+        /// <summary>연결 상태 변경 이벤트</summary>
+        public event EventHandler<bool>? ConnectionStateChanged;
+
+        // ===== 상태 =====
+
+        public bool IsConnected => _client?.IsConnected ?? false;
+
+        // =====================================================================
+        // ===== 연결 =====
+        // =====================================================================
+
+        public async Task ConnectAsync(CancellationToken cancellationToken = default)
+        {
+            if (IsConnected) return;
+
+            _intentionalDisconnect = false;
+
+            // ===== 환경에 맞는 설정 =====
+            KisTradingMode mode = _kisTradingService.CurrentEnvironment;
+            ApiEndpointSettings settings = _apiSettings.GetCurrent(mode);
+
+            // ===== Approval Key 발급 (REST API) =====
+            _approvalKey = await _authService.GetApprovalKeyAsync(mode, cancellationToken);
+
+            // ===== WebSocket 연결 =====
+            _client?.Dispose();
+            _client = new KisWebSocketClient();
+            _client.MessageReceived += OnMessageReceived;
+            _client.Disconnected += OnDisconnected;
+
+            string wsUrl = settings.WebSocketUrl;
+            if (string.IsNullOrWhiteSpace(wsUrl))
+                throw new InvalidOperationException(
+                    "WebSocket URL이 설정되지 않았습니다. appsettings.json의 WebSocketUrl을 확인하세요.");
+
+            await _client.ConnectAsync(wsUrl, cancellationToken);
+
+            ConnectionStateChanged?.Invoke(this, true);
+            Console.WriteLine($"[WS] 연결 성공: {wsUrl}");
+        }
+
+        // =====================================================================
+        // ===== 종료 =====
+        // =====================================================================
+
+        public async Task DisconnectAsync()
+        {
+            _intentionalDisconnect = true;
+
+            if (_client != null)
+            {
+                _client.MessageReceived -= OnMessageReceived;
+                _client.Disconnected -= OnDisconnected;
+                await _client.CloseAsync();
+            }
+
+            _subscriptions.Clear();
+            _cryptoKeys.Clear();
+
+            ConnectionStateChanged?.Invoke(this, false);
+            Console.WriteLine("[WS] 연결 종료");
+        }
+
+        // =====================================================================
+        // ===== 실시간체결가 구독 [실시간-003] =====
+        // =====================================================================
+
+        public async Task SubscribeCcnlAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeCcnlValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticCcnl;
+            await SendSubscribeAsync(trId, stockCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{stockCode}", true);
+            Console.WriteLine($"[WS] 실시간체결가 구독: {stockCode}");
+        }
+
+        public async Task UnsubscribeCcnlAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeCcnlValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticCcnl;
+            await SendSubscribeAsync(trId, stockCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{stockCode}", out _);
+            Console.WriteLine($"[WS] 실시간체결가 해제: {stockCode}");
+        }
+
+        // =====================================================================
+        // ===== 실시간호가 구독 [실시간-004] =====
+        // =====================================================================
+
+        public async Task SubscribeAspAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeAspValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticAsp;
+            await SendSubscribeAsync(trId, stockCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{stockCode}", true);
+            Console.WriteLine($"[WS] 실시간호가 구독: {stockCode}");
+        }
+
+        public async Task UnsubscribeAspAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeAspValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticAsp;
+            await SendSubscribeAsync(trId, stockCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{stockCode}", out _);
+            Console.WriteLine($"[WS] 실시간호가 해제: {stockCode}");
+        }
+
+        // =====================================================================
+        // ===== 실시간체결통보 구독 [실시간-005] =====
+        //
+        // 왜 TR_ID를 환경별로 분기하는가?
+        // - 체결통보는 실전(H0STCNI0)과 모의(H0STCNI9)의 TR_ID가 다르다.
+        // - 다른 실시간 데이터(체결가/호가)는 실전/모의 TR_ID가 동일하다.
+        // - 연결 시점의 환경을 기준으로 올바른 TR_ID를 선택해야 한다.
+        // =====================================================================
+
+        public async Task SubscribeCcnlNotifyAsync(string htsId, CancellationToken cancellationToken = default)
+        {
+            RealtimeCcnlNotifyValidator.Validate(htsId);
+
+            // ===== 환경에 따라 TR_ID 선택 =====
+            string trId = GetCcnlNotifyTrId();
+            await SendSubscribeAsync(trId, htsId, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{htsId}", true);
+            Console.WriteLine($"[WS] 실시간체결통보 구독: htsId={htsId}, trId={trId}");
+        }
+
+        public async Task UnsubscribeCcnlNotifyAsync(string htsId, CancellationToken cancellationToken = default)
+        {
+            RealtimeCcnlNotifyValidator.Validate(htsId);
+
+            string trId = GetCcnlNotifyTrId();
+            await SendSubscribeAsync(trId, htsId, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{htsId}", out _);
+            Console.WriteLine($"[WS] 실시간체결통보 해제: htsId={htsId}, trId={trId}");
+        }
+
+        /// <summary>
+        /// 현재 환경(Live/Mock)에 맞는 체결통보 TR_ID를 반환한다.
+        /// </summary>
+        private string GetCcnlNotifyTrId()
+        {
+            return _kisTradingService.CurrentEnvironment == KisTradingMode.Live
+                ? RealtimeTrIdRegistry.CcnlNotifyLive
+                : RealtimeTrIdRegistry.CcnlNotifyMock;
+        }
+
+        // =====================================================================
+        // ===== 실시간예상체결 구독 [실시간-041] =====
+        //
+        // 왜 실전 전용 검증이 필요한가?
+        // - 예상체결(H0STANC0)은 한국투자증권에서 모의투자를 지원하지 않는다.
+        // - 모의 환경에서 구독하면 서버가 거부하므로
+        //   Presenter가 아닌 Service 레벨에서 미리 차단한다.
+        // =====================================================================
+
+        public async Task SubscribeAntcAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeAntcValidator.Validate(stockCode);
+            EnsureLiveEnvironment("실시간예상체결");
+
+            string trId = RealtimeTrIdRegistry.DomesticAntc;
+            await SendSubscribeAsync(trId, stockCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{stockCode}", true);
+            Console.WriteLine($"[WS] 실시간예상체결 구독: {stockCode}");
+        }
+
+        public async Task UnsubscribeAntcAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeAntcValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticAntc;
+            await SendSubscribeAsync(trId, stockCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{stockCode}", out _);
+            Console.WriteLine($"[WS] 실시간예상체결 해제: {stockCode}");
+        }
+
+        // =====================================================================
+        // ===== 실시간회원사 구독 [실시간-047] =====
+        //
+        // 왜 실전 전용 검증이 필요한가?
+        // - 회원사(H0STMBC0)는 KRX 거래원 정보를 제공하며 모의투자를 지원하지 않는다.
+        // - 예상체결(H0STANC0)과 동일한 EnsureLiveEnvironment() 가드를 재사용한다.
+        // =====================================================================
+
+        public async Task SubscribeMbcrAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeMbcrValidator.Validate(stockCode);
+            EnsureLiveEnvironment("실시간회원사");
+
+            string trId = RealtimeTrIdRegistry.DomesticMbcr;
+            await SendSubscribeAsync(trId, stockCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{stockCode}", true);
+            Console.WriteLine($"[WS] 실시간회원사 구독: {stockCode}");
+        }
+
+        public async Task UnsubscribeMbcrAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeMbcrValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticMbcr;
+            await SendSubscribeAsync(trId, stockCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{stockCode}", out _);
+            Console.WriteLine($"[WS] 실시간회원사 해제: {stockCode}");
+        }
+
+        // =====================================================================
+        // ===== 장운영정보 구독 [실시간-049] =====
+        //
+        // 왜 장운영정보가 자동매매에서 중요한가?
+        // - 장 상태(개시/마감/VI/서킷브레이크)에 따라 매매 전략을 변경해야 한다.
+        // - VI 발동 종목은 일정 시간 매매가 중단되므로 주문을 보류해야 한다.
+        // - 실전 전용이므로 EnsureLiveEnvironment() 가드를 재사용한다.
+        // =====================================================================
+
+        public async Task SubscribeMkopAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeMkopValidator.Validate(stockCode);
+            EnsureLiveEnvironment("장운영정보");
+
+            string trId = RealtimeTrIdRegistry.DomesticMkop;
+            await SendSubscribeAsync(trId, stockCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{stockCode}", true);
+            Console.WriteLine($"[WS] 장운영정보 구독: {stockCode}");
+        }
+
+        public async Task UnsubscribeMkopAsync(string stockCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeMkopValidator.Validate(stockCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticMkop;
+            await SendSubscribeAsync(trId, stockCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{stockCode}", out _);
+            Console.WriteLine($"[WS] 장운영정보 해제: {stockCode}");
+        }
+
+        // =====================================================================
+        // ===== 국내지수 실시간체결 구독 [실시간-026] =====
+        //
+        // 왜 지수 실시간체결이 자동매매에서 중요한가?
+        // - KOSPI/KOSDAQ 등 업종지수의 실시간 흐름을 파악하여
+        //   시장 전체 방향성에 따른 매매 전략 조절에 활용한다.
+        // - 실전 전용이므로 EnsureLiveEnvironment() 가드를 재사용한다.
+        //
+        // 왜 tr_key가 업종구분코드인가?
+        // - 기존 주식 실시간체결가(H0STCNT0)은 6자리 종목코드를 사용하지만,
+        //   지수 실시간체결(H0UPCNT0)은 업종구분코드(예: "0001"=코스피)를 사용한다.
+        // =====================================================================
+
+        public async Task SubscribeIndexCcnlAsync(string sectorCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeIndexCcnlValidator.Validate(sectorCode);
+            EnsureLiveEnvironment("국내지수 실시간체결");
+
+            string trId = RealtimeTrIdRegistry.DomesticIndexCcnl;
+            await SendSubscribeAsync(trId, sectorCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{sectorCode}", true);
+            Console.WriteLine($"[WS] 국내지수 실시간체결 구독: {sectorCode}");
+        }
+
+        public async Task UnsubscribeIndexCcnlAsync(string sectorCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeIndexCcnlValidator.Validate(sectorCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticIndexCcnl;
+            await SendSubscribeAsync(trId, sectorCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{sectorCode}", out _);
+            Console.WriteLine($"[WS] 국내지수 실시간체결 해제: {sectorCode}");
+        }
+
+        // =====================================================================
+        // ===== 국내지수 실시간예상체결 구독 [실시간-027] =====
+        //
+        // 왜 지수 예상체결이 자동매매에서 중요한가?
+        // - 장 개시 전 동시호가 시간대에 지수의 예상 방향성을 파악하여
+        //   매매 전략의 초기 포지션(공격적/방어적)을 결정할 수 있다.
+        // - 실전 전용이므로 EnsureLiveEnvironment() 가드를 재사용한다.
+        //
+        // 왜 IndexCcnl과 별도 메서드인가?
+        // - TR_ID가 다르고(H0UPCNT0 vs H0UPANC0), 수신 시점과 의미가 다르다.
+        // =====================================================================
+
+        public async Task SubscribeIndexAntcAsync(string sectorCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeIndexAntcValidator.Validate(sectorCode);
+            EnsureLiveEnvironment("국내지수 실시간예상체결");
+
+            string trId = RealtimeTrIdRegistry.DomesticIndexAntc;
+            await SendSubscribeAsync(trId, sectorCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{sectorCode}", true);
+            Console.WriteLine($"[WS] 국내지수 실시간예상체결 구독: {sectorCode}");
+        }
+
+        public async Task UnsubscribeIndexAntcAsync(string sectorCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeIndexAntcValidator.Validate(sectorCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticIndexAntc;
+            await SendSubscribeAsync(trId, sectorCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{sectorCode}", out _);
+            Console.WriteLine($"[WS] 국내지수 실시간예상체결 해제: {sectorCode}");
+        }
+
+        // =====================================================================
+        // ===== 국내지수 실시간프로그램매매 [실시간-028] =====
+        //
+        // TR_ID: H0UPPGM0 (실전 전용)
+        // - 차익/비차익 프로그램매매 매도·매수 현황(88개 필드)을 실시간 수신한다.
+        // - 실전 전용이므로 EnsureLiveEnvironment() 가드를 재사용한다.
+        // - tr_key는 업종구분코드(예: "0001"=코스피)를 사용한다.
+        // =====================================================================
+
+        public async Task SubscribeIndexPgmAsync(string sectorCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeIndexPgmValidator.Validate(sectorCode);
+            EnsureLiveEnvironment("국내지수 실시간프로그램매매");
+
+            string trId = RealtimeTrIdRegistry.DomesticIndexPgm;
+            await SendSubscribeAsync(trId, sectorCode, subscribe: true, cancellationToken);
+
+            _subscriptions.TryAdd($"{trId}:{sectorCode}", true);
+            Console.WriteLine($"[WS] 국내지수 실시간프로그램매매 구독: {sectorCode}");
+        }
+
+        public async Task UnsubscribeIndexPgmAsync(string sectorCode, CancellationToken cancellationToken = default)
+        {
+            RealtimeIndexPgmValidator.Validate(sectorCode);
+
+            string trId = RealtimeTrIdRegistry.DomesticIndexPgm;
+            await SendSubscribeAsync(trId, sectorCode, subscribe: false, cancellationToken);
+
+            _subscriptions.TryRemove($"{trId}:{sectorCode}", out _);
+            Console.WriteLine($"[WS] 국내지수 실시간프로그램매매 해제: {sectorCode}");
+        }
+
+        /// <summary>
+        /// 실전 환경인지 검증한다. 모의투자에서 호출하면 예외를 던진다.
+        /// </summary>
+        private void EnsureLiveEnvironment(string apiName)
+        {
+            if (_kisTradingService.CurrentEnvironment != KisTradingMode.Live)
+            {
+                throw new InvalidOperationException(
+                    $"{apiName}은(는) 실전투자만 지원합니다. 현재 환경: {_kisTradingService.CurrentEnvironment}");
+            }
+        }
+
+        // =====================================================================
+        // ===== 구독/해제 JSON 메시지 전송 =====
+        // =====================================================================
+
+        private async Task SendSubscribeAsync(
+            string trId, string trKey, bool subscribe,
+            CancellationToken cancellationToken)
+        {
+            if (_client == null || !_client.IsConnected)
+                throw new InvalidOperationException("WebSocket이 연결되지 않았습니다.");
+
+            var message = new RealtimeSubscribeMessage
+            {
+                Header = new RealtimeSubscribeHeader
+                {
+                    ApprovalKey = _approvalKey,
+                    CustType = "P",
+                    TrType = subscribe ? "1" : "2",
+                    ContentType = "utf-8"
+                },
+                Body = new RealtimeSubscribeBody
+                {
+                    Input = new RealtimeSubscribeInput
+                    {
+                        TrId = trId,
+                        TrKey = trKey
+                    }
+                }
+            };
+
+            string json = JsonSerializer.Serialize(message, JsonOptions);
+            await _client.SendAsync(json, cancellationToken);
+        }
+
+        // =====================================================================
+        // ===== 수신 메시지 처리 =====
+        // =====================================================================
+
+        private void OnMessageReceived(string rawMessage)
+        {
+            try
+            {
+                // ===== JSON 응답인지 파이프 프레임인지 구분 =====
+                if (rawMessage.TrimStart().StartsWith('{'))
+                {
+                    HandleJsonResponse(rawMessage);
+                }
+                else
+                {
+                    HandleFrameData(rawMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[WS] 메시지 처리 오류: {ex.Message}");
+            }
+        }
+
+        // ===== JSON 응답 처리 (구독 등록/해제 결과) =====
+        private void HandleJsonResponse(string json)
+        {
+            var response = JsonSerializer.Deserialize<RealtimeSubscribeResponse>(json, JsonOptions);
+            if (response?.Body == null) return;
+
+            string trId = response.Header?.TrId ?? "";
+            string msg = response.Body.Msg1 ?? "";
+            string rtCd = response.Body.RtCd ?? "";
+
+            Console.WriteLine($"[WS] 구독 응답: tr_id={trId}, rt_cd={rtCd}, msg={msg}");
+
+            // ===== 암호화 키 저장 (암호화 대상 구독일 때만) =====
+            if (response.Body.Output != null &&
+                !string.IsNullOrEmpty(response.Body.Output.Iv) &&
+                !string.IsNullOrEmpty(response.Body.Output.Key))
+            {
+                _cryptoKeys[trId] = (response.Body.Output.Iv, response.Body.Output.Key);
+                Console.WriteLine($"[WS] 암호화 키 저장: tr_id={trId}");
+            }
+        }
+
+        // ===== 파이프 프레임 처리 (실시간 데이터) =====
+        private void HandleFrameData(string rawMessage)
+        {
+            RealtimeFrameData? frame = KisWebSocketFrameParser.TryParse(rawMessage);
+            if (frame == null) return;
+
+            string payload = frame.RawPayload;
+
+            // ===== 암호화된 데이터면 복호화 =====
+            if (frame.IsEncrypted && _cryptoKeys.TryGetValue(frame.TrId, out var crypto))
+            {
+                payload = KisWebSocketDecryptor.Decrypt(payload, crypto.Key, crypto.Iv);
+            }
+
+            // ===== TR_ID 기준 라우팅 =====
+            // 새로운 실시간 구독을 추가하면 여기에 case를 추가한다.
+            switch (frame.TrId)
+            {
+                case RealtimeTrIdRegistry.DomesticCcnl:
+                    RouteToCcnl(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticAsp:
+                    RouteToAsp(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.CcnlNotifyLive:
+                case RealtimeTrIdRegistry.CcnlNotifyMock:
+                    RouteToCcnlNotify(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticAntc:
+                    RouteToAntc(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticMbcr:
+                    RouteToMbcr(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticMkop:
+                    RouteToMkop(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticIndexCcnl:
+                    RouteToIndexCcnl(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticIndexAntc:
+                    RouteToIndexAntc(payload, frame.DataCount);
+                    break;
+
+                case RealtimeTrIdRegistry.DomesticIndexPgm:
+                    RouteToIndexPgm(payload, frame.DataCount);
+                    break;
+
+                default:
+                    Console.WriteLine($"[WS] 미등록 TR_ID 수신: {frame.TrId}");
+                    break;
+            }
+        }
+
+        // ===== 실시간체결가 라우팅 =====
+        private void RouteToCcnl(string payload, int dataCount)
+        {
+            List<RealtimeCcnlData> items = RealtimeCcnlParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeCcnlData item in items)
+            {
+                CcnlReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 실시간호가 라우팅 =====
+        private void RouteToAsp(string payload, int dataCount)
+        {
+            List<RealtimeAspData> items = RealtimeAspParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeAspData item in items)
+            {
+                AspReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 실시간체결통보 라우팅 =====
+        // 왜 별도 라우팅 메서드인가?
+        // - 체결통보는 암호화 데이터이므로 HandleFrameData에서 이미 복호화된 상태로 들어온다.
+        // - 복호화된 payload를 파서에 전달하여 26개 필드를 DTO로 변환한다.
+        private void RouteToCcnlNotify(string payload, int dataCount)
+        {
+            List<RealtimeCcnlNotifyData> items = RealtimeCcnlNotifyParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeCcnlNotifyData item in items)
+            {
+                CcnlNotifyReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 실시간예상체결 라우팅 =====
+        private void RouteToAntc(string payload, int dataCount)
+        {
+            List<RealtimeAntcData> items = RealtimeAntcParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeAntcData item in items)
+            {
+                AntcReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 실시간회원사 라우팅 =====
+        private void RouteToMbcr(string payload, int dataCount)
+        {
+            List<RealtimeMbcrData> items = RealtimeMbcrParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeMbcrData item in items)
+            {
+                MbcrReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 장운영정보 라우팅 =====
+        private void RouteToMkop(string payload, int dataCount)
+        {
+            List<RealtimeMkopData> items = RealtimeMkopParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeMkopData item in items)
+            {
+                MkopReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 국내지수 실시간체결 라우팅 =====
+        private void RouteToIndexCcnl(string payload, int dataCount)
+        {
+            List<RealtimeIndexCcnlData> items = RealtimeIndexCcnlParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeIndexCcnlData item in items)
+            {
+                IndexCcnlReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 국내지수 실시간예상체결 라우팅 =====
+        private void RouteToIndexAntc(string payload, int dataCount)
+        {
+            List<RealtimeIndexAntcData> items = RealtimeIndexAntcParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeIndexAntcData item in items)
+            {
+                IndexAntcReceived?.Invoke(this, item);
+            }
+        }
+
+        // ===== 국내지수 실시간프로그램매매 라우팅 =====
+        private void RouteToIndexPgm(string payload, int dataCount)
+        {
+            List<RealtimeIndexPgmData> items = RealtimeIndexPgmParser.ParseMultiple(payload, dataCount);
+
+            foreach (RealtimeIndexPgmData item in items)
+            {
+                IndexPgmReceived?.Invoke(this, item);
+            }
+        }
+
+        // =====================================================================
+        // ===== 재연결 =====
+        // =====================================================================
+
+        private void OnDisconnected()
+        {
+            ConnectionStateChanged?.Invoke(this, false);
+
+            if (_intentionalDisconnect)
+                return;
+
+            Console.WriteLine("[WS] 비정상 연결 끊김 — 재연결 시도");
+            _ = Task.Run(ReconnectAsync);
+        }
+
+        private async Task ReconnectAsync()
+        {
+            for (int attempt = 1; attempt <= MaxReconnectAttempts; attempt++)
+            {
+                if (_intentionalDisconnect) return;
+
+                int delay = ReconnectBaseDelayMs * attempt;
+                Console.WriteLine($"[WS] 재연결 시도 {attempt}/{MaxReconnectAttempts} (대기 {delay}ms)");
+                await Task.Delay(delay);
+
+                try
+                {
+                    await ConnectAsync();
+
+                    // ===== 기존 구독 복원 =====
+                    foreach (string key in _subscriptions.Keys)
+                    {
+                        string[] parts = key.Split(':', 2);
+                        if (parts.Length == 2)
+                        {
+                            await SendSubscribeAsync(parts[0], parts[1], subscribe: true, CancellationToken.None);
+                            Console.WriteLine($"[WS] 재구독: {key}");
+                        }
+                    }
+
+                    Console.WriteLine("[WS] 재연결 성공");
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[WS] 재연결 실패: {ex.Message}");
+                }
+            }
+
+            Console.WriteLine("[WS] 최대 재연결 횟수 초과 — 포기");
+        }
+
+        // =====================================================================
+        // ===== Dispose =====
+        // =====================================================================
+
+        public void Dispose()
+        {
+            _intentionalDisconnect = true;
+            _client?.Dispose();
+            _subscriptions.Clear();
+            _cryptoKeys.Clear();
+        }
+    }
+}

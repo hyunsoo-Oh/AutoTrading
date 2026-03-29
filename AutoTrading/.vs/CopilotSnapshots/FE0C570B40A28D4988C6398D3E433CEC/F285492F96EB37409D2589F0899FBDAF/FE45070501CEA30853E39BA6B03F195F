@@ -1,0 +1,47 @@
+﻿# AI Change Log
+
+## 2025-01-XX — 주식현재가 시세 [v1_국내주식-008] API 구현
+
+### 수정 파일 목록
+
+| 파일 | 변경 유형 | 설명 |
+|------|-----------|------|
+| `KisRestAPI/Models/Market/InquirePriceModels.cs` | 신규 | 요청 DTO (`InquirePriceRequest`) + 응답 DTO (`InquirePriceResponse`, `InquirePriceOutput`) |
+| `KisRestAPI/Market/InquirePriceBuilders.cs` | 신규 | Validator / QueryStringBuilder / UrlBuilder / TrIdProvider / HeaderBuilder |
+| `KisRestAPI/Market/IMarketService.cs` | 신규 | 시세 서비스 인터페이스 |
+| `KisRestAPI/Market/KisMarketService.cs` | 신규 | 시세 서비스 구현 (KisHttpServiceBase 상속) |
+| `AutoTrading/Features/Presenters/Main/MainPresenter.cs` | 수정 | IMarketService 필드 추가, RebuildServices 연결, InquirePriceAsync 호출 테스트 메서드 추가 |
+
+### 공개 API
+
+- `InquirePriceRequest` — 요청 DTO (FID_COND_MRKT_DIV_CODE, FID_INPUT_ISCD)
+- `InquirePriceResponse` — 응답 DTO (RtCd, MsgCd, Msg1, Output)
+- `InquirePriceOutput` — output 상세 DTO (80+ 필드)
+- `IMarketService.InquirePriceAsync()` — 서비스 인터페이스 메서드
+- `KisMarketService` — 서비스 구현 클래스
+
+### 내부 구현 요소 (internal)
+
+- `InquirePriceRequestValidator` — 요청 null/필수값 검증
+- `InquirePriceQueryStringBuilder` — 쿼리스트링 조립
+- `InquirePriceUrlBuilder` — 전체 URL 조립
+- `InquirePriceTrIdProvider` — TR ID 제공 (실전/모의 동일: FHKST01010100)
+- `InquirePriceHeaderBuilder` — HTTP 헤더 생성
+
+### 사용 예시
+
+```csharp
+var request = new InquirePriceRequest
+{
+    FID_COND_MRKT_DIV_CODE = "J",       // KRX
+    FID_INPUT_ISCD         = "005930"    // 삼성전자
+};
+
+InquirePriceResponse response = await _marketService.InquirePriceAsync(request);
+Console.WriteLine($"현재가: {response.Output?.StckPrpr}");
+```
+
+### 빌드 결과
+
+- ✅ 빌드 성공
+- ✅ 테스트 90/90 통과

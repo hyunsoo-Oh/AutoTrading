@@ -1,0 +1,66 @@
+﻿using KisRestAPI.Models.Market;
+
+namespace KisRestAPI.Market
+{
+    /// <summary>
+    /// 시세/시장 조회 API 기능을 정의하는 서비스 인터페이스
+    /// </summary>
+    public interface IMarketService
+    {
+        /// <summary>
+        /// 주식현재가 시세 조회 [v1_국내주식-008]
+        /// </summary>
+        Task<InquirePriceResponse> InquirePriceAsync(
+            InquirePriceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 체결 조회 [v1_국내주식-009]
+        /// </summary>
+        Task<InquireCcnlResponse> InquireCcnlAsync(
+            InquireCcnlRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 일자별 조회 [v1_국내주식-010]
+        /// 일/주/월별 주가를 최근 30일(주/월)로 반환한다.
+        /// </summary>
+        Task<InquireDailyPriceResponse> InquireDailyPriceAsync(
+            InquireDailyPriceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 호가/예상체결 조회 [v1_국내주식-011]
+        /// 매수/매도 호가 10단계(가격·잔량·증감)와 예상체결가를 반환한다.
+        /// </summary>
+        Task<InquireAskingPriceResponse> InquireAskingPriceAsync(
+            InquireAskingPriceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 투자자 조회 [v1_국내주식-012]
+        /// 개인/외국인/기관의 일자별 순매수 수량·거래대금을 반환한다.
+        /// </summary>
+        Task<InquireInvestorResponse> InquireInvestorAsync(
+            InquireInvestorRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 국내주식기간별시세 조회 [v1_국내주식-016]
+        /// 일/주/월/년봉 캔들 데이터를 최대 100건 반환한다.
+        /// output1 : 종목 현황 요약 / output2 : 기간별 캔들 배열
+        /// </summary>
+        Task<InquireDailyItemChartPriceResponse> InquireDailyItemChartPriceAsync(
+            InquireDailyItemChartPriceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식당일분봉조회 [v1_국내주식-022]
+        /// 당일 분봉 데이터를 최대 30건 반환한다.
+        /// output1 : 종목 현황 요약 / output2 : 분봉 캔들 배열
+        /// </summary>
+        Task<InquireTimeItemChartPriceResponse> InquireTimeItemChartPriceAsync(
+            InquireTimeItemChartPriceRequest request,
+            CancellationToken cancellationToken = default);
+    }
+}

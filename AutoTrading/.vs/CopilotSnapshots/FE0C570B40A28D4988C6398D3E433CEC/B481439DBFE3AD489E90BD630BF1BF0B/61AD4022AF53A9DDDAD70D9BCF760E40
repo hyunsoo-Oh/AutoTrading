@@ -1,0 +1,167 @@
+﻿using AutoTrading.Features.Presenters.Dashboard;
+using AutoTrading.Features.Views.Interfaces;
+using KisRestAPI.Auth;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Configuration;
+using System.Windows.Forms;
+
+namespace AutoTrading.Features.Views.Contents
+{
+    /// <summary>
+    /// 대시보드 페이지 — 전체 현황 요약 화면
+    /// </summary>
+    public partial class Dashboard : UserControl, IDashboardView
+    {
+        private DashboardPresenter? _presenter;
+        private System.Windows.Forms.Timer? _refreshTimer;
+
+        /// <summary>카드 갱신 주기 (1초)</summary>
+        private const int RefreshIntervalMs = 1000;
+
+        public Dashboard()
+        {
+            InitializeComponent();
+        }
+
+        public Dashboard(
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKisTradingService kisTradingService) : this()
+        {
+            _presenter = new DashboardPresenter(this, authService, apiSettings, kisTradingService);
+            Load += Dashboard_Load;
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            // 보유종목 그리드 스타일 적용
+            ApplyPortfolioGridStyle();
+
+            // 최초 1회 즉시 조회
+            _ = RefreshAsync();
+
+            // 1분 주기 타이머 — components에 등록해 Dispose 시 자동 정리
+            components ??= new System.ComponentModel.Container();
+            _refreshTimer = new System.Windows.Forms.Timer(components)
+            {
+                Interval = RefreshIntervalMs
+            };
+            _refreshTimer.Tick += async (s, ev) => await RefreshAsync();
+            _refreshTimer.Start();
+        }
+
+        private async Task RefreshAsync()
+        {
+            if (_presenter == null) return;
+            await _presenter.RefreshBalanceAsync();
+        }
+
+        // ========================================================
+        // ===== IDashboardView 구현 =====
+        // Presenter가 호출하는 UI 갱신 메서드들이다.
+        // ========================================================
+
+        public void UpdateBalanceSummary(
+            decimal totalEvaluation,
+            decimal deposits,
+            decimal profitLoss,
+            decimal purchaseAmount)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(() => UpdateBalanceSummary(totalEvaluation, deposits, profitLoss, purchaseAmount));
+                return;
+            }
+
+            // 총 자산 가치: 총평가금액 표시, 등락은 평가손익으로 자동 계산
+            label_totalEvaluation.Text = $"{totalEvaluation}";
+
+            // 수익률: 평가손익 금액 표시 + 수익률(%) 직접 계산
+            decimal profit = totalEvaluation - deposits;
+            label_profitLoss.Text = profit >= 0 ? $"+{profit}" : $"-{profit}";
+            label_profitLoss.ForeColor = profit >= 0 ? Color.Red : Color.Blue;
+                
+            // 예수금: 금액만 표시
+            label_deposits.Text = $"{deposits - purchaseAmount}";
+        }
+
+        private void ApplyPortfolioGridStyle()
+        {
+            var grid = dataGridView_holding;
+
+            // ===== 기본 설정 =====
+            grid.CellFormatting += dataGridView_CellFormatting;
+
+            grid.EnableHeadersVisualStyles = false;
+            grid.BorderStyle = BorderStyle.None;
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            grid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            grid.RowHeadersVisible = false;
+            grid.BackgroundColor = Color.FromArgb(31, 34, 40);
+            grid.GridColor = Color.FromArgb(55, 60, 68);
+
+            // ===== 헤더 스타일 =====
+            grid.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(245, 245, 245),
+                ForeColor = Color.Black,
+                SelectionBackColor = Color.FromArgb(245, 245, 245),
+                SelectionForeColor = Color.Black,
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                Font = new Font("맑은 고딕", 10F, FontStyle.Regular)
+            };
+
+            // ===== 일반 셀 스타일 =====
+            grid.DefaultCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(24, 28, 36),
+                ForeColor = Color.WhiteSmoke,
+                SelectionBackColor = Color.FromArgb(45, 55, 72),
+                SelectionForeColor = Color.White,
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                Font = new Font("맑은 고딕", 10F, FontStyle.Regular)
+            };
+
+            // ===== 행 스타일 =====
+            grid.RowsDefaultCellStyle.BackColor = Color.FromArgb(24, 28, 36);
+            grid.RowsDefaultCellStyle.ForeColor = Color.WhiteSmoke;
+
+            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(30, 34, 42);
+            grid.AlternatingRowsDefaultCellStyle.ForeColor = Color.WhiteSmoke;
+
+            // ===== 선택/크기 =====
+            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grid.MultiSelect = false;
+            grid.RowTemplate.Height = 32;
+            grid.ColumnHeadersHeight = 30;
+
+            // ===== 추가 권장 =====
+            grid.AllowUserToAddRows = false;
+            grid.AllowUserToResizeRows = false;
+            grid.ReadOnly = true;
+        }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // "수익률 (%)" 컬럼 이름 기준 예시
+            if (dataGridView_holding.Columns[e.ColumnIndex].Name == "ProfitRate" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal profitRate))
+                {
+                    if (profitRate > 0)
+                    {
+                        e.CellStyle.ForeColor = Color.Red; // 수익
+                    }
+                    else if (profitRate < 0)
+                    {
+                        e.CellStyle.ForeColor = Color.DeepSkyBlue; // 손실
+                    }
+                    else
+                    {
+                        e.CellStyle.ForeColor = Color.WhiteSmoke; // 보합
+                    }
+                }
+            }
+        }
+    }
+}

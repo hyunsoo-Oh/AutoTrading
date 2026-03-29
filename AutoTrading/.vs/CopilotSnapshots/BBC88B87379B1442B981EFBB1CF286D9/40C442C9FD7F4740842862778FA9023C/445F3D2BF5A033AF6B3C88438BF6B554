@@ -1,0 +1,81 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 기간별매매손익현황조회 output1 배열의 종목별 매매손익 항목 DTO
+    ///
+    /// 기간별손익일별합산조회(InquirePeriodProfitLossItem)가 "일자별" 합산이라면,
+    /// 이 항목은 "종목별" 매매 내역으로, 어떤 종목에서 얼마나 수익/손실이 발생했는지 파악할 수 있다.
+    /// </summary>
+    public sealed class InquirePeriodTradeProfitItem
+    {
+        /// <summary>매매일자 (YYYYMMDD)</summary>
+        [JsonPropertyName("trad_dt")]
+        public string TradDt { get; set; } = string.Empty;
+
+        /// <summary>상품번호 (종목코드 뒤 6자리)</summary>
+        [JsonPropertyName("pdno")]
+        public string Pdno { get; set; } = string.Empty;
+
+        /// <summary>상품명 (종목명)</summary>
+        [JsonPropertyName("prdt_name")]
+        public string PrdtName { get; set; } = string.Empty;
+
+        /// <summary>매매구분명 (매수/매도)</summary>
+        [JsonPropertyName("trad_dvsn_name")]
+        public string TradDvsnName { get; set; } = string.Empty;
+
+        /// <summary>대출일자</summary>
+        [JsonPropertyName("loan_dt")]
+        public string LoanDt { get; set; } = string.Empty;
+
+        /// <summary>보유수량</summary>
+        [JsonPropertyName("hldg_qty")]
+        public string HldgQty { get; set; } = string.Empty;
+
+        /// <summary>매입단가</summary>
+        [JsonPropertyName("pchs_unpr")]
+        public string PchsUnpr { get; set; } = string.Empty;
+
+        /// <summary>매수수량</summary>
+        [JsonPropertyName("buy_qty")]
+        public string BuyQty { get; set; } = string.Empty;
+
+        /// <summary>매수금액</summary>
+        [JsonPropertyName("buy_amt")]
+        public string BuyAmt { get; set; } = string.Empty;
+
+        /// <summary>매도가격</summary>
+        [JsonPropertyName("sll_pric")]
+        public string SllPric { get; set; } = string.Empty;
+
+        /// <summary>매도수량</summary>
+        [JsonPropertyName("sll_qty")]
+        public string SllQty { get; set; } = string.Empty;
+
+        /// <summary>매도금액</summary>
+        [JsonPropertyName("sll_amt")]
+        public string SllAmt { get; set; } = string.Empty;
+
+        /// <summary>실현손익</summary>
+        [JsonPropertyName("rlzt_pfls")]
+        public string RlztPfls { get; set; } = string.Empty;
+
+        /// <summary>손익률</summary>
+        [JsonPropertyName("pfls_rt")]
+        public string PflsRt { get; set; } = string.Empty;
+
+        /// <summary>수수료</summary>
+        [JsonPropertyName("fee")]
+        public string Fee { get; set; } = string.Empty;
+
+        /// <summary>제세금</summary>
+        [JsonPropertyName("tl_tax")]
+        public string TlTax { get; set; } = string.Empty;
+
+        /// <summary>대출이자</summary>
+        [JsonPropertyName("loan_int")]
+        public string LoanInt { get; set; } = string.Empty;
+    }
+}

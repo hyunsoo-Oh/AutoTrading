@@ -1,0 +1,14 @@
+﻿namespace KisRestAPI.Orders
+{
+    public static class OrderCashUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/order-cash";
+
+        public static string Build(string baseUrl)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            return $"{baseUrl.TrimEnd('/')}{Path}";
+        }
+    }
+}

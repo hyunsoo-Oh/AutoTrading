@@ -1,0 +1,35 @@
+﻿using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 기간별매매손익현황조회 QueryString 생성
+    ///
+    /// API 명세의 Query Parameter 순서에 맞춰 조립한다.
+    /// ※ 기간별손익일별합산조회(TTTC8708R)와 달리 INQR_DVSN 파라미터가 없다.
+    /// </summary>
+    public static class InquirePeriodTradeProfitQueryStringBuilder
+    {
+        public static string Build(InquirePeriodTradeProfitRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]             = request.CANO,
+                ["ACNT_PRDT_CD"]     = request.ACNT_PRDT_CD,
+                ["INQR_STRT_DT"]     = request.INQR_STRT_DT,
+                ["INQR_END_DT"]      = request.INQR_END_DT,
+                ["PDNO"]             = request.PDNO,
+                ["SORT_DVSN"]        = request.SORT_DVSN,
+                ["CBLC_DVSN"]        = request.CBLC_DVSN,
+                ["CTX_AREA_FK100"]   = request.CTX_AREA_FK100,
+                ["CTX_AREA_NK100"]   = request.CTX_AREA_NK100,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+}

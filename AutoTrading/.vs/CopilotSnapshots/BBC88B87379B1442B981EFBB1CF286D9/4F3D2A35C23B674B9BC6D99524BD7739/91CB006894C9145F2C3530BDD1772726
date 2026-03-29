@@ -1,0 +1,52 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 기간별손익일별합산조회 output1 배열의 일별 손익 항목 DTO
+    ///
+    /// 각 항목은 매매가 발생한 하루의 매수/매도 금액, 실현손익, 수수료, 제세금을 담는다.
+    /// </summary>
+    public sealed class InquirePeriodProfitLossItem
+    {
+        /// <summary>매매일자 (YYYYMMDD)</summary>
+        [JsonPropertyName("trad_dt")]
+        public string TradDt { get; set; } = string.Empty;
+
+        /// <summary>매수금액</summary>
+        [JsonPropertyName("buy_amt")]
+        public string BuyAmt { get; set; } = string.Empty;
+
+        /// <summary>매도금액</summary>
+        [JsonPropertyName("sll_amt")]
+        public string SllAmt { get; set; } = string.Empty;
+
+        /// <summary>실현손익</summary>
+        [JsonPropertyName("rlzt_pfls")]
+        public string RlztPfls { get; set; } = string.Empty;
+
+        /// <summary>수수료</summary>
+        [JsonPropertyName("fee")]
+        public string Fee { get; set; } = string.Empty;
+
+        /// <summary>대출이자</summary>
+        [JsonPropertyName("loan_int")]
+        public string LoanInt { get; set; } = string.Empty;
+
+        /// <summary>제세금</summary>
+        [JsonPropertyName("tl_tax")]
+        public string TlTax { get; set; } = string.Empty;
+
+        /// <summary>손익률</summary>
+        [JsonPropertyName("pfls_rt")]
+        public string PflsRt { get; set; } = string.Empty;
+
+        /// <summary>매도수량</summary>
+        [JsonPropertyName("sll_qty1")]
+        public string SllQty1 { get; set; } = string.Empty;
+
+        /// <summary>매수수량</summary>
+        [JsonPropertyName("buy_qty1")]
+        public string BuyQty1 { get; set; } = string.Empty;
+    }
+}

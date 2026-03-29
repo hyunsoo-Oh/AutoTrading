@@ -1,0 +1,27 @@
+﻿using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 기간별손익일별합산조회 요청 검증
+    ///
+    /// 왜 Validator를 분리하는가?
+    /// - 서비스 메서드 안에 검증 로직이 섞이면 가독성과 테스트가 어려워진다.
+    /// - Validator를 독립시키면 검증 규칙만 단위 테스트할 수 있다.
+    /// </summary>
+    public static class InquirePeriodProfitLossRequestValidator
+    {
+        public static void Validate(InquirePeriodProfitLossRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.INQR_STRT_DT))
+                throw new ArgumentException("조회시작일자(INQR_STRT_DT)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.INQR_END_DT))
+                throw new ArgumentException("조회종료일자(INQR_END_DT)가 비어 있습니다.");
+        }
+    }
+}

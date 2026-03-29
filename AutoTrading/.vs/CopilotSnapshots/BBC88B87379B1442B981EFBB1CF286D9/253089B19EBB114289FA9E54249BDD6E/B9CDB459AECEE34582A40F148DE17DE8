@@ -1,0 +1,94 @@
+﻿using System.Text.Json.Serialization;
+
+namespace AutoTrading.Features.Models.Api.Orders
+{
+    /// <summary>
+    /// 주식주문 정정취소 요청 DTO
+    ///
+    /// 왜 별도 DTO를 만드는가?
+    /// - 현금 주문(OrderCashRequest)과 정정취소 주문은 필수 필드가 다르다.
+    /// - 정정취소에는 원주문번호(ORGN_ODNO), 정정취소구분(RVSE_CNCL_DVSN_CD),
+    ///   잔량전부주문여부(QTY_ALL_ORD_YN) 등 고유 필드가 필요하다.
+    /// - DTO를 분리하면 Validator에서 각각의 필수값만 정확히 검증할 수 있다.
+    ///
+    /// ※ POST API의 BODY key는 반드시 대문자로 작성해야 한다. (한국투자증권 API 규칙)
+    /// </summary>
+    public sealed class OrderRvsecnclRequest
+    {
+        /// <summary>종합계좌번호 (8자리)</summary>
+        [JsonPropertyName("CANO")]
+        public string Cano { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 (보통 "01")</summary>
+        [JsonPropertyName("ACNT_PRDT_CD")]
+        public string AcntPrdtCd { get; set; } = "01";
+
+        /// <summary>
+        /// 한국거래소전송주문조직번호
+        /// 원주문의 응답에서 받은 KRX_FWDG_ORD_ORGNO를 그대로 넣는다.
+        /// 빈 문자열("")로 보내면 서버가 자동으로 채운다.
+        /// </summary>
+        [JsonPropertyName("KRX_FWDG_ORD_ORGNO")]
+        public string KrxFwdgOrdOrgno { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 원주문번호
+        /// 정정/취소 대상이 되는 원래 주문의 주문번호(ODNO)를 넣는다.
+        /// 주문 응답(OrderCashResponse.Output.Odno)에서 확인 가능하다.
+        /// </summary>
+        [JsonPropertyName("ORGN_ODNO")]
+        public string OrgnOdno { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 주문구분
+        /// 00: 지정가, 01: 시장가, 02: 조건부지정가 등
+        /// 정정 시 변경할 주문구분, 취소 시에도 원주문의 주문구분을 넣는다.
+        /// </summary>
+        [JsonPropertyName("ORD_DVSN")]
+        public string OrdDvsn { get; set; } = "00";
+
+        /// <summary>
+        /// 정정취소구분코드
+        /// "01": 정정, "02": 취소
+        /// </summary>
+        [JsonPropertyName("RVSE_CNCL_DVSN_CD")]
+        public string RvseCnclDvsnCd { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 주문수량
+        /// 정정 시: 정정할 수량 (원주문 수량 초과 불가)
+        /// 취소 시: 취소할 수량
+        /// </summary>
+        [JsonPropertyName("ORD_QTY")]
+        public string OrdQty { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 주문단가
+        /// 정정 시: 변경할 가격 (지정가인 경우)
+        /// 취소 시: "0"
+        /// </summary>
+        [JsonPropertyName("ORD_UNPR")]
+        public string OrdUnpr { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 잔량전부주문여부
+        /// "Y": 잔량 전부, "N": 일부 수량만
+        /// </summary>
+        [JsonPropertyName("QTY_ALL_ORD_YN")]
+        public string QtyAllOrdYn { get; set; } = "Y";
+
+        /// <summary>
+        /// 조건가격 (스탑지정가 주문에서만 사용)
+        /// </summary>
+        [JsonPropertyName("CNDT_PRIC")]
+        public string CndtPric { get; set; } = "0";
+
+        /// <summary>
+        /// 거래소ID구분코드
+        /// KRX: 한국거래소, NXT: 넥스트레이드, SOR: Smart Order Routing
+        /// 미입력 시 KRX로 진행, 모의투자는 KRX만 가능
+        /// </summary>
+        [JsonPropertyName("EXCG_ID_DVSN_CD")]
+        public string ExcgIdDvsnCd { get; set; } = "KRX";
+    }
+}

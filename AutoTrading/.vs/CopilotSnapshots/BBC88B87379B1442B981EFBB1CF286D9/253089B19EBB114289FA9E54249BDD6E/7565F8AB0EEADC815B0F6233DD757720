@@ -1,0 +1,21 @@
+﻿namespace KisRestAPI.Orders
+{
+    public enum OrderRvsecnclDvsnCd
+    {
+        Revise,
+        Cancel
+    }
+
+    public static class OrderRvsecnclDvsnCdExtensions
+    {
+        public static string ToCodeString(this OrderRvsecnclDvsnCd dvsnCd)
+        {
+            return dvsnCd switch
+            {
+                OrderRvsecnclDvsnCd.Revise => "01",
+                OrderRvsecnclDvsnCd.Cancel => "02",
+                _ => throw new ArgumentOutOfRangeException(nameof(dvsnCd), dvsnCd, "알 수 없는 정정취소구분입니다.")
+            };
+        }
+    }
+}

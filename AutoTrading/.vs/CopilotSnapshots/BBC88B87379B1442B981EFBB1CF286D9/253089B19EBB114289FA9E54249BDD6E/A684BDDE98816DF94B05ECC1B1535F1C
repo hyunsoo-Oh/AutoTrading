@@ -1,0 +1,15 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Orders
+{
+    public static class InquirePsblOrderTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8908R";
+        private const string MockTrId = "VTTC8908R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            return tradingMode == KisTradingMode.Live ? LiveTrId : MockTrId;
+        }
+    }
+}

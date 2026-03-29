@@ -1,0 +1,81 @@
+using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Orders
+{
+    // =====================================================================
+    // ===== 매도 가능 수량 조회 요청 DTO =====
+    // GET 방식 — QueryString으로 전송
+    // =====================================================================
+
+    public sealed class InquirePsblSellRequest
+    {
+        public string CANO { get; set; } = string.Empty;
+        public string ACNT_PRDT_CD { get; set; } = "01";
+        public string PDNO { get; set; } = string.Empty;
+    }
+
+    // =====================================================================
+    // ===== 매도 가능 수량 조회 응답 DTO =====
+    // =====================================================================
+
+    public sealed class InquirePsblSellResponse
+    {
+        [JsonPropertyName("rt_cd")]
+        public string RtCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg_cd")]
+        public string MsgCd { get; set; } = string.Empty;
+
+        [JsonPropertyName("msg1")]
+        public string Msg1 { get; set; } = string.Empty;
+
+        [JsonPropertyName("output1")]
+        public InquirePsblSellOutput1? Output1 { get; set; }
+    }
+
+    // =====================================================================
+    // ===== 매도 가능 수량 조회 output1 DTO =====
+    // =====================================================================
+
+    public sealed class InquirePsblSellOutput1
+    {
+        [JsonPropertyName("pdno")]
+        public string Pdno { get; set; } = string.Empty;
+
+        [JsonPropertyName("prdt_name")]
+        public string PrdtName { get; set; } = string.Empty;
+
+        [JsonPropertyName("buy_qty")]
+        public string BuyQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("sll_qty")]
+        public string SllQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("cblc_qty")]
+        public string CblcQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("nsvg_qty")]
+        public string NsvgQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("ord_psbl_qty")]
+        public string OrdPsblQty { get; set; } = string.Empty;
+
+        [JsonPropertyName("pchs_avg_pric")]
+        public string PchsAvgPric { get; set; } = string.Empty;
+
+        [JsonPropertyName("pchs_amt")]
+        public string PchsAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("now_pric")]
+        public string NowPric { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_amt")]
+        public string EvluAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_pfls_amt")]
+        public string EvluPflsAmt { get; set; } = string.Empty;
+
+        [JsonPropertyName("evlu_pfls_rt")]
+        public string EvluPflsRt { get; set; } = string.Empty;
+    }
+}

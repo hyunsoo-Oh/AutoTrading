@@ -1,0 +1,33 @@
+﻿using AutoTrading.Services.KoreaInvest.Common.Http;
+
+namespace AutoTrading.Services.KoreaInvest.Accounts
+{
+    /// <summary>
+    /// 주식잔고조회 API용 헤더 생성 클래스
+    /// </summary>
+    public static class InquireBalanceHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken,
+            string appKey,
+            string appSecret,
+            string trId,
+            string custType = "P",
+            string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken,
+                appKey: appKey,
+                appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    // ===== 도메인 전용 처리 =====
+                    ["tr_id"] = trId,
+
+                    // ===== 연속 조회 시 사용 =====
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

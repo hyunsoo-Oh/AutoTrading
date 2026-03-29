@@ -1,0 +1,40 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// output1 배열의 각 종목 잔고 항목 DTO
+    /// </summary>
+    public class InquireBalanceItem
+    {
+        [JsonPropertyName("pdno")]
+        public string ProductCode { get; set; } = string.Empty;
+
+        [JsonPropertyName("prdt_name")]
+        public string ProductName { get; set; } = string.Empty;
+
+        [JsonPropertyName("hldg_qty")]
+        public string HoldingQuantity { get; set; } = "0";
+
+        [JsonPropertyName("ord_psbl_qty")]
+        public string OrderableQuantity { get; set; } = "0";
+
+        [JsonPropertyName("pchs_avg_pric")]
+        public string PurchaseAveragePrice { get; set; } = "0";
+
+        [JsonPropertyName("pchs_amt")]
+        public string PurchaseAmount { get; set; } = "0";
+
+        [JsonPropertyName("prpr")]
+        public string CurrentPrice { get; set; } = "0";
+
+        [JsonPropertyName("evlu_amt")]
+        public string EvaluationAmount { get; set; } = "0";
+
+        [JsonPropertyName("evlu_pfls_amt")]
+        public string EvaluationProfitLossAmount { get; set; } = "0";
+
+        [JsonPropertyName("evlu_pfls_rt")]
+        public string EvaluationProfitLossRate { get; set; } = "0";
+    }
+}

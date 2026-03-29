@@ -1,14 +1,16 @@
 {
   "ApiSettings": {
-    "TradingMode": "Mock",
+    "TradingMode": "Live",
     "Mock": {
       "BaseUrl": "https://openapivts.koreainvestment.com:29443",
+      "WebSocketUrl": "ws://ops.koreainvestment.com:31000",
       "AppKey": "",
       "AppSecret": "",
       "AccountNumber": ""
     },
     "Live": {
       "BaseUrl": "https://openapi.koreainvestment.com:9443",
+      "WebSocketUrl": "ws://ops.koreainvestment.com:21000",
       "AppKey": "",
       "AppSecret": "",
       "AccountNumber": ""

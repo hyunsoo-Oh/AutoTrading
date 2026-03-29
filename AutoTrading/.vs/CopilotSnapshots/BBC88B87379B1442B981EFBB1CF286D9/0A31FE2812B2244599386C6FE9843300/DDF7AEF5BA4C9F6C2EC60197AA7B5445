@@ -1,0 +1,107 @@
+﻿using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    // =====================================================================
+    // ===== 기간별매매손익현황조회 API 빌더 통합 파일 =====
+    // Validator / QueryStringBuilder / UrlBuilder / TrIdProvider /
+    // HeaderBuilder를 하나로 모은다.
+    // ※ 기간별손익일별합산조회(TTTC8708R)와 달리 INQR_DVSN 파라미터가 없다.
+    // =====================================================================
+
+    // ===== 요청 검증 — 날짜 필수 검증 포함 =====
+    internal static class InquirePeriodTradeProfitRequestValidator
+    {
+        public static void Validate(InquirePeriodTradeProfitRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.INQR_STRT_DT))
+                throw new ArgumentException("조회시작일자(INQR_STRT_DT)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.INQR_END_DT))
+                throw new ArgumentException("조회종료일자(INQR_END_DT)가 비어 있습니다.");
+        }
+    }
+
+    // ===== QueryString 생성 — INQR_DVSN 없음 =====
+    internal static class InquirePeriodTradeProfitQueryStringBuilder
+    {
+        public static string Build(InquirePeriodTradeProfitRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]             = request.CANO,
+                ["ACNT_PRDT_CD"]     = request.ACNT_PRDT_CD,
+                ["INQR_STRT_DT"]     = request.INQR_STRT_DT,
+                ["INQR_END_DT"]      = request.INQR_END_DT,
+                ["PDNO"]             = request.PDNO,
+                ["SORT_DVSN"]        = request.SORT_DVSN,
+                ["CBLC_DVSN"]        = request.CBLC_DVSN,
+                ["CTX_AREA_FK100"]   = request.CTX_AREA_FK100,
+                ["CTX_AREA_NK100"]   = request.CTX_AREA_NK100,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+
+    // ===== URL 생성 =====
+    internal static class InquirePeriodTradeProfitUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/inquire-period-trade-profit";
+
+        public static string Build(string baseUrl, InquirePeriodTradeProfitRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquirePeriodTradeProfitQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+
+    // ===== TR ID 제공 — 실전투자 전용 (모의투자 미지원) =====
+    internal static class InquirePeriodTradeProfitTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8715R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            if (tradingMode != KisTradingMode.Live)
+            {
+                throw new NotSupportedException(
+                    "기간별매매손익현황조회(TTTC8715R)는 실전투자만 지원합니다. " +
+                    "모의투자 환경에서는 호출할 수 없습니다.");
+            }
+            return LiveTrId;
+        }
+    }
+
+    // ===== HTTP 헤더 생성 =====
+    internal static class InquirePeriodTradeProfitHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P", string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"]   = trId,
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

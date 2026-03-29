@@ -1,0 +1,138 @@
+﻿using AutoTrading.Configuration;
+using AutoTrading.Features.Models.Api.Accounts;
+using AutoTrading.Features.Views.Interfaces;
+using AutoTrading.Services.KoreaInvest.Accounts;
+using AutoTrading.Services.KoreaInvest.Auth;
+using AutoTrading.Services.KoreaInvest.Common;
+using AutoTrading.Services.KoreaInvest.Common.Http;
+
+namespace AutoTrading.Features.Presenters.Dashboard
+{
+    /// <summary>
+    /// Dashboard의 비즈니스 로직 담당 Presenter
+    ///
+    /// MainPresenter와 동일한 패턴:
+    /// - View(IDashboardView)만 알고 구체적 컨트롤은 모른다.
+    /// - KIA InquireBalance API를 호출해 결과를 View에 전달한다.
+    ///
+    /// 모드 전환 즉시 갱신:
+    /// - IKisTradingService.EnvironmentChanged 이벤트를 구독한다.
+    /// - 전환 시 캐시된 데이터를 즉시 표시하고, 백그라운드에서 최신 데이터를 조회한다.
+    /// </summary>
+    public class DashboardPresenter : IDisposable
+    {
+        private readonly IDashboardView _view;
+        private readonly IAuthService _authService;
+        private readonly ApiSettings _apiSettings;
+        private readonly IKisTradingService _kisTradingService;
+
+        private readonly HttpClient _httpClient;
+        private readonly IAccountService _accountService;
+
+        /// <summary>모드별 마지막 조회 결과 캐시</summary>
+        private readonly Dictionary<KisTradingMode, BalanceSummaryData> _cache = new();
+
+        public DashboardPresenter(
+            IDashboardView view,
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKisTradingService kisTradingService)
+        {
+            _view = view;
+            _authService = authService;
+            _apiSettings = apiSettings;
+            _kisTradingService = kisTradingService;
+
+            _httpClient = new HttpClient();
+            _accountService = new KisAccountService(_httpClient, kisTradingService, authService);
+
+            // 사용자가 모드를 전환할 때마다 즉시 갱신
+            _kisTradingService.EnvironmentChanged += OnEnvironmentChanged;
+        }
+
+        /// <summary>
+        /// 모드 전환 이벤트 핸들러 —
+        /// 캐시가 있으면 즉시 표시하고, 최신 데이터를 백그라운드에서 조회한다.
+        /// </summary>
+        private async void OnEnvironmentChanged(object? sender, KisTradingMode newMode)
+        {
+            Console.WriteLine($"[DASHBOARD] 모드 전환 감지: {newMode} — 즉시 갱신 시작");
+
+            if (_cache.TryGetValue(newMode, out BalanceSummaryData? cached))
+            {
+                _view.UpdateBalanceSummary(
+                    cached.TotalEvaluation, cached.Deposits,
+                    cached.ProfitLoss, cached.PurchaseAmount);
+            }
+
+            await RefreshBalanceAsync();
+        }
+
+        /// <summary>
+        /// 잔고조회 API 호출 후 View 카드 갱신 + 결과를 모드별 캐시에 저장
+        /// 타이머 Tick 및 모드 전환 이벤트에서 호출된다.
+        /// </summary>
+        public async Task RefreshBalanceAsync()
+        {
+            try
+            {
+                KisTradingMode mode = _kisTradingService.CurrentEnvironment;
+                ApiEndpointSettings settings = _kisTradingService.GetCurrentSettings();
+
+                var request = new InquireBalanceRequest
+                {
+                    CANO = settings.AccountNumber,
+                    ACNT_PRDT_CD = InquireBalanceAccountProductCodeProvider.Get(mode),
+                    AFHR_FLPR_YN = "N",
+                    OFL_YN = "",
+                    INQR_DVSN = "01",
+                    UNPR_DVSN = "01",
+                    FUND_STTL_ICLD_YN = "N",
+                    FNCG_AMT_AUTO_RDPT_YN = "N",
+                    PRCS_DVSN = "00",
+                    CTX_AREA_FK100 = "",
+                    CTX_AREA_NK100 = ""
+                };
+
+                InquireBalanceResponse? response = await _accountService.InquireBalanceAsync(request);
+
+                if (response?.RtCd != "0" || response.Output2 == null || response.Output2.Count == 0)
+                {
+                    Console.WriteLine($"[DASHBOARD] 잔고조회 실패: {response?.Msg1}");
+                    return;
+                }
+
+                InquireBalanceSummary summary = response.Output2[0];
+
+                decimal.TryParse(summary.TotalEvaluationAmount, out decimal totalEval);
+                decimal.TryParse(summary.DepositTotalAmount, out decimal deposits);
+                decimal.TryParse(summary.EvaluationProfitLossTotal, out decimal profitLoss);
+                decimal.TryParse(summary.PurchaseAmountTotal, out decimal purchase);
+
+                // 모드별로 결과를 캐시해 다음 전환 시 즉시 표시에 활용
+                _cache[mode] = new BalanceSummaryData(totalEval, deposits, profitLoss, purchase);
+
+                _view.UpdateBalanceSummary(totalEval, deposits, profitLoss, purchase);
+
+                Console.WriteLine($"[DASHBOARD] [{mode}] 갱신 완료 — 총평가: {totalEval:N0}  예수금: {deposits:N0}  손익: {profitLoss:N0}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[DASHBOARD] 잔고조회 오류: {ex.Message}");
+            }
+        }
+
+        public void Dispose()
+        {
+            _kisTradingService.EnvironmentChanged -= OnEnvironmentChanged;
+            _httpClient.Dispose();
+        }
+
+        /// <summary>모드별 잔고 캐시 데이터</summary>
+        private record BalanceSummaryData(
+            decimal TotalEvaluation,
+            decimal Deposits,
+            decimal ProfitLoss,
+            decimal PurchaseAmount);
+    }
+}

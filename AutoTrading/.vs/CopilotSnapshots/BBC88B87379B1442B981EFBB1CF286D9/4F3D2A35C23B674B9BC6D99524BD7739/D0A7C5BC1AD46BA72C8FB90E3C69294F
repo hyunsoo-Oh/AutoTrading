@@ -1,0 +1,28 @@
+﻿using System.Text.Json.Serialization;
+
+namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// output2 배열의 계좌 요약 DTO
+    /// </summary>
+    public class InquireBalanceSummary
+    {
+        [JsonPropertyName("dnca_tot_amt")]
+        public string DepositTotalAmount { get; set; } = "0";
+
+        [JsonPropertyName("tot_evlu_amt")]
+        public string TotalEvaluationAmount { get; set; } = "0";
+
+        [JsonPropertyName("nass_amt")]
+        public string NetAssetAmount { get; set; } = "0";
+
+        [JsonPropertyName("pchs_amt_smtl_amt")]
+        public string PurchaseAmountTotal { get; set; } = "0";
+
+        [JsonPropertyName("evlu_amt_smtl_amt")]
+        public string EvaluationAmountTotal { get; set; } = "0";
+
+        [JsonPropertyName("evlu_pfls_smtl_amt")]
+        public string EvaluationProfitLossTotal { get; set; } = "0";
+    }
+}

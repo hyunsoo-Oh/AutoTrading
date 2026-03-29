@@ -1,0 +1,19 @@
+﻿using KisRestAPI.Models.Orders;
+
+namespace KisRestAPI.Orders
+{
+    public static class InquirePsblRvsecnclUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/inquire-psbl-rvsecncl";
+
+        public static string Build(string baseUrl, InquirePsblRvsecnclRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquirePsblRvsecnclQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+}

@@ -1,0 +1,19 @@
+﻿using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 주식통합증거금 현황 요청 검증
+    /// </summary>
+    public static class InquireIntgrMarginRequestValidator
+    {
+        public static void Validate(InquireIntgrMarginRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+        }
+    }
+}

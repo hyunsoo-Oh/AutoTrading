@@ -1,0 +1,101 @@
+﻿using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Orders;
+
+namespace KisRestAPI.Orders
+{
+    // =====================================================================
+    // ===== 주식 현금 주문 API 빌더 통합 파일 =====
+    // Validator / UrlBuilder / HeaderBuilder / InquireOrderTrIdProvider /
+    // OrderEnum(OrderSide)을 하나로 모은다.
+    // POST 방식이므로 QueryStringBuilder는 없다.
+    // =====================================================================
+
+    // ===== 매수/매도 구분 =====
+    public enum OrderSide
+    {
+        Buy,
+        Sell
+    }
+
+    // ===== 요청 검증 — 지정가/시장가 가격 검증 포함 =====
+    internal static class OrderCashRequestValidator
+    {
+        public static void Validate(OrderCashRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.Cano))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.AcntPrdtCd))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.PdNo))
+                throw new ArgumentException("종목코드(PDNO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.OrdDvsn))
+                throw new ArgumentException("주문구분(ORD_DVSN)이 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.OrdQty))
+                throw new ArgumentException("주문수량(ORD_QTY)이 비어 있습니다.");
+            if (!int.TryParse(request.OrdQty, out int qty) || qty <= 0)
+                throw new ArgumentException("주문수량(ORD_QTY)은 1 이상의 정수 문자열이어야 합니다.");
+            if (string.IsNullOrWhiteSpace(request.OrdUnpr))
+                throw new ArgumentException("주문단가(ORD_UNPR)가 비어 있습니다.");
+
+            if (request.OrdDvsn == "00")
+            {
+                if (!decimal.TryParse(request.OrdUnpr, out decimal price) || price <= 0)
+                    throw new ArgumentException("지정가 주문시 주문단가(ORD_UNPR)는 0보다 커야 합니다.");
+            }
+            else if (request.OrdDvsn == "01")
+            {
+                if (request.OrdUnpr != "0")
+                    throw new ArgumentException("시장가 주문시 주문단가(ORD_UNPR)는 \"0\"으로 설정해 주셔야 합니다.");
+            }
+        }
+    }
+
+    // ===== URL 생성 — POST이므로 QueryString 없음 =====
+    internal static class OrderCashUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/order-cash";
+
+        public static string Build(string baseUrl)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            return $"{baseUrl.TrimEnd('/')}{Path}";
+        }
+    }
+
+    // ===== TR ID 제공 — 매수/매도 × 모의/실전 조합 =====
+    internal class InquireOrderTrIdProvider
+    {
+        private const string MockBuyTrId = "VTTC0012U";
+        private const string LiveBuyTrId = "TTTC0012U";
+        private const string MockSellTrId = "VTTC0011U";
+        private const string LiveSellTrId = "TTTC0011U";
+
+        public static string Get(KisTradingMode tradingMode, OrderSide order)
+        {
+            return tradingMode == KisTradingMode.Live
+                ? order == OrderSide.Buy ? LiveBuyTrId : LiveSellTrId
+                : order == OrderSide.Buy ? MockBuyTrId : MockSellTrId;
+        }
+    }
+
+    // ===== HTTP 헤더 생성 =====
+    internal static class OrderCashHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P", string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"] = trId,
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

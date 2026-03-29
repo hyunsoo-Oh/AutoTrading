@@ -1,0 +1,15 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Accounts
+{
+    public static class InquireBalanceAccountProductCodeProvider
+    {
+        private const string LiveProductCode = "01";
+        private const string MockProductCode = "50";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            return tradingMode == KisTradingMode.Live ? LiveProductCode : MockProductCode;
+        }
+    }
+}

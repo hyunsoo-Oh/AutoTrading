@@ -1,0 +1,138 @@
+﻿using KisRestAPI.Configuration;
+using KisRestAPI.Models.Accounts;
+using KisRestAPI.Models.Auth;
+using KisRestAPI.Auth;
+using KisRestAPI.Common.Http;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 한국투자증권 계좌 관련 API 서비스
+    /// </summary>
+    public sealed class KisAccountService : KisHttpServiceBase, IAccountService
+    {
+        private readonly IAuthService _authService;
+
+        public KisAccountService(
+            HttpClient httpClient,
+            IKisTradingService kisTradingService,
+            IAuthService authService)
+            : base(httpClient, kisTradingService)
+        {
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+        }
+
+        public async Task<InquireBalanceResponse?> InquireBalanceAsync(
+            InquireBalanceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireBalanceRequestValidator.Validate(request);
+
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+            string requestUrl = InquireBalanceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+            string trId = InquireBalanceTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            Dictionary<string, string> headers = InquireBalanceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P");
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식잔고조회", cancellationToken: cancellationToken);
+
+            InquireBalanceResponse response =
+                DeserializeResponse<InquireBalanceResponse>(responseText, "주식잔고조회");
+
+            EnsureBalanceSuccess(response);
+            return response;
+        }
+
+        private static void EnsureBalanceSuccess(InquireBalanceResponse response)
+        {
+            if (response == null)
+                throw new InvalidOperationException("잔고조회 응답이 null입니다.");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"잔고조회 요청은 HTTP 수준에서는 성공했지만 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+        }
+
+        protected override void EnsureBusinessSuccess(string apiName, string requestUrl, string responseText)
+        {
+        }
+
+        public async Task<InquireBalanceRlzPlResponse> InquireBalanceRlzPlAsync(
+            InquireBalanceRlzPlRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireBalanceRlzPlRequestValidator.Validate(request);
+
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+            string requestUrl = InquireBalanceRlzPlUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+            string trId = InquireBalanceRlzPlTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            Dictionary<string, string> headers = InquireBalanceRlzPlHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "주식잔고조회_실현손익", cancellationToken: cancellationToken);
+
+            InquireBalanceRlzPlResponse response =
+                DeserializeResponse<InquireBalanceRlzPlResponse>(responseText, "주식잔고조회_실현손익");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"주식잔고조회_실현손익이 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+
+        public async Task<InquireAccountBalanceResponse> InquireAccountBalanceAsync(
+            InquireAccountBalanceRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            InquireAccountBalanceRequestValidator.Validate(request);
+
+            ApiEndpointSettings settings = GetCurrentSettings();
+            string baseUrl = NormalizeBaseUrl(settings.BaseUrl);
+            string requestUrl = InquireAccountBalanceUrlBuilder.Build(baseUrl, request);
+
+            TokenResponse token = await _authService.GetAccessTokenAsync(cancellationToken);
+            string trId = InquireAccountBalanceTrIdProvider.Get(_kisTradingService.CurrentEnvironment);
+
+            Dictionary<string, string> headers = InquireAccountBalanceHeaderBuilder.Build(
+                accessToken: token.AccessToken, appKey: settings.AppKey,
+                appSecret: settings.AppSecret, trId: trId, custType: "P", trCont: string.Empty);
+
+            string responseText = await SendGetAsync(
+                requestUrl: requestUrl, headers: headers,
+                apiName: "투자계좌자산현황조회", cancellationToken: cancellationToken);
+
+            InquireAccountBalanceResponse response =
+                DeserializeResponse<InquireAccountBalanceResponse>(responseText, "투자계좌자산현황조회");
+
+            if (response.RtCd != "0")
+            {
+                throw new InvalidOperationException(
+                    $"투자계좌자산현황조회가 업무적으로 실패했습니다. " +
+                    $"rt_cd={response.RtCd}, msg_cd={response.MsgCd}, msg1={response.Msg1}");
+            }
+
+            return response;
+        }
+    }
+}

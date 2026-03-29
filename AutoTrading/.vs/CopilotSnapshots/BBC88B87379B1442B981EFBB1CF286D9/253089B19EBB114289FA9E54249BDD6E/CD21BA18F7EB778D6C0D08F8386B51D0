@@ -1,0 +1,28 @@
+﻿using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 주식통합증거금 현황 QueryString 생성
+    /// </summary>
+    public static class InquireIntgrMarginQueryStringBuilder
+    {
+        public static string Build(InquireIntgrMarginRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]                       = request.CANO,
+                ["ACNT_PRDT_CD"]               = request.ACNT_PRDT_CD,
+                ["CMA_EVLU_AMT_ICLD_YN"]       = request.CMA_EVLU_AMT_ICLD_YN,
+                ["WCRC_FRCR_DVSN_CD"]          = request.WCRC_FRCR_DVSN_CD,
+                ["FWEX_CTRT_FRCR_DVSN_CD"]     = request.FWEX_CTRT_FRCR_DVSN_CD,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+}

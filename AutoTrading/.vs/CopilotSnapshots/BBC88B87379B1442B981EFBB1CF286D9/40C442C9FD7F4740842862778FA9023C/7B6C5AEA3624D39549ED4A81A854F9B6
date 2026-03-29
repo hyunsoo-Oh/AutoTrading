@@ -1,0 +1,35 @@
+﻿using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    /// <summary>
+    /// 기간별손익일별합산조회 QueryString 생성
+    ///
+    /// API 명세에 맞춰 Query Parameter 순서대로 조립한다.
+    /// </summary>
+    public static class InquirePeriodProfitLossQueryStringBuilder
+    {
+        public static string Build(InquirePeriodProfitLossRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]             = request.CANO,
+                ["ACNT_PRDT_CD"]     = request.ACNT_PRDT_CD,
+                ["INQR_STRT_DT"]     = request.INQR_STRT_DT,
+                ["INQR_END_DT"]      = request.INQR_END_DT,
+                ["PDNO"]             = request.PDNO,
+                ["INQR_DVSN"]        = request.INQR_DVSN,
+                ["SORT_DVSN"]        = request.SORT_DVSN,
+                ["CBLC_DVSN"]        = request.CBLC_DVSN,
+                ["CTX_AREA_FK100"]   = request.CTX_AREA_FK100,
+                ["CTX_AREA_NK100"]   = request.CTX_AREA_NK100,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+}

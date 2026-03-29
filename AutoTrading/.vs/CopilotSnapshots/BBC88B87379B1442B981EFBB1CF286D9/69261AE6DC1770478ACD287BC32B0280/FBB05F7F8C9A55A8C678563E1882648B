@@ -1,0 +1,98 @@
+﻿using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    // =====================================================================
+    // ===== 주식통합증거금 현황 API 빌더 통합 파일 =====
+    // Validator / QueryStringBuilder / UrlBuilder / TrIdProvider /
+    // HeaderBuilder를 하나로 모은다.
+    // =====================================================================
+
+    // ===== 요청 검증 =====
+    public static class InquireIntgrMarginRequestValidator
+    {
+        public static void Validate(InquireIntgrMarginRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+        }
+    }
+
+    // ===== QueryString 생성 =====
+    public static class InquireIntgrMarginQueryStringBuilder
+    {
+        public static string Build(InquireIntgrMarginRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]                       = request.CANO,
+                ["ACNT_PRDT_CD"]               = request.ACNT_PRDT_CD,
+                ["CMA_EVLU_AMT_ICLD_YN"]       = request.CMA_EVLU_AMT_ICLD_YN,
+                ["WCRC_FRCR_DVSN_CD"]          = request.WCRC_FRCR_DVSN_CD,
+                ["FWEX_CTRT_FRCR_DVSN_CD"]     = request.FWEX_CTRT_FRCR_DVSN_CD,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+
+    // ===== URL 생성 =====
+    public static class InquireIntgrMarginUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/intgr-margin";
+
+        public static string Build(string baseUrl, InquireIntgrMarginRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquireIntgrMarginQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+
+    // ===== TR ID 제공 — 실전투자 전용 (모의투자 미지원) =====
+    public static class InquireIntgrMarginTrIdProvider
+    {
+        private const string LiveTrId = "TTTC0869R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            if (tradingMode != KisTradingMode.Live)
+            {
+                throw new NotSupportedException(
+                    "주식통합증거금현황(TTTC0869R)은 실전투자만 지원합니다. " +
+                    "모의투자 환경에서는 호출할 수 없습니다.");
+            }
+            return LiveTrId;
+        }
+    }
+
+    // ===== HTTP 헤더 생성 =====
+    public static class InquireIntgrMarginHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P", string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"]   = trId,
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

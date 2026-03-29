@@ -1,0 +1,8 @@
+﻿namespace KisRestAPI.Orders
+{
+    public enum OrderSide
+    {
+        Buy,
+        Sell
+    }
+}

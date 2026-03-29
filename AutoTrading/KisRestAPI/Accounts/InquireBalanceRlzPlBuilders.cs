@@ -1,0 +1,105 @@
+using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Models.Accounts;
+
+namespace KisRestAPI.Accounts
+{
+    // =====================================================================
+    // ===== 주식잔고조회_실현손익 API 빌더 통합 파일 =====
+    // Validator / QueryStringBuilder / UrlBuilder / TrIdProvider /
+    // HeaderBuilder를 하나로 모은다.
+    // =====================================================================
+
+    // ===== 요청 검증 =====
+    internal static class InquireBalanceRlzPlRequestValidator
+    {
+        public static void Validate(InquireBalanceRlzPlRequest request)
+        {
+            if (request is null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CANO))
+                throw new ArgumentException("계좌번호(CANO)가 비어 있습니다.");
+            if (string.IsNullOrWhiteSpace(request.ACNT_PRDT_CD))
+                throw new ArgumentException("계좌상품코드(ACNT_PRDT_CD)가 비어 있습니다.");
+        }
+    }
+
+    // ===== QueryString 생성 =====
+    internal static class InquireBalanceRlzPlQueryStringBuilder
+    {
+        public static string Build(InquireBalanceRlzPlRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            var queryParameters = new Dictionary<string, string?>
+            {
+                ["CANO"]                   = request.CANO,
+                ["ACNT_PRDT_CD"]           = request.ACNT_PRDT_CD,
+                ["AFHR_FLPR_YN"]           = request.AFHR_FLPR_YN,
+                ["OFL_YN"]                 = request.OFL_YN,
+                ["INQR_DVSN"]              = request.INQR_DVSN,
+                ["UNPR_DVSN"]              = request.UNPR_DVSN,
+                ["FUND_STTL_ICLD_YN"]      = request.FUND_STTL_ICLD_YN,
+                ["FNCG_AMT_AUTO_RDPT_YN"]  = request.FNCG_AMT_AUTO_RDPT_YN,
+                ["PRCS_DVSN"]              = request.PRCS_DVSN,
+                ["COST_ICLD_YN"]           = request.COST_ICLD_YN,
+                ["CTX_AREA_FK100"]         = request.CTX_AREA_FK100,
+                ["CTX_AREA_NK100"]         = request.CTX_AREA_NK100,
+            };
+
+            return string.Join("&",
+                queryParameters.Select(p =>
+                    $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value ?? string.Empty)}"));
+        }
+    }
+
+    // ===== URL 생성 =====
+    internal static class InquireBalanceRlzPlUrlBuilder
+    {
+        private const string Path = "/uapi/domestic-stock/v1/trading/inquire-balance-rlz-pl";
+
+        public static string Build(string baseUrl, InquireBalanceRlzPlRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                throw new ArgumentException("BaseUrl이 비어 있습니다.", nameof(baseUrl));
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string queryString = InquireBalanceRlzPlQueryStringBuilder.Build(request);
+            return $"{baseUrl.TrimEnd('/')}{Path}?{queryString}";
+        }
+    }
+
+    // ===== TR ID 제공 — 실전투자 전용 (모의투자 미지원) =====
+    internal static class InquireBalanceRlzPlTrIdProvider
+    {
+        private const string LiveTrId = "TTTC8494R";
+
+        public static string Get(KisTradingMode tradingMode)
+        {
+            if (tradingMode != KisTradingMode.Live)
+            {
+                throw new NotSupportedException(
+                    "주식잔고조회_실현손익(TTTC8494R)은 실전투자만 지원합니다. " +
+                    "모의투자 환경에서는 호출할 수 없습니다.");
+            }
+            return LiveTrId;
+        }
+    }
+
+    // ===== HTTP 헤더 생성 =====
+    internal static class InquireBalanceRlzPlHeaderBuilder
+    {
+        public static Dictionary<string, string> Build(
+            string accessToken, string appKey, string appSecret,
+            string trId, string custType = "P", string? trCont = null)
+        {
+            return KisHttpHeaderBuilder.BuildCommon(
+                accessToken: accessToken, appKey: appKey, appSecret: appSecret,
+                custType: custType,
+                extraHeaders: new Dictionary<string, string>
+                {
+                    ["tr_id"]   = trId,
+                    ["tr_cont"] = trCont ?? string.Empty
+                });
+        }
+    }
+}

@@ -1,0 +1,19 @@
+﻿using KisRestAPI.Common;
+
+namespace KisRestAPI.Orders
+{
+    public class InquireOrderTrIdProvider
+    {
+        private const string MockBuyTrId = "VTTC0012U";
+        private const string LiveBuyTrId = "TTTC0012U";
+        private const string MockSellTrId = "VTTC0011U";
+        private const string LiveSellTrId = "TTTC0011U";
+
+        public static string Get(KisTradingMode tradingMode, OrderSide order)
+        {
+            return tradingMode == KisTradingMode.Live
+                ? order == OrderSide.Buy ? LiveBuyTrId : LiveSellTrId
+                : order == OrderSide.Buy ? MockBuyTrId : MockSellTrId;
+        }
+    }
+}

@@ -1,0 +1,249 @@
+﻿namespace AutoTrading.Features.Views.Contents
+{
+    partial class Dashboard
+    {
+        /// <summary> 
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region 구성 요소 디자이너에서 생성한 코드
+
+        /// <summary> 
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            valueTrackerCard_Rate = new AutoTrading.Controls.Cards.ValueTrackerCard();
+            valueTrackerCard_Deposits = new AutoTrading.Controls.Cards.ValueTrackerCard();
+            valueTrackerCard_TotalAsset = new AutoTrading.Controls.Cards.ValueTrackerCard();
+            dataGridView1 = new DataGridView();
+            label1 = new Label();
+            emptyCard1 = new AutoTrading.Controls.Cards.EmptyCard();
+            label2 = new Label();
+            label_totalEvaluation = new Label();
+            label4 = new Label();
+            label_rate = new Label();
+            label3 = new Label();
+            label5 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
+            // valueTrackerCard_Rate
+            // 
+            valueTrackerCard_Rate.BackColor = Color.Transparent;
+            valueTrackerCard_Rate.BorderColor = Color.FromArgb(40, 42, 45);
+            valueTrackerCard_Rate.CardBackColor = Color.FromArgb(26, 28, 30);
+            valueTrackerCard_Rate.ChangeAmount = new decimal(new int[] { 0, 0, 0, 0 });
+            valueTrackerCard_Rate.ChangeRate = 0F;
+            valueTrackerCard_Rate.CornerRadius = 8;
+            valueTrackerCard_Rate.DownColor = Color.FromArgb(229, 83, 80);
+            valueTrackerCard_Rate.IsPositive = false;
+            valueTrackerCard_Rate.Location = new Point(1012, 420);
+            valueTrackerCard_Rate.Name = "valueTrackerCard_Rate";
+            valueTrackerCard_Rate.Padding = new Padding(15, 10, 15, 10);
+            valueTrackerCard_Rate.ShowIndicator = true;
+            valueTrackerCard_Rate.Size = new Size(153, 125);
+            valueTrackerCard_Rate.TabIndex = 11;
+            valueTrackerCard_Rate.TitleColor = Color.FromArgb(170, 170, 170);
+            valueTrackerCard_Rate.TitleText = "수익률";
+            valueTrackerCard_Rate.TotalValue = new decimal(new int[] { 0, 0, 0, 0 });
+            valueTrackerCard_Rate.UpColor = Color.FromArgb(72, 199, 142);
+            valueTrackerCard_Rate.ValueColor = Color.White;
+            valueTrackerCard_Rate.ValueFormat = "N0";
+            // 
+            // valueTrackerCard_Deposits
+            // 
+            valueTrackerCard_Deposits.BackColor = Color.Transparent;
+            valueTrackerCard_Deposits.BorderColor = Color.FromArgb(40, 42, 45);
+            valueTrackerCard_Deposits.CardBackColor = Color.FromArgb(26, 28, 30);
+            valueTrackerCard_Deposits.ChangeAmount = new decimal(new int[] { 0, 0, 0, 0 });
+            valueTrackerCard_Deposits.ChangeRate = 0F;
+            valueTrackerCard_Deposits.CornerRadius = 8;
+            valueTrackerCard_Deposits.DownColor = Color.FromArgb(229, 83, 80);
+            valueTrackerCard_Deposits.IsPositive = false;
+            valueTrackerCard_Deposits.Location = new Point(778, 420);
+            valueTrackerCard_Deposits.Name = "valueTrackerCard_Deposits";
+            valueTrackerCard_Deposits.Padding = new Padding(15, 10, 15, 10);
+            valueTrackerCard_Deposits.ShowIndicator = true;
+            valueTrackerCard_Deposits.Size = new Size(228, 125);
+            valueTrackerCard_Deposits.TabIndex = 10;
+            valueTrackerCard_Deposits.TitleColor = Color.FromArgb(170, 170, 170);
+            valueTrackerCard_Deposits.TitleText = "예수금";
+            valueTrackerCard_Deposits.TotalValue = new decimal(new int[] { 0, 0, 0, 0 });
+            valueTrackerCard_Deposits.UpColor = Color.FromArgb(72, 199, 142);
+            valueTrackerCard_Deposits.ValueColor = Color.White;
+            valueTrackerCard_Deposits.ValueFormat = "N0";
+            // 
+            // valueTrackerCard_TotalAsset
+            // 
+            valueTrackerCard_TotalAsset.BackColor = Color.Transparent;
+            valueTrackerCard_TotalAsset.BorderColor = Color.FromArgb(40, 42, 45);
+            valueTrackerCard_TotalAsset.CardBackColor = Color.FromArgb(26, 28, 30);
+            valueTrackerCard_TotalAsset.ChangeAmount = new decimal(new int[] { 0, 0, 0, 0 });
+            valueTrackerCard_TotalAsset.ChangeRate = 0F;
+            valueTrackerCard_TotalAsset.CornerRadius = 8;
+            valueTrackerCard_TotalAsset.DownColor = Color.FromArgb(229, 83, 80);
+            valueTrackerCard_TotalAsset.IsPositive = true;
+            valueTrackerCard_TotalAsset.Location = new Point(778, 288);
+            valueTrackerCard_TotalAsset.Name = "valueTrackerCard_TotalAsset";
+            valueTrackerCard_TotalAsset.Padding = new Padding(15, 8, 15, 8);
+            valueTrackerCard_TotalAsset.ShowIndicator = true;
+            valueTrackerCard_TotalAsset.Size = new Size(387, 125);
+            valueTrackerCard_TotalAsset.TabIndex = 9;
+            valueTrackerCard_TotalAsset.TitleColor = Color.FromArgb(170, 170, 170);
+            valueTrackerCard_TotalAsset.TitleText = "총 자산 가치";
+            valueTrackerCard_TotalAsset.TotalValue = new decimal(new int[] { 10000000, 0, 0, 0 });
+            valueTrackerCard_TotalAsset.UpColor = Color.FromArgb(72, 199, 142);
+            valueTrackerCard_TotalAsset.ValueColor = Color.White;
+            valueTrackerCard_TotalAsset.ValueFormat = "N0";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(15, 329);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(733, 318);
+            dataGridView1.TabIndex = 15;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            label1.Location = new Point(15, 297);
+            label1.Name = "label1";
+            label1.Size = new Size(99, 28);
+            label1.TabIndex = 16;
+            label1.Text = "보유 종목";
+            // 
+            // emptyCard1
+            // 
+            emptyCard1.BackColor = Color.Transparent;
+            emptyCard1.CardBackColor = Color.FromArgb(26, 28, 30);
+            emptyCard1.Location = new Point(25, 22);
+            emptyCard1.Name = "emptyCard1";
+            emptyCard1.Size = new Size(1402, 63);
+            emptyCard1.TabIndex = 17;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(26, 28, 30);
+            label2.Font = new Font("맑은 고딕", 10.2F);
+            label2.Location = new Point(48, 42);
+            label2.Name = "label2";
+            label2.Size = new Size(117, 23);
+            label2.TabIndex = 18;
+            label2.Text = "총 자산 가치 :";
+            // 
+            // label_totalEvaluation
+            // 
+            label_totalEvaluation.BackColor = Color.FromArgb(26, 28, 30);
+            label_totalEvaluation.Font = new Font("맑은 고딕", 10.2F);
+            label_totalEvaluation.Location = new Point(191, 39);
+            label_totalEvaluation.Name = "label_totalEvaluation";
+            label_totalEvaluation.Size = new Size(135, 28);
+            label_totalEvaluation.TabIndex = 19;
+            label_totalEvaluation.Text = "10,000,000";
+            label_totalEvaluation.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(26, 28, 30);
+            label4.Font = new Font("맑은 고딕", 10.2F);
+            label4.Location = new Point(327, 42);
+            label4.Name = "label4";
+            label4.Size = new Size(27, 23);
+            label4.TabIndex = 20;
+            label4.Text = "원";
+            // 
+            // label_rate
+            // 
+            label_rate.AutoSize = true;
+            label_rate.BackColor = Color.FromArgb(26, 28, 30);
+            label_rate.Font = new Font("맑은 고딕", 10.2F);
+            label_rate.Location = new Point(365, 42);
+            label_rate.Name = "label_rate";
+            label_rate.Size = new Size(77, 23);
+            label_rate.TabIndex = 21;
+            label_rate.Text = "수익률 : ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = Color.FromArgb(26, 28, 30);
+            this.label3.Font = new Font("맑은 고딕", 10.2F);
+            this.label3.Location = new Point(573, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new Size(27, 23);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "원";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(26, 28, 30);
+            label5.Font = new Font("맑은 고딕", 10.2F);
+            label5.Location = new Point(437, 41);
+            label5.Name = "label5";
+            label5.Size = new Size(90, 23);
+            label5.TabIndex = 22;
+            label5.Text = "10,000,000";
+            label5.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // Dashboard
+            // 
+            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 34, 40);
+            Controls.Add(this.label3);
+            Controls.Add(label5);
+            Controls.Add(label_rate);
+            Controls.Add(label4);
+            Controls.Add(label_totalEvaluation);
+            Controls.Add(label2);
+            Controls.Add(emptyCard1);
+            Controls.Add(label1);
+            Controls.Add(dataGridView1);
+            Controls.Add(valueTrackerCard_Rate);
+            Controls.Add(valueTrackerCard_Deposits);
+            Controls.Add(valueTrackerCard_TotalAsset);
+            ForeColor = Color.FromArgb(225, 226, 228);
+            Name = "Dashboard";
+            Size = new Size(1448, 659);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+        private Controls.Cards.ValueTrackerCard valueTrackerCard_Rate;
+        private Controls.Cards.ValueTrackerCard valueTrackerCard_Deposits;
+        private Controls.Cards.ValueTrackerCard valueTrackerCard_TotalAsset;
+        private DataGridView dataGridView1;
+        private Label label1;
+        private Controls.Cards.EmptyCard emptyCard1;
+        private Label label3;
+        private Label label2;
+        private Label label_totalEvaluation;
+        private Label label4;
+        private Label label_rate;
+        private Label label5;
+    }
+}

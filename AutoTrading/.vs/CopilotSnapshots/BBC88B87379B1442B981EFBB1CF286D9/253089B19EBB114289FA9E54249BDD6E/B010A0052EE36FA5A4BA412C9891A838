@@ -1,0 +1,58 @@
+﻿namespace KisRestAPI.Models.Accounts
+{
+    /// <summary>
+    /// 기간별매매손익현황조회 Query Parameter DTO
+    ///
+    /// 왜 이 API가 필요한가?
+    /// - 기간별손익일별합산조회(TTTC8708R)는 일자별로 손익을 합산해서 보여준다.
+    /// - 이 API는 종목별로 매매손익을 보여주므로, 어떤 종목에서 수익/손실이 발생했는지 파악할 수 있다.
+    /// - HTS [0856] 기간별 매매손익 화면에서 "종목별" 클릭 시의 기능에 해당한다.
+    /// - 자동매매 전략의 종목별 성과 분석과 전략 개선에 활용할 수 있다.
+    ///
+    /// ※ 실전투자 전용 API ? 모의투자 미지원
+    /// </summary>
+    public sealed class InquirePeriodTradeProfitRequest
+    {
+        /// <summary>종합계좌번호 앞 8자리</summary>
+        public string CANO { get; set; } = string.Empty;
+
+        /// <summary>계좌상품코드 뒤 2자리 (보통 "01")</summary>
+        public string ACNT_PRDT_CD { get; set; } = "01";
+
+        /// <summary>조회시작일자 (YYYYMMDD)</summary>
+        public string INQR_STRT_DT { get; set; } = string.Empty;
+
+        /// <summary>조회종료일자 (YYYYMMDD)</summary>
+        public string INQR_END_DT { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 상품번호 (종목코드)
+        /// 공란 입력 시 전체 종목 대상
+        /// </summary>
+        public string PDNO { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 정렬구분
+        /// "00": 최근 순, "01": 과거 순, "02": 최근 순
+        /// </summary>
+        public string SORT_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 잔고구분
+        /// "00": 전체
+        /// </summary>
+        public string CBLC_DVSN { get; set; } = "00";
+
+        /// <summary>
+        /// 연속조회검색조건100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_FK100 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 연속조회키100
+        /// 최초 조회 시 공란, 다음 페이지 조회 시 이전 응답의 값을 입력
+        /// </summary>
+        public string CTX_AREA_NK100 { get; set; } = string.Empty;
+    }
+}

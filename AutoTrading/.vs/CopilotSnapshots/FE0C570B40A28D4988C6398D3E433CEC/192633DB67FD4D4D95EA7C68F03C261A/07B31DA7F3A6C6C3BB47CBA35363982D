@@ -1,0 +1,1161 @@
+﻿using KisRestAPI.Configuration;
+using KisRestAPI.Models.Accounts;
+using KisRestAPI.Models.Auth;
+using KisRestAPI.Models.Market;
+using KisRestAPI.Models.Orders;
+using AutoTrading.Features.Views.Interfaces;
+using KisRestAPI.Accounts;
+using KisRestAPI.Auth;
+using KisRestAPI.Common;
+using KisRestAPI.Common.Http;
+using KisRestAPI.Market;
+using KisRestAPI.Orders;
+using System.Diagnostics;
+
+namespace AutoTrading.Features.Presenters.Main
+{
+    /// <summary>
+    /// MainForm의 비즈니스 로직을 담당하는 Presenter
+    ///
+    /// 왜 Presenter로 분리하는가?
+    /// - MainForm에 토큰 발급, 환경 전환, 잔고 조회 로직이 직접 들어 있으면
+    ///   화면 코드와 비즈니스 로직이 섞여 유지보수가 어렵다.
+    /// - Presenter는 View 인터페이스(IMainView)만 알고, 구체적 컨트롤은 모른다.
+    /// - 나중에 테스트할 때 IMainView를 Mock으로 교체하면 UI 없이도 로직 검증 가능.
+    ///
+    /// 수정 포인트:
+    /// - 새 비즈니스 동작 추가 시 이 클래스에 메서드를 추가한다.
+    /// - UI 동작이 필요하면 IMainView에 메서드를 추가하고 Presenter에서 호출한다.
+    /// </summary>
+    public class MainPresenter : IDisposable
+    {
+        /// <summary>View 인터페이스 ? UI 갱신 시 이 인터페이스를 통해 호출</summary>
+        private readonly IMainView _view;
+        /// <summary>인증 서비스 ? 토큰 발급/갱신 담당</summary>
+        private readonly IAuthService _authService;
+        /// <summary>API 설정 (Mock/Live 접속 정보)</summary>
+        private readonly ApiSettings _apiSettings;
+        /// <summary>현재 거래 환경 관리 서비스</summary>
+        private readonly IKisTradingService _kisTradingService;
+
+        /// <summary>HTTP 통신 전담 객체</summary>
+        private HttpClient? _httpClient;
+
+        /// <summary>계좌 조회 서비스</summary>
+        private IAccountService? _accountService;
+        /// <summary>주문 서비스</summary>
+        private IOrderService _orderService;
+        /// <summary>시세/시장 조회 서비스</summary>
+        private IMarketService? _marketService;
+
+        // ===== 테스트 전용 서비스 주입 =====
+        // 단위 테스트에서 Mock 서비스를 주입할 때 사용한다.
+        // internal 접근자이므로 InternalsVisibleTo로 허용된 테스트 프로젝트에서만 접근 가능하다.
+        // 프로덕션 코드에서는 RebuildServices()가 실제 서비스를 생성한다.
+        internal void SetAccountServiceForTesting(IAccountService accountService) => _accountService = accountService;
+        internal void SetOrderServiceForTesting(IOrderService orderService) => _orderService = orderService;
+        internal void SetMarketServiceForTesting(IMarketService marketService) => _marketService = marketService;
+
+        // ===== 토큰 발급에 성공한 환경 목록 =====
+        // 최초에는 Live만 들어 있고, 사용자가 Mock 전환에 성공하면 Mock도 추가된다.
+        // 타이머는 이 목록에 있는 환경만 주기적으로 갱신한다.
+        // ===== =====
+        private readonly HashSet<KisTradingMode> _authenticatedModes = new();
+
+        /// <summary>
+        /// Presenter 생성 View와 서비스들을 주입받는다
+        /// </summary>
+        public MainPresenter(
+            IMainView view,
+            IAuthService authService,
+            ApiSettings apiSettings,
+            IKisTradingService kisTradingService)
+        {
+            _view = view;
+            _authService = authService;
+            _apiSettings = apiSettings;
+            _kisTradingService = kisTradingService;
+        }
+
+        /// <summary>
+        /// 앱 시작 시 호출 — 서비스 초기화 및 현재 환경 토큰만 발급
+        ///
+        /// 왜 현재 환경만?
+        /// - 실전투자로 시작할 때 모의투자 토큰까지 동시에 발급하면
+        ///   한국투자증권의 토큰 발급 횟수 제한에 걸릴 수 있다.
+        /// - 모의투자 토큰은 사용자가 메뉴에서 전환할 때 최초 1회만 발급한다.
+        /// </summary>
+        public async Task InitializeAsync()
+        {
+            RebuildServices();
+
+            // ===== 현재 환경(실전투자) 토큰만 발급 =====
+            bool success = await TryAuthenticateCurrentModeAsync();
+            if (success)
+            {
+                _authenticatedModes.Add(_kisTradingService.CurrentEnvironment);
+            }
+
+            await RefreshTokenAsync();
+        }
+
+        /// <summary>
+        /// 서비스 객체 생성/재생성
+        /// </summary>
+        private void RebuildServices()
+        {
+            _httpClient?.Dispose();
+            _httpClient = new HttpClient();
+
+            _accountService = new KisAccountService(_httpClient, _kisTradingService, _authService);
+            _orderService = new KisOrderService(_httpClient, _kisTradingService, _authService);
+            _marketService = new KisMarketService(_httpClient, _kisTradingService, _authService);
+        }
+
+        /// <summary>
+        /// 현재 환경의 토큰 발급을 시도하고 성공 여부를 반환한다.
+        /// View 갱신 없이 순수하게 토큰만 확인한다.
+        /// </summary>
+        private async Task<bool> TryAuthenticateCurrentModeAsync()
+        {
+            try
+            {
+                TokenResponse? token = await _authService.GetAccessTokenAsync();
+                return token != null && !string.IsNullOrWhiteSpace(token.AccessToken);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 지정된 환경의 토큰 발급을 시도하고 성공 여부를 반환한다.
+        /// 전역 환경(_currentEnvironment)을 변경하지 않고 mode를 직접 지정하여 인증한다.
+        /// SwitchEnvironmentAsync에서 최초 전환 시 사용한다.
+        /// </summary>
+        private async Task<bool> TryAuthenticateModeAsync(KisTradingMode mode)
+        {
+            try
+            {
+                TokenResponse? token = await _authService.GetAccessTokenAsync(mode);
+                return token != null && !string.IsNullOrWhiteSpace(token.AccessToken);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 현재 환경의 토큰 발급/갱신 후 View 연결 상태 갱신
+        /// </summary>
+        public async Task RefreshTokenAsync()
+        {
+            try
+            {
+                TokenResponse? token = await _authService.GetAccessTokenAsync();
+
+                bool connected = token != null && !string.IsNullOrWhiteSpace(token.AccessToken);
+                string accountInfo = _kisTradingService.GetCurrentSettings().AccountNumber;
+                _view.UpdateConnectionStatus(connected, accountInfo);
+
+                Console.WriteLine(connected
+                    ? $"[TOKEN] 발급/갱신 성공 | 만료: {token!.AccessTokenExpired}"
+                    : "[TOKEN] 발급 실패: 토큰이 비어 있음");
+            }
+            catch (Exception ex)
+            {
+                _view.UpdateConnectionStatus(false, "");
+                Console.WriteLine($"[TOKEN] 발급 실패: {ex.Message}");
+                _view.ShowErrorMessage($"토큰 요청 실패: {ex.Message}", "인증 오류");
+            }
+        }
+
+        /// <summary>
+        /// 인증된 환경의 토큰만 주기적으로 갱신 — 타이머에서 호출
+        ///
+        /// 왜 인증된 환경만?
+        /// - 아직 토큰을 받은 적이 없는 환경까지 갱신하면
+        ///   불필요한 API 호출이 발생하고, 실패 시 에러 로그가 쌓인다.
+        /// - 사용자가 한 번이라도 전환에 성공한 환경만 갱신 대상이다.
+        /// </summary>
+        public async Task RefreshAllTokensAsync()
+        {
+            // ===== 인증된 환경의 토큰을 조용히 갱신 =====
+            // mode를 명시적으로 전달하여 전역 환경을 변경하지 않는다.
+            // 이전에는 SetEnvironment(mode)로 전역 상태를 바꿨지만,
+            // 이 방식은 다른 스레드/UI 작업과 충돌할 위험이 있었다.
+            foreach (KisTradingMode mode in _authenticatedModes)
+            {
+                try
+                {
+                    await _authService.GetAccessTokenAsync(mode);
+                    Console.WriteLine($"[TOKEN] {mode} 토큰 갱신 성공");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[TOKEN] {mode} 토큰 갱신 실패: {ex.Message}");
+                }
+            }
+
+            // ===== View 연결 상태 갱신 =====
+            // 전역 환경을 변경하지 않았으므로 복원할 필요가 없다.
+            await RefreshTokenAsync();
+        }
+
+        /// <summary>
+        /// 거래 환경 전환 (Mock ↔ Live)
+        ///
+        /// 왜 토큰을 먼저 확인하는가?
+        /// - 전환 대상 환경의 토큰이 아직 없으면 API 호출이 불가능하다.
+        /// - 토큰 발급이 실패하면 전환하지 않고 현재 환경을 유지한다.
+        /// - 한 번 토큰 발급에 성공하면 _authenticatedModes에 추가되어
+        ///   이후 전환은 즉시 이루어지고, 타이머가 자동 갱신한다.
+        /// </summary>
+        /// <param name="mode">전환할 거래 모드</param>
+        public async Task SwitchEnvironmentAsync(KisTradingMode mode)
+        {
+            if (_kisTradingService.CurrentEnvironment == mode)
+            {
+                Console.WriteLine($"[ENV] 이미 {mode} 환경입니다.");
+                return;
+            }
+
+            string modeText = mode == KisTradingMode.Live ? "실전투자" : "모의투자";
+
+            // ===== 전환 대상 환경의 토큰 확보 =====
+            // 아직 토큰을 받은 적이 없는 환경이면 먼저 발급을 시도한다.
+            // 전역 환경을 변경하지 않고 mode를 직접 지정하여 인증한다.
+            // 이전에는 SetEnvironment(mode)로 전역 상태를 임시 변경했지만,
+            // 그 사이 다른 UI/백그라운드 요청과 충돌할 가능성이 있었다.
+            if (!_authenticatedModes.Contains(mode))
+            {
+                bool success = await TryAuthenticateModeAsync(mode);
+
+                if (!success)
+                {
+                    Console.WriteLine($"[ENV] {mode} 토큰 발급 실패 — 전환 취소");
+                    _view.ShowErrorMessage(
+                        $"{modeText} 토큰 발급에 실패하여 전환할 수 없습니다.\n" +
+                        $"appsettings.json의 {mode} AppKey/AppSecret을 확인하세요.",
+                        "환경 전환 실패");
+                    return;
+                }
+
+                _authenticatedModes.Add(mode);
+                Console.WriteLine($"[ENV] {mode} 토큰 최초 발급 성공");
+            }
+
+            // ===== 환경 전환 + EnvironmentChanged 이벤트 발생 =====
+            // DashboardPresenter 등 구독자가 즉시 갱신된다.
+            _kisTradingService.SwitchEnvironment(mode);
+            _view.UpdateTradingModeDisplay(modeText);
+
+            // ===== 전환 후 View 연결 상태 갱신 =====
+            await RefreshTokenAsync();
+
+            Console.WriteLine($"[ENV] 환경 전환 완료: {mode}");
+        }
+
+        /// <summary>
+        /// 주식잔고조회 API 호출 후 결과를 View에 전달
+        /// </summary>
+        public async Task InquireBalanceAsync()
+        {
+            if (_accountService == null)
+            {
+                _view.ShowErrorMessage("계좌 서비스가 초기화되지 않았습니다.", "오류");
+                return;
+            }
+
+            try
+            {
+                KisTradingMode mode = _kisTradingService.CurrentEnvironment;
+                ApiEndpointSettings currentSettings = _kisTradingService.GetCurrentSettings();
+
+                var request = new InquireBalanceRequest
+                {
+                    CANO = currentSettings.AccountNumber,
+                    ACNT_PRDT_CD = InquireBalanceAccountProductCodeProvider.Get(mode),
+                    AFHR_FLPR_YN = "N",
+                    OFL_YN = "",
+                    INQR_DVSN = "01",
+                    UNPR_DVSN = "01",
+                    FUND_STTL_ICLD_YN = "N",
+                    FNCG_AMT_AUTO_RDPT_YN = "N",
+                    PRCS_DVSN = "00",
+                    CTX_AREA_FK100 = "",
+                    CTX_AREA_NK100 = ""
+                };
+
+                InquireBalanceResponse? response =
+                    await _accountService.InquireBalanceAsync(request);
+
+                if (response == null)
+                {
+                    _view.ShowErrorMessage("응답이 null 입니다.", "잔고 조회");
+                    return;
+                }
+
+                Console.WriteLine($"RtCd: {response.RtCd}");
+                Console.WriteLine($"MsgCd: {response.MsgCd}");
+                Console.WriteLine($"Msg1: {response.Msg1}");
+                Console.WriteLine($"보유 종목 수: {response.Output1?.Count ?? 0}");
+
+                if (response.Output2 != null && response.Output2.Count > 0)
+                {
+                    var summary = response.Output2[0];
+                    Console.WriteLine($"예수금: {summary.DepositTotalAmount}");
+                    Console.WriteLine($"총평가금액: {summary.TotalEvaluationAmount}");
+                    Console.WriteLine($"순자산금액: {summary.NetAssetAmount}");
+                }
+
+                _view.ShowInfoMessage("주식잔고조회 테스트 완료", "잔고 조회");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"오류: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "주식잔고조회 테스트 실패");
+            }
+        }
+
+        /// <summary>
+        /// 삼성전자(005930) 테스트 주문
+        /// 왜 별도 메서드로 분리하는가?
+        /// - Buy / Sell 버튼이 같은 흐름을 공유하기 때문이다.
+        /// - 버튼 이벤트 안에 주문 생성/호출/결과 처리까지 다 넣으면 길어지고 유지보수가 어려워진다.
+        /// </summary>
+        public async Task SendSamsungTestOrderAsync(OrderSide orderSide)
+        {
+            // ===== 수정 포인트 =====
+            // 실제 Form에서 관리하는 계좌번호 필드명으로 맞춰서 사용하면 된다.
+            string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+            if (string.IsNullOrWhiteSpace(accountNo))
+            {
+                MessageBox.Show("계좌번호가 선택되지 않았습니다.");
+                return;
+            }
+
+            // ===== 테스트용 주문 요청 =====
+            OrderCashRequest request = new OrderCashRequest
+            {
+                Cano = accountNo.Trim(),     // 계좌번호 8자리
+                AcntPrdtCd = "01",           // 보통 01
+                PdNo = "005930",             // 삼성전자
+                SllType = "01",              // 일반매도
+                OrdDvsn = "01",              // 01 = 시장가
+                OrdQty = "1",                // 1주
+                OrdUnpr = "0",               // 시장가 주문은 0
+                CndtPric = "0",
+                ExcgIdDvsnCd = "KRX"
+            };
+
+            // ===== 주문 요청 =====
+            OrderCashResponse response = await _orderService.OrderCashAsync(request, orderSide);
+
+            // ===== 결과 메시지 구성 =====
+            string orderTypeText = orderSide == OrderSide.Buy ? "매수" : "매도";
+            string orderNo = response.Output?.Odno ?? "(주문번호 없음)";
+            string orderTime = response.Output?.OrdTmd ?? "(주문시간 없음)";
+
+            string message =
+                $"[{orderTypeText} 테스트 주문 완료]\r\n" +
+                $"종목: 삼성전자(005930)\r\n" +
+                $"수량: 1주\r\n" +
+                $"주문구분: 시장가\r\n" +
+                $"rt_cd: {response.RtCd}\r\n" +
+                $"msg_cd: {response.MsgCd}\r\n" +
+                $"msg1: {response.Msg1}\r\n" +
+                $"주문번호: {orderNo}\r\n" +
+                $"주문시간: {orderTime}";
+
+            MessageBox.Show(
+                message,
+                $"{orderTypeText} 테스트",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            Console.WriteLine(message);
+        }
+        /// <summary>
+        /// 삼성전자(005930) 정정주문 테스트
+        ///
+        /// 왜 orgnOdno를 외부에서 받는가?
+        /// - 정정주문은 반드시 정정할 원주문번호(ORGN_ODNO)가 필요하다.
+        /// - 원주문번호는 매수/매도 주문 응답(OrderCashResponse.Output.Odno)에서 발급된다.
+        /// - Presenter가 직접 구할 수 없으므로, View에서 사용자에게 입력받아 전달한다.
+        /// </summary>
+        /// <param name="orgnOdno">정정할 원주문번호 (주문 응답의 ODNO)</param>
+        public async Task SendRvsecnclTestOrderAsync(string orgnOdno)
+        {
+            string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+            if (string.IsNullOrWhiteSpace(accountNo))
+            {
+                _view.ShowErrorMessage("계좌번호가 선택되지 않았습니다.", "정정주문 테스트");
+                return;
+            }
+
+            // ===== 정정주문 테스트 요청 =====
+            // 원주문의 지정가를 다른 지정가로 정정하는 테스트이다.
+            // QtyAllOrdYn = "Y" → 잔량 전부 정정
+            var request = new OrderRvsecnclRequest
+            {
+                Cano             = accountNo.Trim(),
+                AcntPrdtCd       = "01",
+                KrxFwdgOrdOrgno  = "",         // 빈 문자열이면 서버가 자동으로 채운다
+                OrgnOdno         = orgnOdno.Trim(),
+                OrdDvsn          = "00",        // 지정가
+                OrdQty           = "1",
+                OrdUnpr          = "60000",     // 정정할 가격 (테스트용)
+                QtyAllOrdYn      = "Y",
+                CndtPric         = "0",
+                ExcgIdDvsnCd     = "KRX"
+            };
+
+            // ===== 정정(Revise) 주문 호출 =====
+            OrderCashResponse response =
+                await _orderService.OrderRvsecnclAsync(request, OrderRvsecnclDvsnCd.Revise);
+
+            // ===== 결과 메시지 구성 =====
+            string orderNo   = response.Output?.Odno   ?? "(주문번호 없음)";
+            string orderTime = response.Output?.OrdTmd ?? "(주문시간 없음)";
+
+            string message =
+                $"[정정주문 테스트 완료]\r\n" +
+                $"종목: 삼성전자(005930)\r\n" +
+                $"원주문번호: {orgnOdno}\r\n" +
+                $"정정단가: 60,000원\r\n" +
+                $"rt_cd: {response.RtCd}\r\n" +
+                $"msg_cd: {response.MsgCd}\r\n" +
+                $"msg1: {response.Msg1}\r\n" +
+                $"주문번호: {orderNo}\r\n" +
+                $"주문시간: {orderTime}";
+
+            _view.ShowInfoMessage(message, "정정주문 테스트");
+            Console.WriteLine(message);
+        }
+
+        // =====================================================================
+        // ===== 주식현재가 시세 조회 [v1_국내주식-008] =====
+        //
+        // 왜 별도 메서드로 분리하는가?
+        // - 시세 조회는 주문/계좌 조회와 독립적인 시장 조회 기능이다.
+        // - IMarketService를 통해 호출하며, Presenter는 결과를 View에 전달만 한다.
+        // =====================================================================
+
+        /// <summary>
+        /// 삼성전자(005930) 주식현재가 시세 조회 테스트
+        /// </summary>
+        public async Task InquirePriceAsync()
+        {
+            if (_marketService == null)
+            {
+                _view.ShowErrorMessage("시세 서비스가 초기화되지 않았습니다.", "오류");
+                return;
+            }
+
+            try
+            {
+                var request = new InquirePriceRequest
+                {
+                    FID_COND_MRKT_DIV_CODE = "J",       // KRX
+                    FID_INPUT_ISCD         = "005930"    // 삼성전자
+                };
+
+                InquirePriceResponse response =
+                    await _marketService.InquirePriceAsync(request);
+
+                InquirePriceOutput? output = response.Output;
+
+                string message =
+                    $"[주식현재가 시세 — 삼성전자(005930)]\r\n\r\n" +
+                    $"현재가:          {output?.StckPrpr ?? "N/A"} 원\r\n" +
+                    $"전일대비:        {output?.PrdyVrss ?? "N/A"} 원\r\n" +
+                    $"전일대비율:      {output?.PrdyCtrt ?? "N/A"} %\r\n" +
+                    $"누적거래량:      {output?.AcmlVol ?? "N/A"}\r\n" +
+                    $"누적거래대금:    {output?.AcmlTrPbmn ?? "N/A"} 원\r\n" +
+                    $"시가:            {output?.StckOprc ?? "N/A"} 원\r\n" +
+                    $"고가:            {output?.StckHgpr ?? "N/A"} 원\r\n" +
+                    $"저가:            {output?.StckLwpr ?? "N/A"} 원\r\n" +
+                    $"상한가:          {output?.StckMxpr ?? "N/A"} 원\r\n" +
+                    $"하한가:          {output?.StckLlam ?? "N/A"} 원\r\n" +
+                    $"PER:             {output?.Per ?? "N/A"}\r\n" +
+                    $"PBR:             {output?.Pbr ?? "N/A"}\r\n" +
+                    $"시가총액:        {output?.HtsAvls ?? "N/A"}\r\n" +
+                    $"52주최고:        {output?.W52Hgpr ?? "N/A"} 원\r\n" +
+                    $"52주최저:        {output?.W52Lwpr ?? "N/A"} 원\r\n" +
+                    $"외국인소진율:    {output?.HtsFrgnEhrt ?? "N/A"} %\r\n\r\n" +
+                    $"rt_cd: {response.RtCd} | msg: {response.Msg1}";
+
+                _view.ShowInfoMessage(message, "주식현재가 시세");
+                Console.WriteLine(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[PRICE] 오류: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "주식현재가 시세 조회 실패");
+            }
+        }
+
+        // =====================================================================
+        // ===== 주식현재가 체결 조회 [v1_국내주식-009] =====
+        //
+        // 왜 별도 메서드로 분리하는가?
+        // - 체결 조회는 시세 조회와 유사하지만, 배열(체결 내역 리스트)을 반환한다.
+        // - 자동매매에서 체결 강도, 체결량 추이를 모니터링하는 데 활용할 수 있다.
+        // =====================================================================
+
+        /// <summary>
+        /// 삼성전자(005930) 주식현재가 체결 조회 테스트
+        /// </summary>
+        public async Task InquireCcnlAsync()
+        {
+            if (_marketService == null)
+            {
+                _view.ShowErrorMessage("시세 서비스가 초기화되지 않았습니다.", "오류");
+                return;
+            }
+
+            try
+            {
+                var request = new InquireCcnlRequest
+                {
+                    FID_COND_MRKT_DIV_CODE = "J",       // KRX
+                    FID_INPUT_ISCD         = "005930"    // 삼성전자
+                };
+
+                InquireCcnlResponse response =
+                    await _marketService.InquireCcnlAsync(request);
+
+                List<InquireCcnlOutput> items = response.Output ?? [];
+
+                // ===== 최근 체결 5건만 표시 (전체가 많을 수 있으므로) =====
+                var topItems = items.Take(5).ToList();
+
+                string itemsText = topItems.Count > 0
+                    ? string.Join("\r\n", topItems.Select(item =>
+                    {
+                        string time = item.StckCntgHour.Length >= 6
+                            ? $"{item.StckCntgHour[..2]}:{item.StckCntgHour[2..4]}:{item.StckCntgHour[4..6]}"
+                            : item.StckCntgHour;
+                        string sign = item.PrdyVrssSign switch
+                        {
+                            "1" => "▲상한",
+                            "2" => "▲",
+                            "3" => "─",
+                            "4" => "▼하한",
+                            "5" => "▼",
+                            _ => ""
+                        };
+                        return $"  {time}  {item.StckPrpr,10}원  {sign}{item.PrdyVrss,8}  " +
+                               $"{item.PrdyCtrt,7}%  체결량:{item.CntgVol,8}  강도:{item.TdayRltv}";
+                    }))
+                    : "  (체결 내역 없음)";
+
+                string message =
+                    $"[주식현재가 체결 — 삼성전자(005930)]\r\n" +
+                    $"총 체결 건수: {items.Count}건 (최근 5건 표시)\r\n\r\n" +
+                    $"{itemsText}\r\n\r\n" +
+                    $"rt_cd: {response.RtCd} | msg: {response.Msg1}";
+
+                _view.ShowInfoMessage(message, "주식현재가 체결");
+                Console.WriteLine(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CCNL] 오류: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "주식현재가 체결 조회 실패");
+            }
+        }
+
+        public void Dispose()
+        {
+            _httpClient?.Dispose();
+        }
+
+        // =====================================================================
+        // ===== 주식정정취소가능주문조회 → 취소 연동 흐름 =====
+        //
+        // 왜 조회와 취소를 하나의 메서드로 연결하는가?
+        // - 취소 주문은 반드시 가능 수량(psbl_qty)을 먼저 확인해야 한다.
+        //   확인 없이 취소하면 API 거부(이미 체결 등)가 발생할 수 있다.
+        // - 조회 → 사용자 선택 → 취소의 흐름 제어는 Presenter의 책임이다.
+        // - View는 목록 표시와 선택 수집만 담당하고, 실제 취소 결정은 Presenter가 한다.
+        // =====================================================================
+
+        /// <summary>
+        /// 정정취소가능주문 조회 후 사용자가 선택한 주문을 취소한다.
+        /// ※ 실전투자 전용 — 모의투자에서 호출 시 오류 메시지 표시 후 종료
+        /// </summary>
+        public async Task InquirePsblRvsecnclAndCancelAsync()
+        {
+            // ===== 실전투자 전용 API 사전 체크 =====
+            // 모의투자 환경에서는 서비스 레이어에서도 예외가 발생하지만,
+            // Presenter에서 먼저 체크하여 불필요한 API 호출을 막는다.
+            if (_kisTradingService.CurrentEnvironment != KisTradingMode.Live)
+            {
+                _view.ShowErrorMessage(
+                    "주식정정취소가능주문조회는 실전투자만 지원합니다.\n" +
+                    "실전투자 환경으로 전환 후 다시 시도하세요.",
+                    "모의투자 미지원");
+                return;
+            }
+
+            string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+            // ===== Step 1: 정정취소가능주문 조회 =====
+            var inquireRequest = new InquirePsblRvsecnclRequest
+            {
+                CANO          = accountNo.Trim(),
+                ACNT_PRDT_CD  = "01",
+                CTX_AREA_FK100 = string.Empty,
+                CTX_AREA_NK100 = string.Empty,
+                INQR_DVSN_1   = "0",   // 주문 기준
+                INQR_DVSN_2   = "0"    // 전체 (매도+매수)
+            };
+
+            InquirePsblRvsecnclResponse inquireResponse =
+                await _orderService.InquirePsblRvsecnclAsync(inquireRequest);
+
+            List<InquirePsblRvsecnclItem> items = inquireResponse.Output ?? [];
+
+            // ===== 취소 가능 주문이 없으면 종료 =====
+            if (items.Count == 0)
+            {
+                _view.ShowInfoMessage(
+                    "정정/취소 가능한 주문이 없습니다.",
+                    "정정취소가능주문조회");
+                return;
+            }
+
+            // ===== Step 2: 표시용 문자열 목록 구성 → View에 전달 =====
+            // Presenter가 표시 형식을 결정하고, View는 목록을 그대로 보여준다.
+            var displayItems = items.Select(item =>
+            {
+                string side  = item.SllBuyDvsnCd == "01" ? "매도" : "매수";
+                string time  = item.OrdTmd.Length >= 6
+                    ? $"{item.OrdTmd[..2]}:{item.OrdTmd[2..4]}:{item.OrdTmd[4..6]}"
+                    : item.OrdTmd;
+                return $"[{side}] {item.PrdtName}({item.Pdno}) | " +
+                       $"주문:{item.OrdQty}주 / 가능:{item.PsblQty}주 | " +
+                       $"단가:{item.OrdUnpr}원 | 주문번호:{item.Odno} | {time}";
+            }).ToList();
+
+            int? selectedIndex = _view.ShowOrderSelectionDialog(displayItems, "취소할 주문 선택");
+
+            if (selectedIndex == null)
+            {
+                Console.WriteLine("[CANCEL] 사용자가 취소 선택을 취소했습니다.");
+                return;
+            }
+
+            // ===== Step 3: 선택한 주문 취소 =====
+            InquirePsblRvsecnclItem selected = items[selectedIndex.Value];
+
+            // ===== 가능수량이 0이면 취소 불가 =====
+            if (!int.TryParse(selected.PsblQty, out int psblQty) || psblQty <= 0)
+            {
+                _view.ShowErrorMessage(
+                    $"선택한 주문의 취소 가능 수량이 0입니다.\n" +
+                    $"이미 전량 체결되었거나 취소 처리 중일 수 있습니다.",
+                    "취소 불가");
+                return;
+            }
+
+            var cancelRequest = new OrderRvsecnclRequest
+            {
+                Cano            = accountNo.Trim(),
+                AcntPrdtCd      = "01",
+                KrxFwdgOrdOrgno = selected.OrdGnoBrno,  // 조회 응답의 지점번호 그대로 사용
+                OrgnOdno        = selected.Odno,          // 조회 응답의 주문번호 그대로 사용
+                OrdDvsn         = selected.OrdDvsnCd,     // 원주문의 주문구분 그대로 유지
+                OrdQty          = selected.PsblQty,       // 가능수량 전부 취소
+                OrdUnpr         = "0",                    // 취소 주문은 단가 0
+                QtyAllOrdYn     = "Y",
+                ExcgIdDvsnCd    = string.IsNullOrWhiteSpace(selected.ExcgIdDvsnCd)
+                    ? "KRX"
+                    : selected.ExcgIdDvsnCd
+            };
+
+            OrderCashResponse cancelResponse =
+                await _orderService.OrderRvsecnclAsync(cancelRequest, OrderRvsecnclDvsnCd.Cancel);
+
+            // ===== 결과 보고 =====
+            string orderNo   = cancelResponse.Output?.Odno   ?? "(주문번호 없음)";
+            string orderTime = cancelResponse.Output?.OrdTmd ?? "(주문시간 없음)";
+
+            string resultMessage =
+                $"[취소주문 완료]\r\n" +
+                $"종목: {selected.PrdtName}({selected.Pdno})\r\n" +
+                $"원주문번호: {selected.Odno}\r\n" +
+                $"취소수량: {selected.PsblQty}주\r\n" +
+                $"rt_cd: {cancelResponse.RtCd}\r\n" +
+                $"msg_cd: {cancelResponse.MsgCd}\r\n" +
+                $"msg1: {cancelResponse.Msg1}\r\n" +
+                $"취소주문번호: {orderNo}\r\n" +
+                $"취소주문시각: {orderTime}";
+
+            _view.ShowInfoMessage(resultMessage, "취소주문 완료");
+            Console.WriteLine(resultMessage);
+        }
+
+        // =====================================================================
+        // ===== 매수가능조회 → 현금매수 연동 흐름 =====
+        //
+        // 왜 매수 전에 가능 수량을 먼저 조회하는가?
+        // - 자동매매에서 잔고 부족 상태로 매수 주문을 내면 API 거부 또는 미수 처리가 발생한다.
+        // - 미수 없이 살 수 있는 수량(NrcvbBuyQty)을 미리 확인하면 안전한 주문이 가능하다.
+        // - 조회 결과를 사용자에게 보여주고 확인을 받아야 실수 주문을 방지할 수 있다.
+        //
+        // ORD_DVSN:01(시장가)로 조회하는 이유:
+        // - 지정가(00)로 조회하면 종목증거금율이 반영되지 않아 실제보다 많은 수량이 나온다.
+        // - 시장가(01)로 조회해야 실제 매수 가능한 정확한 수량이 반환된다.
+        // =====================================================================
+
+        /// <summary>
+        /// 삼성전자(005930) 매수가능 조회 후 사용자 확인 시 현금 매수 주문을 낸다.
+        /// 실전/모의투자 모두 지원.
+        /// </summary>
+        public async Task InquirePsblOrderAndBuyAsync()
+        {
+            string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+            if (string.IsNullOrWhiteSpace(accountNo))
+            {
+                _view.ShowErrorMessage("계좌번호가 선택되지 않았습니다.", "매수가능조회");
+                return;
+            }
+
+            // ===== Step 1: 매수가능조회 =====
+            // ORD_DVSN:01(시장가)로 조회해야 증거금율이 반영된 정확한 가능수량을 얻을 수 있다.
+            var inquireRequest = new InquirePsblOrderRequest
+            {
+                CANO             = accountNo.Trim(),
+                ACNT_PRDT_CD     = "01",
+                PDNO             = "005930",   // 삼성전자 (테스트용)
+                ORD_DVSN         = "01",       // 시장가 — 증거금율 반영된 정확한 수량 조회
+                ORD_UNPR         = "",          // 시장가 조회 시 단가 공란
+                CMA_EVLU_AMT_ICLD_YN = "N",
+                OVRS_ICLD_YN     = "N"
+            };
+
+            InquirePsblOrderResponse inquireResponse =
+                await _orderService.InquirePsblOrderAsync(inquireRequest);
+
+            InquirePsblOrderOutput? output = inquireResponse.Output;
+            if (output == null)
+            {
+                _view.ShowErrorMessage("매수가능조회 응답이 올바르지 않습니다.", "매수가능조회 오류");
+                return;
+            }
+
+            // ===== Step 2: 조회 결과 사용자 확인 =====
+            // 미수 없는 안전한 값(NrcvbBuyAmt, NrcvbBuyQty)을 보여준다.
+            string confirmMessage =
+                $"[매수가능조회 결과 — 삼성전자(005930)]\r\n\r\n" +
+                $"주문가능현금:      {output.OrdPsblCash,20} 원\r\n" +
+                $"미수없는매수금액:  {output.NrcvbBuyAmt,20} 원\r\n" +
+                $"미수없는매수수량:  {output.NrcvbBuyQty,20} 주\r\n" +
+                $"최대매수금액(미수): {output.MaxBuyAmt,19} 원\r\n" +
+                $"최대매수수량(미수): {output.MaxBuyQty,19} 주\r\n\r\n" +
+                $"1주 시장가 매수 주문을 진행하시겠습니까?";
+
+            bool confirmed = _view.ShowConfirmMessage(confirmMessage, "매수 확인");
+
+            if (!confirmed)
+            {
+                Console.WriteLine("[BUY] 사용자가 매수를 취소했습니다.");
+                return;
+            }
+
+            // ===== Step 3: 매수 가능 수량 검증 =====
+            // NrcvbBuyQty = 미수 없이 살 수 있는 안전한 수량
+            if (!int.TryParse(output.NrcvbBuyQty, out int availableQty) || availableQty < 1)
+            {
+                _view.ShowErrorMessage(
+                    $"매수 가능 수량이 부족합니다. (가능수량: {output.NrcvbBuyQty}주)\r\n" +
+                    "잔고를 확인해 주세요.",
+                    "매수 불가");
+                return;
+            }
+
+            // ===== Step 4: 현금 매수 주문 =====
+            // 1주 시장가 매수 — 가능수량이 충분히 확인된 상태에서만 도달한다.
+            var buyRequest = new OrderCashRequest
+            {
+                Cano         = accountNo.Trim(),
+                AcntPrdtCd   = "01",
+                PdNo         = "005930",   // 삼성전자
+                SllType      = "01",       // 일반 매도구분 (매수 시에도 필드는 있어야 한다)
+                OrdDvsn      = "01",       // 시장가
+                OrdQty       = "1",        // 1주
+                OrdUnpr      = "0",        // 시장가 주문은 단가 0
+                CndtPric     = "0",
+                ExcgIdDvsnCd = "KRX"
+            };
+
+            OrderCashResponse buyResponse = await _orderService.OrderCashAsync(buyRequest, OrderSide.Buy);
+
+            // ===== Step 5: 매수 결과 표시 =====
+            string orderNo   = buyResponse.Output?.Odno   ?? "(주문번호 없음)";
+            string orderTime = buyResponse.Output?.OrdTmd ?? "(주문시간 없음)";
+
+            string resultMessage =
+                $"[매수 주문 완료]\r\n" +
+                $"종목: 삼성전자(005930)\r\n" +
+                $"수량: 1주 / 시장가\r\n" +
+                $"rt_cd: {buyResponse.RtCd}\r\n" +
+                $"msg_cd: {buyResponse.MsgCd}\r\n" +
+                $"msg1: {buyResponse.Msg1}\r\n" +
+                $"주문번호: {orderNo}\r\n" +
+                $"주문시간: {orderTime}";
+
+            _view.ShowInfoMessage(resultMessage, "매수 주문 완료");
+            Console.WriteLine(resultMessage);
+        }
+
+        // =====================================================================
+        // ===== 매도가능수량조회 → 현금매도 연동 흐름 =====
+        //
+        // 왜 매도 전에 가능 수량을 먼저 조회하는가?
+        // - 보유하지 않거나 이미 매도한 수량을 초과해 주문하면 API 거부가 발생한다.
+        // - OrdPsblQty(주문가능수량)를 미리 확인하면 오류 없이 안전한 주문이 가능하다.
+        // - 보유 종목 정보(현재가, 평가손익 등)도 함께 표시하면 사용자가 판단하기 쉽다.
+        //
+        // ※ 실전투자 전용 API — 모의투자에서 호출 시 오류 메시지 표시 후 종료
+        // =====================================================================
+
+        /// <summary>
+        /// 삼성전자(005930) 매도가능수량 조회 후 사용자 확인 시 현금 매도 주문을 낸다.
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        public async Task InquirePsblSellAndSellAsync()
+        {
+            // ===== 실전투자 전용 API 사전 체크 =====
+            // 서비스 레이어에서도 예외가 발생하지만,
+            // Presenter에서 먼저 체크하여 불필요한 API 호출을 막는다.
+            if (_kisTradingService.CurrentEnvironment != KisTradingMode.Live)
+            {
+                _view.ShowErrorMessage(
+                    "매도가능수량조회는 실전투자만 지원합니다.\n" +
+                    "실전투자 환경으로 전환 후 다시 시도하세요.",
+                    "모의투자 미지원");
+                return;
+            }
+
+            string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+            if (string.IsNullOrWhiteSpace(accountNo))
+            {
+                _view.ShowErrorMessage("계좌번호가 선택되지 않았습니다.", "매도가능수량조회");
+                return;
+            }
+
+            // ===== Step 1: 매도가능수량 조회 =====
+            var inquireRequest = new InquirePsblSellRequest
+            {
+                CANO         = accountNo.Trim(),
+                ACNT_PRDT_CD = "01",
+                PDNO         = "005930"   // 삼성전자 (테스트용)
+            };
+
+            InquirePsblSellResponse inquireResponse =
+                await _orderService.InquirePsblSellAsync(inquireRequest);
+
+            InquirePsblSellOutput1? output = inquireResponse.Output1;
+            if (output == null)
+            {
+                _view.ShowErrorMessage("매도가능수량조회 응답이 올바르지 않습니다.", "매도가능수량조회 오류");
+                return;
+            }
+
+            // ===== Step 2: 조회 결과 사용자 확인 =====
+            string confirmMessage =
+                $"[매도가능수량조회 결과 — {output.PrdtName}({output.Pdno})]\r\n\r\n" +
+                $"잔고수량:        {output.CblcQty,15} 주\r\n" +
+                $"주문가능수량:    {output.OrdPsblQty,15} 주\r\n" +
+                $"현재가:          {output.NowPric,15} 원\r\n" +
+                $"매입평균가격:    {output.PchsAvgPric,15} 원\r\n" +
+                $"평가손익금액:    {output.EvluPflsAmt,15} 원\r\n" +
+                $"평가손익율:      {output.EvluPflsRt,15} %\r\n\r\n" +
+                $"1주 시장가 매도 주문을 진행하시겠습니까?";
+
+            bool confirmed = _view.ShowConfirmMessage(confirmMessage, "매도 확인");
+
+            if (!confirmed)
+            {
+                Console.WriteLine("[SELL] 사용자가 매도를 취소했습니다.");
+                return;
+            }
+
+            // ===== Step 3: 매도 가능 수량 검증 =====
+            // OrdPsblQty = 실제 매도 주문에 사용 가능한 수량
+            if (!int.TryParse(output.OrdPsblQty, out int availableQty) || availableQty < 1)
+            {
+                _view.ShowErrorMessage(
+                    $"매도 가능 수량이 부족합니다. (가능수량: {output.OrdPsblQty}주)\r\n" +
+                    "보유 수량을 확인해 주세요.",
+                    "매도 불가");
+                return;
+            }
+
+            // ===== Step 4: 현금 매도 주문 =====
+            // 1주 시장가 매도 — 가능수량이 충분히 확인된 상태에서만 도달한다.
+            var sellRequest = new OrderCashRequest
+            {
+                Cano         = accountNo.Trim(),
+                AcntPrdtCd   = "01",
+                PdNo         = "005930",   // 삼성전자
+                SllType      = "01",       // 일반 매도
+                OrdDvsn      = "01",       // 시장가
+                OrdQty       = "1",        // 1주
+                OrdUnpr      = "0",        // 시장가 주문은 단가 0
+                CndtPric     = "0",
+                ExcgIdDvsnCd = "KRX"
+            };
+
+            OrderCashResponse sellResponse = await _orderService.OrderCashAsync(sellRequest, OrderSide.Sell);
+
+            // ===== Step 5: 매도 결과 표시 =====
+            string orderNo   = sellResponse.Output?.Odno   ?? "(주문번호 없음)";
+            string orderTime = sellResponse.Output?.OrdTmd ?? "(주문시간 없음)";
+
+            string resultMessage =
+                $"[매도 주문 완료]\r\n" +
+                $"종목: {output.PrdtName}({output.Pdno})\r\n" +
+                $"수량: 1주 / 시장가\r\n" +
+                $"rt_cd: {sellResponse.RtCd}\r\n" +
+                $"msg_cd: {sellResponse.MsgCd}\r\n" +
+                $"msg1: {sellResponse.Msg1}\r\n" +
+                $"주문번호: {orderNo}\r\n" +
+                $"주문시간: {orderTime}";
+
+            _view.ShowInfoMessage(resultMessage, "매도 주문 완료");
+            Console.WriteLine(resultMessage);
+        }
+
+        // =====================================================================
+        // ===== 주식잔고조회_실현손익 =====
+        //
+        // 왜 일반 잔고조회와 별도로 존재하는가?
+        // - InquireBalanceAsync는 현재 보유 종목의 평가손익만 보여준다.
+        // - 이 API는 당일 실현된 손익(매도로 확정된 수익/손실)까지 포함한다.
+        // - 자동매매 성과 추적과 일일 손익 확인에 필수적인 API이다.
+        //
+        // ※ 실전투자 전용 API — 모의투자에서 호출 시 오류 메시지 표시 후 종료
+        // =====================================================================
+
+        /// <summary>
+        /// 주식잔고조회_실현손익 API를 호출하여 결과를 출력한다.
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        public async Task InquireBalanceRlzPlAsync()
+        {
+            // ===== 실전투자 전용 API 사전 체크 =====
+            if (_kisTradingService.CurrentEnvironment != KisTradingMode.Live)
+            {
+                _view.ShowErrorMessage(
+                    "주식잔고조회_실현손익은 실전투자만 지원합니다.\n" +
+                    "실전투자 환경으로 전환 후 다시 시도하세요.",
+                    "모의투자 미지원");
+                return;
+            }
+
+            if (_accountService == null)
+            {
+                _view.ShowErrorMessage("계좌 서비스가 초기화되지 않았습니다.", "오류");
+                return;
+            }
+
+            try
+            {
+                string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+                var request = new InquireBalanceRlzPlRequest
+                {
+                    CANO                   = accountNo.Trim(),
+                    ACNT_PRDT_CD           = "01",
+                    AFHR_FLPR_YN           = "N",
+                    OFL_YN                 = "",
+                    INQR_DVSN             = "00",   // 전체
+                    UNPR_DVSN              = "01",
+                    FUND_STTL_ICLD_YN      = "N",
+                    FNCG_AMT_AUTO_RDPT_YN  = "N",
+                    PRCS_DVSN              = "00",   // 전일매매 포함
+                    COST_ICLD_YN           = "N",
+                    CTX_AREA_FK100         = "",
+                    CTX_AREA_NK100         = ""
+                };
+
+                InquireBalanceRlzPlResponse response =
+                    await _accountService.InquireBalanceRlzPlAsync(request);
+
+                // ===== 콘솔 로그: 종목별 실현손익 =====
+                Console.WriteLine($"[실현손익] rt_cd={response.RtCd}, 보유/매도 종목 수={response.Output1.Count}");
+                foreach (InquireBalanceRlzPlItem item in response.Output1)
+                {
+                    Console.WriteLine(
+                        $"  {item.ProductName}({item.ProductCode}) | " +
+                        $"보유:{item.HoldingQuantity}주 | " +
+                        $"현재가:{item.CurrentPrice} | " +
+                        $"평가손익:{item.EvaluationProfitLossAmount}원({item.EvaluationProfitLossRate}%)");
+                }
+
+                // ===== 계좌 요약 (실현손익 핵심 필드) =====
+                string infoMessage;
+                if (response.Output2.Count > 0)
+                {
+                    InquireBalanceRlzPlSummary summary = response.Output2[0];
+
+                    Console.WriteLine($"[실현손익 요약]");
+                    Console.WriteLine($"  실현손익:      {summary.RlztPfls} 원");
+                    Console.WriteLine($"  실현수익율:    {summary.RlztErngRt} %");
+                    Console.WriteLine($"  실평가손익:    {summary.RealEvluPfls} 원");
+                    Console.WriteLine($"  실평가손익율:  {summary.RealEvluPflsErngRt} %");
+                    Console.WriteLine($"  총평가금액:    {summary.TotalEvaluationAmount} 원");
+                    Console.WriteLine($"  순자산금액:    {summary.NetAssetAmount} 원");
+
+                    infoMessage =
+                        $"[주식잔고조회_실현손익 결과]\r\n\r\n" +
+                        $"보유/매도 종목 수:  {response.Output1.Count}개\r\n\r\n" +
+                        $"실현손익:          {summary.RlztPfls,20} 원\r\n" +
+                        $"실현수익율:        {summary.RlztErngRt,20} %\r\n" +
+                        $"실평가손익:        {summary.RealEvluPfls,20} 원\r\n" +
+                        $"실평가손익수익율:  {summary.RealEvluPflsErngRt,18} %\r\n\r\n" +
+                        $"평가손익합계:      {summary.EvaluationProfitLossTotal,20} 원\r\n" +
+                        $"총평가금액:        {summary.TotalEvaluationAmount,20} 원\r\n" +
+                        $"순자산금액:        {summary.NetAssetAmount,20} 원";
+                }
+                else
+                {
+                    infoMessage = "주식잔고조회_실현손익 조회 완료 (요약 데이터 없음)";
+                }
+
+                _view.ShowInfoMessage(infoMessage, "주식잔고조회_실현손익");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[실현손익] 오류: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "주식잔고조회_실현손익 실패");
+            }
+        }
+
+        // =====================================================================
+        // ===== 투자계좌자산현황조회 =====
+        //
+        // 왜 주식잔고조회와 별도로 존재하는가?
+        // - InquireBalanceAsync는 보유 종목별(개별 주식) 현황을 보여준다.
+        // - 이 API는 주식, 펀드, 채권, 해외주식 등 자산 종류별 비중을 집계하여 보여준다.
+        // - 전체 포트폴리오에서 각 자산이 차지하는 비율(whol_weit_rt)을 파악할 수 있다.
+        //
+        // ※ 실전투자 전용 API — 모의투자에서 호출 시 오류 메시지 표시 후 종료
+        // =====================================================================
+
+        /// <summary>
+        /// 투자계좌자산현황조회 API를 호출하여 자산 종류별 비중과 합산 정보를 표시한다.
+        /// ※ 실전투자 전용 — 모의투자 미지원
+        /// </summary>
+        public async Task InquireAccountBalanceAsync()
+        {
+            // ===== 실전투자 전용 API 사전 체크 =====
+            if (_kisTradingService.CurrentEnvironment != KisTradingMode.Live)
+            {
+                _view.ShowErrorMessage(
+                    "투자계좌자산현황조회는 실전투자만 지원합니다.\n" +
+                    "실전투자 환경으로 전환 후 다시 시도하세요.",
+                    "모의투자 미지원");
+                return;
+            }
+
+            if (_accountService == null)
+            {
+                _view.ShowErrorMessage("계좌 서비스가 초기화되지 않았습니다.", "오류");
+                return;
+            }
+
+            try
+            {
+                string accountNo = _kisTradingService.GetCurrentSettings().AccountNumber;
+
+                var request = new InquireAccountBalanceRequest
+                {
+                    CANO               = accountNo.Trim(),
+                    ACNT_PRDT_CD       = "01",
+                    INQR_DVSN_1        = "",    // API 명세: 공란 입력
+                    BSPR_BF_DT_APLY_YN = ""     // API 명세: 공란 입력
+                };
+
+                InquireAccountBalanceResponse response =
+                    await _accountService.InquireAccountBalanceAsync(request);
+
+                // ===== 자산 종류별 목록 레이블 =====
+                // Output1 배열 순서가 자산 종류를 나타낸다. (최대 20항목, 마지막이 합계)
+                string[] assetLabels =
+                [
+                    "주식", "펀드/MMW", "IMA", "채권", "ELS/DLS", "WRAP",
+                    "신탁", "RP/발행어음", "해외주식", "해외채권", "금현물", "CD/CP",
+                    "전자단기사채", "타사상품", "외화전단기사채", "외화ELS/DLS",
+                    "외화", "예수금", "청약자예수금", "합계"
+                ];
+
+                // ===== 콘솔 로그: 자산별 현황 =====
+                Console.WriteLine($"[자산현황] rt_cd={response.RtCd}, 항목 수={response.Output1.Count}");
+                for (int i = 0; i < response.Output1.Count; i++)
+                {
+                    InquireAccountBalanceItem item = response.Output1[i];
+                    string label = i < assetLabels.Length ? assetLabels[i] : $"항목{i + 1}";
+                    Console.WriteLine(
+                        $"  [{label}] 평가금액:{item.EvaluationAmount} | " +
+                        $"평가손익:{item.EvaluationProfitLossAmount} | " +
+                        $"비중:{item.WholeWeightRate}%");
+                }
+
+                // ===== 요약 (Output2) =====
+                string infoMessage;
+                if (response.Output2 != null)
+                {
+                    InquireAccountBalanceSummary s = response.Output2;
+
+                    Console.WriteLine($"[자산현황 요약]");
+                    Console.WriteLine($"  총자산금액:    {s.TotAsstAmt} 원");
+                    Console.WriteLine($"  순자산총금액:  {s.NassTotAmt} 원");
+                    Console.WriteLine($"  평가손익합계:  {s.EvaluationProfitLossTotal} 원");
+                    Console.WriteLine($"  예수금액:      {s.DnclAmt} 원");
+
+                    // ===== 자산 종류별 한 줄 요약 구성 =====
+                    var itemLines = response.Output1
+                        .Select((item, idx) =>
+                        {
+                            string label = idx < assetLabels.Length ? assetLabels[idx] : $"항목{idx + 1}";
+                            return $"  {label,-12}: 평가{item.EvaluationAmount,18}원  비중{item.WholeWeightRate,8}%";
+                        });
+
+                    infoMessage =
+                        $"[투자계좌자산현황조회 결과]\r\n\r\n" +
+                        $"총자산금액:    {s.TotAsstAmt,20} 원\r\n" +
+                        $"순자산총금액:  {s.NassTotAmt,20} 원\r\n" +
+                        $"평가금액합계:  {s.EvaluationAmountTotal,20} 원\r\n" +
+                        $"평가손익합계:  {s.EvaluationProfitLossTotal,20} 원\r\n" +
+                        $"예수금액:      {s.DnclAmt,20} 원\r\n" +
+                        $"대출금액합계:  {s.LoanAmountTotal,20} 원\r\n\r\n" +
+                        $"[ 자산 종류별 현황 ]\r\n" +
+                        string.Join("\r\n", itemLines);
+                }
+                else
+                {
+                    infoMessage = "투자계좌자산현황조회 완료 (요약 데이터 없음)";
+                }
+
+                _view.ShowInfoMessage(infoMessage, "투자계좌자산현황조회");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[자산현황] 오류: {ex.Message}");
+                _view.ShowErrorMessage(ex.ToString(), "투자계좌자산현황조회 실패");
+            }
+        }
+    }
+}

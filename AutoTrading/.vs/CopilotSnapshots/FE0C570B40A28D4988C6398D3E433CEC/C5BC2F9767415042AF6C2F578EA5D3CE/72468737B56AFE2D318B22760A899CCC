@@ -1,0 +1,40 @@
+﻿using KisRestAPI.Models.Market;
+
+namespace KisRestAPI.Market
+{
+    /// <summary>
+    /// 시세/시장 조회 API 기능을 정의하는 서비스 인터페이스
+    /// </summary>
+    public interface IMarketService
+    {
+        /// <summary>
+        /// 주식현재가 시세 조회 [v1_국내주식-008]
+        /// </summary>
+        Task<InquirePriceResponse> InquirePriceAsync(
+            InquirePriceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 체결 조회 [v1_국내주식-009]
+        /// </summary>
+        Task<InquireCcnlResponse> InquireCcnlAsync(
+            InquireCcnlRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 일자별 조회 [v1_국내주식-010]
+        /// 일/주/월별 주가를 최근 30일(주/월)로 반환한다.
+        /// </summary>
+        Task<InquireDailyPriceResponse> InquireDailyPriceAsync(
+            InquireDailyPriceRequest request,
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 주식현재가 호가/예상체결 조회 [v1_국내주식-011]
+        /// 매수/매도 호가 10단계(가격·잔량·증감)와 예상체결가를 반환한다.
+        /// </summary>
+        Task<InquireAskingPriceResponse> InquireAskingPriceAsync(
+            InquireAskingPriceRequest request,
+            CancellationToken cancellationToken = default);
+    }
+}

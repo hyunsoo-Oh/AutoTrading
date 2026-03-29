@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="AutoTrading/AutoTrading.csproj" />
+  <Project Path="KisRestAPI/KisRestAPI.csproj" Id="69d0abda-e74b-411c-9194-97560c036c81" />
+  <Project Path="KisRestAPITest/KisRestAPITest.csproj" Id="c7e5b587-5eff-49bc-95c4-71aefd414f21" />
+  <Project Path="StockControl/StockControl.csproj" Id="1db26e84-4acb-49cb-baf5-9ed1dd2a636c" />
 </Solution>
