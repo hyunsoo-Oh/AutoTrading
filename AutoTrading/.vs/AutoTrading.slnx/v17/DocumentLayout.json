@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\strategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -19,19 +19,19 @@
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\marketregime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\backtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\backtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\backtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\asset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|c:\\users\\jweli\\project\\autotrading\\autotrading\\autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D431BD8F-FC3B-31FF-B3F6-D3931585D1EC}|AutoTrading\\AutoTrading.csproj|solutionrelative:autotrading\\features\\views\\contents\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -593,8 +593,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Strategy.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Strategy.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T04:46:57.768Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-29T04:46:57.768Z"
             },
             {
               "$type": "Document",
@@ -605,8 +604,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Report.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Report.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T04:46:49.387Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-29T04:46:49.387Z"
             },
             {
               "$type": "Document",
@@ -629,8 +627,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Logging.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Logging.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T04:46:22.84Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-29T04:46:22.84Z"
             },
             {
               "$type": "Document",
@@ -641,8 +638,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Backtest.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Backtest.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T04:46:06.623Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-29T04:46:06.623Z"
             },
             {
               "$type": "Document",
@@ -653,8 +649,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Asset.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Asset.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T04:45:52.178Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-29T04:45:52.178Z"
             },
             {
               "$type": "Document",
@@ -665,8 +660,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T11:39:17.837Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-28T11:39:17.837Z"
             },
             {
               "$type": "Document",
@@ -677,8 +671,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\MarketRegime.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T13:58:20.488Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-28T13:58:20.488Z"
             },
             {
               "$type": "Document",
@@ -690,8 +683,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Presenters\\Contents\\DashboardPresenter.cs",
               "ViewState": "AgIAAHYBAAAAAAAAAAD4v4sBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:44:56.825Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:44:56.825Z"
             },
             {
               "$type": "Document",
@@ -703,8 +695,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Interfaces\\IDashboardView.cs",
               "ViewState": "AgIAACoAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:43:38.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:43:38.061Z"
             },
             {
               "$type": "Document",
@@ -716,8 +707,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\CompInterestBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:36:12.329Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:36:12.329Z"
             },
             {
               "$type": "Document",
@@ -729,8 +719,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireDailyPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:07:27.791Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:07:27.791Z"
             },
             {
               "$type": "Document",
@@ -742,8 +731,7 @@
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Contents\\Dashboard.cs",
               "ViewState": "AgIAABEBAAAAAAAAAAAewIYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T11:39:15.589Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-28T11:39:15.589Z"
             },
             {
               "$type": "Document",
@@ -755,8 +743,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\CompInterestModels.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAA6wBEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:35:53.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:35:53.306Z"
             },
             {
               "$type": "Document",
@@ -768,8 +755,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireDailyPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:07:46.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:07:46.204Z"
             },
             {
               "$type": "Document",
@@ -781,8 +767,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\IMarketService.cs",
               "ViewState": "AgIAAG0AAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:07:54.852Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:07:54.852Z"
             },
             {
               "$type": "Document",
@@ -794,8 +779,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\KisMarketService.cs",
               "ViewState": "AgIAADkCAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:08:09.285Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:08:09.285Z"
             },
             {
               "$type": "Document",
@@ -807,8 +791,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireAskingPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAOkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:11:12.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:11:12.609Z"
             },
             {
               "$type": "Document",
@@ -820,8 +803,7 @@
               "RelativeToolTip": "KisRestAPI\\Overseas\\KisOverseasMarketService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:34:54.397Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:34:54.397Z"
             },
             {
               "$type": "Document",
@@ -833,8 +815,7 @@
               "RelativeToolTip": "KisRestAPI\\Overseas\\IOverseasMarketService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:34:35.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:34:35.052Z"
             },
             {
               "$type": "Document",
@@ -846,8 +827,7 @@
               "RelativeToolTip": "KisRestAPI\\Overseas\\InquireOvrsDailyChartPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:34:20.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:34:20.577Z"
             },
             {
               "$type": "Document",
@@ -859,8 +839,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Overseas\\InquireOvrsDailyChartPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:33:58.554Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:33:58.554Z"
             },
             {
               "$type": "Document",
@@ -872,8 +851,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireIndexPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:29:41.809Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:29:41.809Z"
             },
             {
               "$type": "Document",
@@ -885,8 +863,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireIndexPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAANcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:29:17.732Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:29:17.732Z"
             },
             {
               "$type": "Document",
@@ -898,8 +875,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireEtfComponentStockPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:24:39.811Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:24:39.811Z"
             },
             {
               "$type": "Document",
@@ -911,8 +887,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireEtfComponentStockPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAL4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:24:17.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:24:17.272Z"
             },
             {
               "$type": "Document",
@@ -924,8 +899,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireEtfPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:21:53.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:21:53.44Z"
             },
             {
               "$type": "Document",
@@ -937,8 +911,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireEtfPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADABAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:21:29.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:21:29.28Z"
             },
             {
               "$type": "Document",
@@ -950,8 +923,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireTimeItemConclusionBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:18:55.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:18:55.121Z"
             },
             {
               "$type": "Document",
@@ -963,8 +935,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireTimeItemConclusionModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:18:37.641Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:18:37.641Z"
             },
             {
               "$type": "Document",
@@ -976,8 +947,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireTimeItemChartPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:17:06.373Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:17:06.373Z"
             },
             {
               "$type": "Document",
@@ -989,8 +959,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireTimeItemChartPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:16:48.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:16:48.917Z"
             },
             {
               "$type": "Document",
@@ -1002,8 +971,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireDailyItemChartPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:15:19.709Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:15:19.709Z"
             },
             {
               "$type": "Document",
@@ -1015,8 +983,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireDailyItemChartPriceModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:14:56.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:14:56.282Z"
             },
             {
               "$type": "Document",
@@ -1028,8 +995,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireInvestorBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:13:24.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:13:24.665Z"
             },
             {
               "$type": "Document",
@@ -1041,8 +1007,7 @@
               "RelativeToolTip": "KisRestAPI\\Models\\Market\\InquireInvestorModels.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:13:08.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:13:08.531Z"
             },
             {
               "$type": "Document",
@@ -1054,8 +1019,7 @@
               "RelativeToolTip": "KisRestAPI\\Market\\InquireAskingPriceBuilders.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:11:30.856Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:11:30.856Z"
             },
             {
               "$type": "Document",
@@ -1093,8 +1057,7 @@
               "RelativeToolTip": "StockControl\\DarkTabControl.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T02:59:15.992Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T02:59:15.992Z"
             },
             {
               "$type": "Document",
@@ -1106,8 +1069,7 @@
               "RelativeToolTip": "StockControl\\RiskSignalControl.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAAwCsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T02:41:16.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T02:41:16.482Z"
             },
             {
               "$type": "Document",
@@ -1130,8 +1092,7 @@
               "ToolTip": "C:\\Users\\jweli\\Project\\AutoTrading\\AutoTrading\\AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "AutoTrading\\Features\\Views\\Forms\\MainForm.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-28T14:18:58.888Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2026-03-28T14:18:58.888Z"
             },
             {
               "$type": "Document",
